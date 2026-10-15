@@ -13,4 +13,15 @@ Max **3** calibration attempts per gate. Each attempt is logged here *before* it
 - Pass: best cell ≥ 9/30. Selection rule: most correct; tie → lower α, then lower layer.
 - If it fails, planned attempt 2 (to be re-logged before running): add layers {5, 10} and
   α {3, 20}. Planned attempt 3: contrastive-sentence concept vectors.
-- Outcome: _pending_
+- Outcome (appended 2026-10-15 05:19, after the run): **PASS.** Best cells 26/30 at layer 2 α 5
+  and layer 4 α 8; tie rule (lower α) selects **layer 2, α 5** for Phase B. No further
+  calibration attempts needed. Full grid (correct of 30):
+
+  | layer \ α | 2 | 5 | 8 | 14 |
+  |---|---|---|---|---|
+  | 1 | 23 | 15 | 21 | 18 |
+  | 2 | 14 | **26** | 25 | 22 |
+  | 3 | 7 | 25 | 25 | 25 |
+  | 4 | 7 | 24 | 26 | 22 |
+  | 6 | 10 | 22 | 25 | 16 |
+  | 8 | 9 | 18 | 22 | 16 |
