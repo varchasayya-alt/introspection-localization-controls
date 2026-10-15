@@ -161,14 +161,25 @@ class Ctx:
 
 # ----------------------------------------------------------------------------- helpers
 
-def run_trials(name, jobs, fn):
-    """jobs: list of (key, meta, thunk). Resumable, with progress + ETA in the log."""
+class ComputePause(Exception):
+    pass
+
+
+def run_trials(name, jobs, fn, max_median_sec=None):
+    """jobs: list of (key, meta, thunk). Resumable, with progress + ETA in the log.
+    max_median_sec: compute stop rule, checked after 20 trials."""
     store = L.ResultStore(OUT / f"{name}.jsonl")
     todo = [j for j in jobs if not store.has(j[0])]
     log(f"{name}: {len(jobs)} trials, {len(jobs) - len(todo)} already done, {len(todo)} to run")
-    t0, done = time.time(), 0
+    t0, done, secs = time.time(), 0, []
     for key, meta, thunk in todo:
+        if max_median_sec and len(secs) == 20:
+            med = sorted(secs)[10]
+            if med > max_median_sec:
+                write_status(compute_pause={"stage": name, "median_sec": med, "limit": max_median_sec})
+                raise ComputePause(f"median {med:.1f}s > {max_median_sec}s")
         rec = fn(thunk)
+        secs.append(rec.get("sec", 0))
         rec.update(meta)
         rec["key"] = key
         store.add(rec)
@@ -289,7 +300,8 @@ def stage_A(ctx):
                     key = f"A|{cellkey(lay, a)}|{w}|set{s}|pos{k + 1}"
                     meta = {"phase": "A", "layer": lay, "alpha": a, "concept": w, "set": s, "pos": k + 1}
                     jobs.append((key, meta, (s, k, lay, w, a)))
-    run_trials("phaseA", jobs, lambda t: ctx.locate_trial(t[0], t[1], t[2], ctx.vec(t[3], t[2]), t[4]))
+    run_trials("phaseA", jobs, lambda t: ctx.locate_trial(t[0], t[1], t[2], ctx.vec(t[3], t[2]), t[4]),
+               max_median_sec=2 * 30.3)
     return verdict_A()
 
 
@@ -427,7 +439,11 @@ def main():
     if args.stage in ("sanity", "all"):
         stage_sanity(ctx)
     if args.stage in ("A", "all"):
-        A = stage_A(ctx)
+        try:
+            A = stage_A(ctx)
+        except ComputePause as e:
+            log(f"PAUSE (compute stop rule): {e}. Report before continuing.")
+            return
         stage_summary()
         if not A["pass"]:
             log("STOP: Phase A failed (calibration attempt 1). Next attempt must be logged before running.")

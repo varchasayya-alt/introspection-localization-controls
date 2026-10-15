@@ -59,6 +59,19 @@ This file pins the implementation details that the Gate 0 report left open. Code
   sentence's tokens; reported as accuracy by KL tercile.
 - C4, C5, C6, C7 are descriptive; they do not decide pass/fail.
 
+## Implementation notes added before any data (2026-10-15)
+- Memory: the first sanity attempt paged ~5 GB to disk. Fix (same numbers, less RAM): the
+  token-embedding table stays bf16 and only looked-up rows are cast to fp32; Linear layers with
+  > 32,768 output rows (the 128k-row unembedding) are cast to fp32 in 16,384-row slices. Peak
+  memory is now ~17.6 GB with no paging. No model data was produced by the aborted attempt.
+- KV-cache crop uses the non-deprecated "remove N tokens" form; equivalent to the old form.
+- The compute stop rule is enforced in code (checked after the first 20 Phase A trials).
+- Dry run: every stage (sanity, A, B, C1, C3, C6, resume) was executed end to end on a tiny
+  *random* Llama with the real Tülu tokenizer (no Tülu data); all paths ran; accuracy ≈ chance
+  as expected for a random model.
+- Runs only on AC power: on battery, Windows throttles this CPU (~2.75× slower: 83.6 s vs
+  30.3 s per 300-token pass on the same random-weight 8B timing test).
+
 ## Compute stop rule
 If the median time per Phase A trial exceeds 2 × the Gate 0 estimate (2 × 30.3 s = 60.6 s),
 pause and report.

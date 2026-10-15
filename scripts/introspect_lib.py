@@ -37,16 +37,35 @@ CONCEPT_TEMPLATE = "Tell me about {word}"
 
 # ----------------------------------------------------------------------------- model
 
+_CHUNK_ROWS = 16384  # up-cast very large weights (e.g. the 128k-row unembedding) in slices
+
+
 def _fp32_compute_linear_forward(self, x):
-    w = self.weight.float()
-    b = self.bias.float() if self.bias is not None else None
-    return torch.nn.functional.linear(x, w, b)
+    w = self.weight
+    if w.shape[0] <= _CHUNK_ROWS * 2:
+        b = self.bias.float() if self.bias is not None else None
+        return torch.nn.functional.linear(x, w.float(), b)
+    # Same math, done in row slices so we never hold a full fp32 copy of a huge matrix.
+    outs = []
+    for i in range(0, w.shape[0], _CHUNK_ROWS):
+        b = self.bias[i:i + _CHUNK_ROWS].float() if self.bias is not None else None
+        outs.append(torch.nn.functional.linear(x, w[i:i + _CHUNK_ROWS].float(), b))
+    return torch.cat(outs, dim=-1)
+
+
+def _fp32_output_embedding_forward(self, ids):
+    # bf16 table, only the looked-up rows are converted to fp32 (exactly the same values)
+    return torch.nn.functional.embedding(ids, self.weight, self.padding_idx).float()
 
 
 def make_bf16_storage_fp32_compute(model):
+    """Linear and Embedding weights stay bf16 and are up-cast at use; everything else (norm
+    weights) becomes fp32, so the residual stream is fp32 throughout."""
     for m in model.modules():
         if isinstance(m, torch.nn.Linear):
             m.forward = _fp32_compute_linear_forward.__get__(m, torch.nn.Linear)
+        elif isinstance(m, torch.nn.Embedding):
+            m.forward = _fp32_output_embedding_forward.__get__(m, torch.nn.Embedding)
         else:
             for _, p in list(m.named_parameters(recurse=False)):
                 p.data = p.data.float()
@@ -221,7 +240,9 @@ def run_suffix(model, prompt, start, cache, layer=None, vec=None, inj_abs=None, 
     model can't look ahead) and run only tokens [start, end), optionally injecting at absolute
     token positions `inj_abs` (all must be >= start)."""
     c = copy.deepcopy(cache)
-    c.crop(start)
+    n_remove = c.get_seq_length() - start
+    if n_remove > 0:
+        c.crop(-n_remove)  # keep tokens [0, start)
     ids = prompt.tensor()[:, start:]
     with capture_final(model) as cap:
         if layer is not None and vec is not None:
