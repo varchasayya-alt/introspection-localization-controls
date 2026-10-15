@@ -63,6 +63,13 @@ the injection was in sentence 1 or 2 (positions 3–10 were 53–87%). We don't 
 first two sentences come right after the instructions). It means the highest possible score in
 this setup was really 80%, not 100%.
 
+*Follow-up check (added 2026-10-15, after the run, descriptive only):* this is a strong
+**default against answering 1 or 2**, not a broken prompt. With nothing injected the model never
+names 1 or 2 either. It does say "1" or "2" when the evidence is strong, and then it is almost
+always right: 23 times across the Phase A settings, 11 times for the clean reader and 20 times
+in the typed-word condition. When the target was sentence 1 or 2 at layer 2 α 5, the correct
+digit ranked about 8th of 10.
+
 ### Gate 2 — the cheap-trick controls
 
 | condition | accuracy | what it tells us |
