@@ -1,0 +1,9 @@
+# Installed into %USERPROFILE%\.venvs\introspection (outside OneDrive)
+# torch from https://download.pytorch.org/whl/cpu
+torch==2.14.1
+transformers==5.19.0
+accelerate==1.15.0
+huggingface_hub==2.2.0
+numpy==2.5.4
+safetensors==0.8.0
+tokenizers==0.23.3

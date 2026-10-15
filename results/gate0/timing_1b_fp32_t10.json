@@ -1,0 +1,22 @@
+{
+  "info": {
+    "torch": "2.14.1+cpu",
+    "cpu_capability": "AVX2",
+    "threads": 10,
+    "platform": "Windows-11-10.0.26200-SP0",
+    "processor": "Intel64 Family 6 Model 181 Stepping 0, GenuineIntel"
+  },
+  "results": [
+    {
+      "median_s": 4.448659699999553,
+      "min_s": 4.372311700004502,
+      "max_s": 4.70372910000151,
+      "repo": "allenai/OLMo-2-0425-1B",
+      "dtype": "fp32",
+      "params_B": 1.48,
+      "layers": 16,
+      "seq_len": 300,
+      "build_s": 19.7
+    }
+  ]
+}

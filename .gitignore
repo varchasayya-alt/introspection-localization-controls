@@ -1,0 +1,15 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Model weights / caches (never commit)
+*.safetensors
+*.bin
+*.pt
+*.gguf
+hf_cache/
+
+# Large raw outputs (summaries are committed; raw per-trial dumps may be big)
+results/raw/

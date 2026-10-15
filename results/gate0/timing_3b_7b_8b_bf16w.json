@@ -1,0 +1,55 @@
+{
+  "info": {
+    "torch": "2.14.1+cpu",
+    "cpu_capability": "AVX2",
+    "threads": 12,
+    "platform": "Windows-11-10.0.26200-SP0",
+    "processor": "Intel64 Family 6 Model 181 Stepping 0, GenuineIntel"
+  },
+  "results": [
+    {
+      "median_s": 11.643600399998832,
+      "min_s": 11.459470000001602,
+      "max_s": 13.59599739999976,
+      "repo": "HuggingFaceTB/SmolLM3-3B",
+      "dtype": "bf16w",
+      "params_B": 3.34,
+      "layers": 36,
+      "seq_len": 300,
+      "build_s": 73.4
+    },
+    {
+      "median_s": 27.11101950000011,
+      "min_s": 27.0801419000054,
+      "max_s": 27.208153600004152,
+      "repo": "allenai/OLMo-2-1124-7B",
+      "dtype": "bf16w",
+      "params_B": 7.3,
+      "layers": 32,
+      "seq_len": 300,
+      "build_s": 132.9
+    },
+    {
+      "median_s": 29.199601600004826,
+      "min_s": 28.415906000001996,
+      "max_s": 33.14567280000483,
+      "repo": "allenai/Olmo-3-7B-Instruct",
+      "dtype": "bf16w",
+      "params_B": 7.3,
+      "layers": 32,
+      "seq_len": 300,
+      "build_s": 138.2
+    },
+    {
+      "median_s": 30.31803260000015,
+      "min_s": 30.178039500002342,
+      "max_s": 30.92416619999858,
+      "repo": "allenai/Llama-3.1-Tulu-3-8B",
+      "dtype": "bf16w",
+      "params_B": 8.03,
+      "layers": 32,
+      "seq_len": 300,
+      "build_s": 97.7
+    }
+  ]
+}
