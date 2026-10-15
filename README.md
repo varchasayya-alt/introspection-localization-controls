@@ -23,9 +23,9 @@ sentence felt different; chance = 10%)?
 | Gate | What | Status |
 |---|---|---|
 | 0 | Feasibility: hardware timing, checkpoint ladders, control design | Report: [`gates/gate0_report.md`](gates/gate0_report.md) |
-| 1 | Positive control (one final model localizes above chance) | Predictions recorded; in progress |
-| 2 | Cheap-trick controls on the positive control | Not started |
-| 3 | Training-stage ladder | Not started |
+| 1 | Positive control (one final model localizes above chance) | **PASS** — Tülu-3-8B 53.7% (161/300, chance 10%). Report: [`gates/gate1_report.md`](gates/gate1_report.md) |
+| 2 | Cheap-trick controls on the positive control | **FAIL** — a clean reader of the perceived text scores 74.7% (> injected 45.3%); random vectors 53.3%. Stop rule: no "introspection" framing |
+| 3 | Training-stage ladder | Not run (Gate 2 stop rule); next step needs a new pre-registration |
 
 ## Environment
 

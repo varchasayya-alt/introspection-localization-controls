@@ -1,6 +1,6 @@
 {
   "sanity": "PASS",
-  "updated": "2026-10-15 06:49:32",
+  "updated": "2026-10-15 11:32:09",
   "A": {
     "complete": true,
     "best_layer": 2,
@@ -45,5 +45,47 @@
     ],
     "p_vs_chance": 2.0216069483773508e-79,
     "pass": true
+  },
+  "gate2": {
+    "injected_same150": {
+      "correct": 68,
+      "n": 150,
+      "acc_pct": 45.3,
+      "wilson95": [
+        37.6,
+        53.3
+      ]
+    },
+    "reader": {
+      "correct": 112,
+      "n": 150,
+      "acc_pct": 74.7,
+      "wilson95": [
+        67.2,
+        81.0
+      ]
+    },
+    "margin_pts": -29.4,
+    "pass": false,
+    "random": {
+      "correct": 160,
+      "n": 300,
+      "acc_pct": 53.3,
+      "wilson95": [
+        47.7,
+        58.9
+      ]
+    },
+    "random_label": "disturbance localization",
+    "literal_C6": {
+      "correct": 134,
+      "n": 150,
+      "acc_pct": 89.3,
+      "wilson95": [
+        83.4,
+        93.3
+      ]
+    },
+    "exact_copy_target_pct": 0.0
   }
 }
