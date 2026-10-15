@@ -1,0 +1,88 @@
+{
+  "version": "gate1-v1",
+  "notes": "Frozen before any Gate 1 data. Sentence set 0 = calibration (Phase A). Sets 1-5 = test (Phase B and controls). Sentences are plain everyday statements written to avoid the topics of all concept words (no weather, music, sea, desert, mountains, ice, paper-folding, light towers).",
+  "concepts_calibration": ["volcano", "violin", "octopus"],
+  "concepts_test": ["lighthouse", "cactus", "glacier", "origami", "saxophone", "tornado"],
+  "concepts_reader_and_literal": ["lighthouse", "cactus", "glacier"],
+  "baseline_words": [
+    "desk", "shoe", "cup", "bottle", "pencil", "carpet", "spoon", "mirror", "button", "blanket",
+    "basket", "candle", "bucket", "ladder", "hammer", "wallet", "pillow", "bridge", "garden", "road",
+    "window", "clock", "coin", "ribbon", "plate", "fork", "key", "lamp", "rope", "glove",
+    "hat", "jacket", "box", "brick", "fence", "kettle", "jar", "sock", "towel", "brush",
+    "bench", "cart", "map", "net", "bell", "barrel", "door", "shelf", "tile", "sponge"
+  ],
+  "sentence_sets": [
+    [
+      "She put the keys on the kitchen table before taking off her coat.",
+      "The bus was late again, so he decided to walk to the office.",
+      "My brother spent the whole afternoon fixing the squeaky bedroom door.",
+      "The teacher handed back the math tests at the end of class.",
+      "We bought fresh bread and a dozen eggs at the corner shop.",
+      "The meeting was moved to Thursday because two people were away.",
+      "He left his phone charger at the hotel and had to buy another one.",
+      "Our neighbors painted their fence a pale shade of yellow last weekend.",
+      "The library closes early on Sundays, so we went in the morning.",
+      "She finished reading the report and sent a short reply to her manager."
+    ],
+    [
+      "The children lined up by the door when the bell rang for lunch.",
+      "He washed the dishes while his sister swept the kitchen floor.",
+      "The new coffee machine in the office breaks every few days.",
+      "They rented a small car and drove to visit their grandparents.",
+      "I need to remember to pay the electricity bill before Friday.",
+      "The cat slept on the sofa for most of the afternoon.",
+      "Our team finished the project two days ahead of schedule.",
+      "She asked the waiter for another glass of water and the bill.",
+      "The store was crowded because of the holiday sale.",
+      "He tied his shoes, grabbed his backpack, and ran out the door."
+    ],
+    [
+      "The dentist said my teeth looked healthy and sent me home.",
+      "We moved the couch closer to the window to make more space.",
+      "The train station was quiet early on Saturday morning.",
+      "My aunt makes the best potato soup in the whole family.",
+      "He changed the batteries in the remote control and it worked again.",
+      "The students worked in pairs to finish the history assignment.",
+      "She parked the car behind the bakery and walked to the bank.",
+      "The lunch meeting ran long, so everyone was late for the next one.",
+      "Our dog barks every time the mail carrier comes up the steps.",
+      "I forgot my password and had to reset it twice this week."
+    ],
+    [
+      "The hallway smelled like fresh paint after the weekend repairs.",
+      "He set three alarms because he had an early flight to catch.",
+      "The grocery list was stuck to the fridge with a magnet.",
+      "Two of my coworkers started a running club after work.",
+      "The baby finally fell asleep after a long car ride.",
+      "She sorted the laundry into piles of whites and colors.",
+      "The restaurant added a new pasta dish to its menu.",
+      "We waited in line for twenty minutes to buy tickets.",
+      "My grandfather still calls his old friends every Sunday evening.",
+      "The principal announced that school would start an hour later tomorrow."
+    ],
+    [
+      "He borrowed a ladder from the neighbors to clean the gutters.",
+      "The pharmacy on Main Street is open until nine at night.",
+      "She spilled orange juice on her shirt right before the interview.",
+      "The kids built a fort out of blankets and couch cushions.",
+      "Our flight was delayed, so we ate dinner at the airport.",
+      "The plumber came on Tuesday to fix the leaking kitchen sink.",
+      "I keep my receipts in a folder in the top desk drawer.",
+      "They celebrated her birthday with pizza and a chocolate cake.",
+      "The office elevator was broken, so we took the stairs.",
+      "He practiced his speech in front of the mirror all evening."
+    ],
+    [
+      "The farmers market opens at eight every Saturday morning.",
+      "She returned the library books three days after the due date.",
+      "My little brother lost his front tooth while eating an apple.",
+      "The hotel room was small but clean and very quiet.",
+      "We spent the evening putting together a new bookshelf.",
+      "The doctor's office called to confirm my appointment on Monday.",
+      "He accidentally locked himself out and had to call his roommate.",
+      "The bakery sold out of blueberry muffins before noon.",
+      "Our math teacher gives a short quiz every Friday morning.",
+      "The parking lot was full, so we parked on the street."
+    ]
+  ]
+}

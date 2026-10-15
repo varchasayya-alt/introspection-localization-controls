@@ -5,4 +5,12 @@ Max **3** calibration attempts per gate. Each attempt is logged here *before* it
 
 ## Gate 1 (positive control)
 
-_No attempts yet._
+### Attempt 1 — logged 2026-10-15, before running
+- What: Phase A sweep, layers {1,2,3,4,6,8} × α {2,5,8,14}, concepts volcano / violin /
+  octopus, sentence set 0, 30 trials per cell (720 trials). Model Tülu-3-8B @ 6669437.
+- Why these values: they bracket the published best cell for Llama-3.1-8B-Instruct (layer 2,
+  α = 5) and its neighbours (layer 3 α 5, layer 4 α 8); layer 0 excluded by design.
+- Pass: best cell ≥ 9/30. Selection rule: most correct; tie → lower α, then lower layer.
+- If it fails, planned attempt 2 (to be re-logged before running): add layers {5, 10} and
+  α {3, 20}. Planned attempt 3: contrastive-sentence concept vectors.
+- Outcome: _pending_
