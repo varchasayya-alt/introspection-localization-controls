@@ -245,7 +245,19 @@ pause and report before continuing.
 
 ---
 
-## 6. What happens next
+## 6. Decisions (researcher, 2026-10-15)
+
+- Positive control `allenai/Llama-3.1-Tulu-3-8B`: **approved**.
+- D1 (bf16 storage, float32 math, for every model): **approved**.
+- Pass/stop rules (Section 5), including the clean-reader rule: **approved**.
+- OneDrive project folder is fine; Hugging Face cache, venv and all large outputs must stay
+  **outside** OneDrive.
+- **Correction acknowledged and recorded:** the "88%" in *Detecting the Disturbance* is the best
+  of 77 layer × strength settings for Llama-3.1-8B-Instruct; the IFT paper's Table 2 reports the
+  **average** over its grid as **16.8%** for Llama-8B. The brief's "3B ≈ 65%, 8B ≈ 88%" are peak
+  values, not typical ones.
+
+## 7. What happens next
 
 1. You read this, approve or change the rules, the model choice and the controls.
 2. You give predictions for Gate 1 (questions in [`predictions.md`](../predictions.md)). I record

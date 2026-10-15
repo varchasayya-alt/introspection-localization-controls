@@ -23,7 +23,7 @@ sentence felt different; chance = 10%)?
 | Gate | What | Status |
 |---|---|---|
 | 0 | Feasibility: hardware timing, checkpoint ladders, control design | Report: [`gates/gate0_report.md`](gates/gate0_report.md) |
-| 1 | Positive control (one final model localizes above chance) | Not started — waiting for predictions |
+| 1 | Positive control (one final model localizes above chance) | Predictions recorded; in progress |
 | 2 | Cheap-trick controls on the positive control | Not started |
 | 3 | Training-stage ladder | Not started |
 
