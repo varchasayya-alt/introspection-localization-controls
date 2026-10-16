@@ -89,3 +89,19 @@ same order). Exactly as given:
 
 Researcher approvals recorded with these predictions: design approved; fresh-test reader
 ≤ 15% condition added; 200 random-vector trials at the selected setting included.
+
+## Study 3 — replicate the "Detecting the Disturbance" headline + text control (plan: `gates/study3_plan.md`)
+
+Scoring rules written 2026-10-16, **before** the researcher's Study 3 predictions were recorded
+and before any Study 3 data. Counts are out of the 400 trials unless stated. "Injected" = the
+injected model's accuracy; "reader" = the clean reader's accuracy on the same 400 trials.
+
+| # | Question | Outcome → letter |
+|---|---|---|
+| Q1 | Injected accuracy | a ≥ 75% (≥ 300); b = 50–75% (200–299); c = 25–50% (100–199); d < 25% (< 100) |
+| Q2 | Reader accuracy | a ≤ 15% (≤ 60); b = 61–160 (15–40%); c = 161–280 (40–70%); d ≥ 281 (> 70%) |
+| Q3 | Main test | d if R1 fails (injected < 200); otherwise a = reader > injected (more correct trials); b = injected − 40 ≤ reader ≤ injected; c = reader < injected − 40 |
+| Q4 | Exact copy-back of the injected span ("SENTENCE i: …" reproduced exactly) | a < 25%; b = 35–65%; c > 75%; 25–35% and 65–75% match no letter |
+| Q5 | Vector type (200 trials each) | a = "avg" ahead by > 10 points (> 20 trials); b = "last" ahead by > 10 points; c = otherwise |
+| Q6 | Injected accuracy vs Tülu Gate 1 (53.7%) | a > 63.7%; b = 43.7–63.7% inclusive; c < 43.7% |
+| Q7 | Injected-model accuracy when the target is sentence 1 or 2 (80 trials) | a ≤ 2 correct ("never or almost never"); b ≥ 3 correct |
