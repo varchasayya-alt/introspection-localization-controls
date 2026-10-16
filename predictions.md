@@ -49,3 +49,26 @@ These rules are written down now so the predictions can't be re-judged after see
 | Q6/Q7 "b" | Gate 1 passes **and** Gate 2 passes ("mostly noticing") **and** Phase B accuracy is below 50% ("weak"). Not scored if Gate 1 fails. |
 
 ---
+
+## Study 2 — text-intact search (plan: `gates/text_intact_plan.md`)
+
+Scoring rules written 2026-10-15, **before** the researcher's Study 2 predictions were recorded
+and before any Study 2 data exists. Each rule says which answer letter the outcome corresponds
+to, so a prediction is correct if its letter matches.
+
+Definitions used below:
+- *Text-intact setting* = clean reader ≤ 4/30 in practice (all 30 reader trials run; a setting
+  whose reader trials stopped early at 5 correct is not intact).
+- *Best text-intact setting* = the setting the selection rule picks among text-intact settings
+  (highest injected accuracy; ties → lower r, then lower layer), pooled over all practice
+  attempts that were run.
+
+| # | Question | Outcome → letter |
+|---|---|---|
+| P1 | How many of the 15 attempt-1 settings are text-intact? | a = 0; b = 1–5; c = 6–10; d = 11–15 (attempt 1 only) |
+| P2 | Injected accuracy at the best text-intact setting (practice) | a ≤ 4/30 (about chance); b = 5–7/30; c = 8–15/30; d ≥ 16/30. If no setting is text-intact, P2 is "not scorable". |
+| P3 | Does practice find a passing setting? | a = attempt 1 passes; b = attempt 1 fails and attempt 2 passes; c = both fail (stop) |
+| P4 | Fresh test outcome | a = fresh test passes all three rules; b = injected < 50/200 (if several rules fail, b takes precedence); c = injected ≥ 50/200 but the reader > 30/200 or the margin < 10 points; d = fresh test not run |
+| P5 | Where is the best text-intact setting? | a = layer 2 or 4; b = layer 8; c = layer 12 or 16; **d = no text-intact setting reaches 8/30 injected** (includes the case of no text-intact settings). If d applies, a–c are wrong. |
+| P6 | Exact copy-back of the target at the chosen setting | Measured on the practice copy trials of the best text-intact setting: a < 25%; b = 35–65%; c > 75%; 25–35% and 65–75% match no letter. Not scorable if no setting is text-intact. |
+| P7 | Sentences 1–2 at text-intact settings | Pool all injected practice trials with target in position 1 or 2 at every text-intact setting (plus fresh-test trials if run): a = 0 or 1 correct (essentially never); b = 2 or more correct. Not scorable if no setting is text-intact. |
