@@ -105,3 +105,21 @@ injected model's accuracy; "reader" = the clean reader's accuracy on the same 40
 | Q5 | Vector type (200 trials each) | a = "avg" ahead by > 10 points (> 20 trials); b = "last" ahead by > 10 points; c = otherwise |
 | Q6 | Injected accuracy vs Tülu Gate 1 (53.7%) | a > 63.7%; b = 43.7–63.7% inclusive; c < 43.7% |
 | Q7 | Injected-model accuracy when the target is sentence 1 or 2 (80 trials) | a ≤ 2 correct ("never or almost never"); b ≥ 3 correct |
+
+### Researcher's Study 3 predictions — verbatim
+
+Recorded 2026-10-16, after the scoring rules above were committed (c23d17a) and before any
+Study 3 data. The researcher's teacher rephrased Q1–Q7 simply, in the same order. Exactly as given:
+
+> Q1: b (50-75%, replication passes)
+> Q2: c (reader 40-70%)
+> Q3: a (the reader beats the injected model)
+> Q4: a (injected span almost never copied back exactly)
+> Q5: b ("last-token" vectors localize better)
+> Q6: b (within 10 points of Tulu's 53.7%)
+> Q7: a (sentences 1-2 never or almost never found)
+> Note: I first answered Q1 "c" and Q4 "c", then changed them to "b" and "a" before the run because they contradicted Q3 and Q2.
+
+Researcher approvals recorded with these predictions: design approved (including the
+label-included injection and both vector types); download of the authors' saved vectors
+(safe mode + match check); download of meta-llama/Llama-3.1-8B-Instruct.
