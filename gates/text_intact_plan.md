@@ -1,4 +1,9 @@
-# Study 2 — text-intact search (PROPOSED, awaiting researcher approval)
+# Study 2 — text-intact search (APPROVED 2026-10-15)
+
+Approved by the researcher on 2026-10-15 with two additions: (1) the fresh-test reader ≤ 15% condition, and
+(2) the 200 random-vector trials at the selected setting. Code: `scripts/study2.py`. New
+material: `stimuli/study2_stimuli.json` (concepts pyramid, accordion, jellyfish, waterfall,
+telescope; 4 new sentence sets).
 
 **This is a new pre-registered question, not a rescue of Gate 2.** Gate 2's FAIL stands and is
 reported as a finding: at the Gate 1 setting (layer 2, α 5), localization is explained by text
@@ -42,7 +47,8 @@ the sentence 14/30 times, but its text was not checked.
   ≥ 3/30 (≥ 10 points).
 - **If it fails → attempt 2** (max 2 attempts, each logged before it runs). Default plan for
   attempt 2: same 5 layers with r ∈ {0.35, 0.7, 1.4} (fills the gaps and goes a bit stronger);
-  the final attempt-2 grid is written in the calibration log after attempt 1 and before it runs.
+  **decided before the run:** this default grid is logged now in the calibration log and runs
+  automatically if attempt 1 fails (no adjustment after seeing attempt 1).
 - **If attempt 2 also fails → STOP** and write everything up.
 
 ## 3. Fresh test (only if practice passes)
@@ -56,12 +62,12 @@ the sentence 14/30 times, but its text was not checked.
   1. injected model ≥ 25% (≥ 50/200);
   2. injected − reader ≥ 10 points;
   3. reader ≤ 15% (≤ 30/200), so the setting is confirmed text-intact on the fresh trials too.
-     *(This third condition is Claude's proposal: the researcher's rule says "at a text-intact
-     setting", and this checks that on the fresh data. Needs approval.)*
+     *(Proposed by Claude, approved by the researcher.)*
 - Also reported (descriptive, not pass/fail): exact copy-back rate, accuracy by position,
   answer distribution, no-injection answers for the new sets.
-- Optional add-on (needs approval): 200 random-vector trials at the selected setting, to see
-  whether any text-intact localization is concept-specific (~1 h).
+- **Approved add-on:** 200 random-vector trials at the selected setting (5 random unit vectors,
+  seed 20261016, same α), to see whether any text-intact localization is concept-specific.
+  Descriptive: it does not decide pass/fail.
 
 ## 4. The "never answers 1 or 2" bias
 
@@ -90,3 +96,14 @@ Checked in the Gate 1 data:
 | **Total** | | **~11–15 h** (practice ≈ one night, test ≈ the next day) |
 
 Attempt 2, if needed, adds roughly the same as one practice step.
+
+## 6. Implementation details (fixed before any Study 2 data)
+- Activation size per layer = median per-token norm of the clean residual stream at that layer,
+  over the sentence tokens of practice set 0 (as in Gate 1). α = r × that size.
+- Concept vectors are computed at layers 2, 4, 8, 12, 16 by the Gate 1 method.
+- Practice order: all 450 injected trials, then copy+reader trials setting by setting. A
+  setting's reader trials stop as soon as the reader reaches 5 correct.
+- In the fresh test every trial is run three ways: injected (concept), copy+reader (concept),
+  injected (random vector), each at the selected layer and α.
+- The pass margin of 10 points is checked on counts: practice injected − reader ≥ 3 of 30;
+  fresh test injected − reader ≥ 20 of 200.

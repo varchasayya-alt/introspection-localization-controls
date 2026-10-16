@@ -1,0 +1,55 @@
+{
+  "version": "study2-v1",
+  "notes": "Fresh-test material for Study 2, frozen before any Study 2 data. Not used in Gate 1. Sentences are plain everyday statements written to avoid the topics of all five concepts (no deserts/Egypt/triangles, music/instruments, sea/beach/swimming, rivers/falls/nature scenery, stars/sky/space). Practice material is Gate 1's calibration material (stimuli/gate1_stimuli.json: sentence set 0; volcano, violin, octopus).",
+  "concepts_test": ["pyramid", "accordion", "jellyfish", "waterfall", "telescope"],
+  "sentence_sets": [
+    [
+      "She folded the clean towels and put them in the hall closet.",
+      "The printer at school ran out of ink during the last period.",
+      "My cousin is learning to ride a bicycle without training wheels.",
+      "He made pancakes for everyone on Sunday morning.",
+      "The train to the city was cancelled because of a signal problem.",
+      "Our neighbor lent us a hammer to fix the loose shelf.",
+      "The kids played board games in the living room after dinner.",
+      "She wrote a reminder on a sticky note and put it on her laptop.",
+      "The bakery on the corner raised the price of its bagels.",
+      "He spent an hour looking for his car keys before work."
+    ],
+    [
+      "The new student sat next to me in the cafeteria today.",
+      "We repainted the kitchen cabinets a light shade of gray.",
+      "My dad fell asleep on the couch during the movie.",
+      "The office heater stopped working on Monday morning.",
+      "She ordered a sandwich and a bowl of tomato soup.",
+      "The bus driver waited for the old man to find a seat.",
+      "Our teacher postponed the history test until next week.",
+      "He swept the garage and threw out some old boxes.",
+      "The supermarket opened a new self-checkout lane.",
+      "My sister borrowed my jacket and forgot to return it."
+    ],
+    [
+      "The receptionist asked us to fill out a short form.",
+      "We bought a new mattress because the old one was lumpy.",
+      "He forgot to set his alarm and missed the first class.",
+      "The dog chewed one of my slippers while I was out.",
+      "Our soccer practice was moved to the indoor gym.",
+      "She baked cookies for her coworkers on Friday.",
+      "The elevator in our building is being repaired this week.",
+      "My uncle drove three hours to attend the graduation.",
+      "The cashier gave me the wrong change at the store.",
+      "We cleaned out the fridge and threw away the old leftovers."
+    ],
+    [
+      "The librarian helped me find a book about cooking.",
+      "He ironed his shirt before the job interview.",
+      "Our neighbors had a loud party until midnight.",
+      "She lost her phone on the bus and called the depot.",
+      "The school nurse sent two students home with a fever.",
+      "We waited at the dentist's office for almost an hour.",
+      "My brother finally cleaned his messy bedroom.",
+      "The pizza arrived cold, so we heated it in the oven.",
+      "The manager scheduled a meeting for early Tuesday.",
+      "She knitted a scarf for her grandmother's birthday."
+    ]
+  ]
+}

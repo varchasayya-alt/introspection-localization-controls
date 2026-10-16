@@ -25,3 +25,18 @@ Max **3** calibration attempts per gate. Each attempt is logged here *before* it
   | 4 | 7 | 24 | 26 | 22 |
   | 6 | 10 | 22 | 25 | 16 |
   | 8 | 9 | 18 | 22 | 16 |
+
+## Study 2 (text-intact search)
+
+### Attempt 1 — logged 2026-10-15, before running
+- Layers {2, 4, 8, 12, 16} × relative strength r {0.25, 0.5, 1.0} (α = r × median activation
+  size at that layer on practice set 0). 30 injected + up to 30 copy+reader trials per setting
+  (reader stops at 5 correct). Practice material: Gate 1 set 0; volcano, violin, octopus.
+- Text-intact: reader ≤ 4/30. Pass: best text-intact setting has injected ≥ 8/30 and
+  injected − reader ≥ 3/30. Selection: highest injected; tie → lower r, then lower layer.
+- Outcome: _pending_
+
+### Attempt 2 — logged 2026-10-15, before running (runs automatically only if attempt 1 fails)
+- Same layers × r {0.35, 0.7, 1.4}; same trials, rules and selection. Fixed now, not adjusted
+  after attempt 1. If attempt 2 also fails → STOP and write up.
+- Outcome: _pending_
