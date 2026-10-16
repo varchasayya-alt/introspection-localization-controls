@@ -34,9 +34,29 @@ Max **3** calibration attempts per gate. Each attempt is logged here *before* it
   (reader stops at 5 correct). Practice material: Gate 1 set 0; volcano, violin, octopus.
 - Text-intact: reader ≤ 4/30. Pass: best text-intact setting has injected ≥ 8/30 and
   injected − reader ≥ 3/30. Selection: highest injected; tie → lower r, then lower layer.
-- Outcome: _pending_
+- Outcome (appended 2026-10-16 07:02, after the run): **PASS.** 11 of 15 settings
+  text-intact. Selected **layer 8, r 0.5** (α 3.1872): injected 14/30, reader 3/30.
+  Attempt 2 not needed.
+
+  | layer | r | injected | reader | text-intact | exact copies |
+  |---|---|---|---|---|---|
+  | 2 | 0.25 | 4/30 | 3/30 | yes | 30/30 |
+  | 2 | 0.5 | 4/30 | 3/30 | yes | 30/30 |
+  | 2 | 1.0 | 21/30 | 5/13 | no | 1/13 |
+  | 4 | 0.25 | 4/30 | 3/30 | yes | 30/30 |
+  | 4 | 0.5 | 7/30 | 3/30 | yes | 30/30 |
+  | 4 | 1.0 | 22/30 | 5/7 | no | 0/7 |
+  | 8 | 0.25 | 9/30 | 3/30 | yes | 30/30 |
+  | 8 | 0.5 | 14/30 | 3/30 | yes | 30/30 |
+  | 8 | 1.0 | 20/30 | 5/7 | no | 0/7 |
+  | 12 | 0.25 | 9/30 | 3/30 | yes | 30/30 |
+  | 12 | 0.5 | 9/30 | 3/30 | yes | 30/30 |
+  | 12 | 1.0 | 8/30 | 5/7 | no | 0/7 |
+  | 16 | 0.25 | 6/30 | 3/30 | yes | 30/30 |
+  | 16 | 0.5 | 4/30 | 3/30 | yes | 30/30 |
+  | 16 | 1.0 | 5/30 | 3/30 | yes | 28/30 |
 
 ### Attempt 2 — logged 2026-10-15, before running (runs automatically only if attempt 1 fails)
 - Same layers × r {0.35, 0.7, 1.4}; same trials, rules and selection. Fixed now, not adjusted
   after attempt 1. If attempt 2 also fails → STOP and write up.
-- Outcome: _pending_
+- Outcome: not run (attempt 1 passed).

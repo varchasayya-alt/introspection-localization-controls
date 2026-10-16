@@ -1,0 +1,175 @@
+{
+  "S1_template_ids_match": true,
+  "S1_bos_prepended": true,
+  "S1_concept_prompt_ids": [
+    128000,
+    41551,
+    757,
+    922,
+    66306
+  ],
+  "S2_digit_ids": [
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    605
+  ],
+  "S2_digit_strings": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "10"
+  ],
+  "S3_sentence_spans_ok": true,
+  "n_tokens_locate_prompt": [
+    318,
+    306,
+    292,
+    296,
+    287
+  ],
+  "S4_alpha0_max_abs_diff": 0.0,
+  "S5_cache_vs_full_maxdiff_noinj": 7.62939453125e-06,
+  "S5_cache_vs_full_maxdiff_inj": 2.09808349609375e-05,
+  "S5_same_argmax": true,
+  "sec_suffix_pass_pos4": 20.2,
+  "n_tokens_copy_prompt": 466,
+  "C5_no_injection": {
+    "0": {
+      "pred": 5,
+      "cand_logits": [
+        22.473,
+        23.3099,
+        24.2085,
+        24.5855,
+        25.0634,
+        24.979,
+        24.2978,
+        24.2825,
+        24.1243,
+        24.9154
+      ]
+    },
+    "1": {
+      "pred": 3,
+      "cand_logits": [
+        22.1292,
+        23.3656,
+        25.1724,
+        24.9687,
+        24.7812,
+        25.1309,
+        24.3433,
+        24.8452,
+        24.1376,
+        24.1705
+      ]
+    },
+    "2": {
+      "pred": 6,
+      "cand_logits": [
+        24.0911,
+        23.4046,
+        25.3832,
+        25.0575,
+        25.1214,
+        25.8685,
+        24.9334,
+        24.6032,
+        24.5831,
+        24.7253
+      ]
+    },
+    "3": {
+      "pred": 6,
+      "cand_logits": [
+        22.142,
+        23.5475,
+        25.4034,
+        25.3068,
+        25.4524,
+        26.4915,
+        25.2772,
+        25.6572,
+        24.8822,
+        24.2428
+      ]
+    },
+    "4": {
+      "pred": 6,
+      "cand_logits": [
+        22.9288,
+        23.3316,
+        24.6116,
+        25.1123,
+        25.4278,
+        25.5903,
+        24.3739,
+        24.2959,
+        24.3116,
+        25.0884
+      ]
+    }
+  },
+  "resid_norm_median_by_layer_set0": {
+    "2": 2.38,
+    "4": 4.016,
+    "8": 6.374,
+    "12": 8.661,
+    "16": 11.741
+  },
+  "concept_raw_norms": {
+    "volcano|2": 2.412,
+    "volcano|4": 3.706,
+    "volcano|8": 5.948,
+    "volcano|12": 7.142,
+    "volcano|16": 9.815,
+    "violin|2": 2.41,
+    "violin|4": 3.794,
+    "violin|8": 6.053,
+    "violin|12": 7.132,
+    "violin|16": 9.789,
+    "octopus|2": 2.59,
+    "octopus|4": 4.351,
+    "octopus|8": 6.805,
+    "octopus|12": 8.116,
+    "octopus|16": 11.403,
+    "pyramid|2": 2.165,
+    "pyramid|4": 3.823,
+    "pyramid|8": 5.554,
+    "pyramid|12": 6.452,
+    "pyramid|16": 9.518,
+    "accordion|2": 2.709,
+    "accordion|4": 4.123,
+    "accordion|8": 6.331,
+    "accordion|12": 7.662,
+    "accordion|16": 9.649,
+    "jellyfish|2": 2.662,
+    "jellyfish|4": 4.34,
+    "jellyfish|8": 6.752,
+    "jellyfish|12": 8.454,
+    "jellyfish|16": 11.205,
+    "waterfall|2": 2.149,
+    "waterfall|4": 3.598,
+    "waterfall|8": 5.821,
+    "waterfall|12": 7.239,
+    "waterfall|16": 9.829,
+    "telescope|2": 2.656,
+    "telescope|4": 3.648,
+    "telescope|8": 5.665,
+    "telescope|12": 6.667,
+    "telescope|16": 9.252
+  }
+}
