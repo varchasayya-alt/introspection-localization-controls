@@ -109,3 +109,20 @@ Also: the no-injection answer for each of the 40 sentence draws.
 - Dry run on a tiny random model with the real Llama-3.1 tokenizer and fake vectors: every path
   ran, including resume. Only in the dry-run script, S6's threshold was lowered because fake
   vectors can't match. The real run uses 0.99.
+
+## 7. Hypothesis for a possible follow-up (Study 4), logged during the run
+
+Logged **2026-10-16 16:04 EDT**, while Study 3 was running (about 86 of 400 paired trials done). The researcher had
+already seen interim per-concept numbers for Dust and Satellites. **This does not change Study 3**:
+its design, rules, scoring and analysis stay as committed. Nothing here will be used to re-judge
+Study 3.
+
+- **Hypothesis (researcher):** part of the injected model's accuracy may come from the push landing
+  on the label digit token (e.g. the "3" in "SENTENCE 3:"). That would make that digit a more likely
+  answer, without any noticing.
+- **Proposed follow-up control:** an identical setup, but inject only on the sentence words, leaving
+  out the "SENTENCE N:" label tokens. Also consider a "Which sentence do you prefer?" question
+  control (the same injection, with a question that isn't about injected thoughts).
+- **Comparison:** results per concept, compared with Study 3.
+- **Status:** an idea only. Study 4 would need its own pre-registration (design, rules, predictions)
+  before any run.
