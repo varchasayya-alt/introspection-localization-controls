@@ -72,3 +72,20 @@ Definitions used below:
 | P5 | Where is the best text-intact setting? | a = layer 2 or 4; b = layer 8; c = layer 12 or 16; **d = no text-intact setting reaches 8/30 injected** (includes the case of no text-intact settings). If d applies, a–c are wrong. |
 | P6 | Exact copy-back of the target at the chosen setting | Measured on the practice copy trials of the best text-intact setting: a < 25%; b = 35–65%; c > 75%; 25–35% and 65–75% match no letter. Not scorable if no setting is text-intact. |
 | P7 | Sentences 1–2 at text-intact settings | Pool all injected practice trials with target in position 1 or 2 at every text-intact setting (plus fresh-test trials if run): a = 0 or 1 correct (essentially never); b = 2 or more correct. Not scorable if no setting is text-intact. |
+
+### Researcher's Study 2 predictions — verbatim
+
+Recorded 2026-10-15, after the scoring rules above were committed (f6eb6c3) and before any
+Study 2 data. The researcher answered a simplified version (their teacher rephrased P1–P7 in the
+same order). Exactly as given:
+
+> P1: c (about half of the 15 settings are text-intact)
+> P2: a (at chance at the best text-intact setting)
+> P3: c (no passing setting; we stop and write up). [I first answered "b", then changed it to "c" before the run because "b" contradicted my P2/P4/P5.]
+> P4: d (we won't reach the fresh test)
+> P5: d (no text-intact setting finds the sentence)
+> P6: b (injected sentence copied back exactly about half the time)
+> P7: b (sentences 1-2 sometimes found)
+
+Researcher approvals recorded with these predictions: design approved; fresh-test reader
+≤ 15% condition added; 200 random-vector trials at the selected setting included.
