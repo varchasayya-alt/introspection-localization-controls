@@ -95,6 +95,14 @@ would land on the right sentence. This hints at a weak signal hiding under a str
 analysis was chosen *after* looking at the data, so it can't change the pre-registered verdict. At
 most it is an idea for a new, pre-registered study.
 
+**Same check on the random vectors (added 2026-10-16, also exploratory):** with a random direction
+of the same size, the model moved off its favourite answer in 25 of 200 fresh trials, and **11 of
+those 25 (44%)** landed on the injected sentence. Concept vectors gave 18 of 34 (53%). So the
+"occasional move lands on the target" pattern is **not concept-specific**: any push of this size
+sometimes nudges the answer toward the pushed sentence. That matches Gate 1, where random vectors
+localized as well as concepts. In practice, at layer 8 ½×, the concept vectors moved the answer in
+16 of 30 trials and 11 of those landed on the target.
+
 ---
 
 ## Your predictions, scored with the rules committed before you answered
