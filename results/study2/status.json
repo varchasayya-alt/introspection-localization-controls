@@ -1,6 +1,6 @@
 {
   "sanity": "PASS",
-  "updated": "2026-10-16 07:02:01",
+  "updated": "2026-10-16 12:10:26",
   "practice1_alphas": {
     "L2|r0.25": 0.5949,
     "L2|r0.5": 1.1898,
@@ -248,5 +248,23 @@
         "mean_kl": 1.88
       }
     ]
+  },
+  "test": {
+    "inj_k": 36,
+    "inj_n": 200,
+    "reader_k": 20,
+    "reader_n": 200,
+    "random_k": 28,
+    "random_n": 200,
+    "exact_copy_k": 198,
+    "inj_wilson95": [
+      13.3,
+      23.9
+    ],
+    "reader_wilson95": [
+      6.6,
+      14.9
+    ],
+    "pass": false
   }
 }

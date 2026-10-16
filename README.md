@@ -26,6 +26,7 @@ sentence felt different; chance = 10%)?
 | 1 | Positive control (one final model localizes above chance) | **PASS** — Tülu-3-8B 53.7% (161/300, chance 10%). Report: [`gates/gate1_report.md`](gates/gate1_report.md) |
 | 2 | Cheap-trick controls on the positive control | **FAIL** — a clean reader of the perceived text scores 74.7% (> injected 45.3%); random vectors 53.3%. Stop rule: no "introspection" framing |
 | 3 | Training-stage ladder | Not run (Gate 2 stop rule); next step needs a new pre-registration |
+| S2 | Text-intact search (new pre-registered question) | Practice PASS (layer 8, ½×: 14/30, reader 3/30); **fresh test FAIL** (injected 36/200 = 18%, reader 20/200, random 28/200). Report: [`gates/study2_report.md`](gates/study2_report.md) |
 
 ## Environment
 
