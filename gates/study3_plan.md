@@ -1,4 +1,10 @@
-# Study 3 — replicate the headline result, add the text control (PROPOSED, awaiting approval)
+# Study 3 — replicate the headline result, add the text control (APPROVED 2026-10-16)
+
+Approved by the researcher on 2026-10-16: the design (including the label-included injection and
+both vector types), the download of the authors' saved vectors, and the model download. Code:
+`scripts/study3.py`, analysis `scripts/study3_analyze.py`. Stimuli `stimuli/study3_stimuli.json`
+(their 100-sentence pool, 10 concepts, and our 40 seeded draws). The model is pinned in
+`stimuli/model_pins.json`.
 
 **New pre-registered study.** Gate 2 and Study 2 results stand as reported.
 
@@ -86,3 +92,20 @@ Also: the no-injection answer for each of the 40 sentence draws.
    Loaded in PyTorch's safe mode (`weights_only=True`).
 3. **Download of the model:** `meta-llama/Llama-3.1-8B-Instruct`, ~16 GB, into the Hugging Face
    cache outside OneDrive. Needs the access steps below first.
+
+## 6. Implementation notes (fixed before any Study 3 data)
+- The prompt is built exactly like their code (chat template with Llama's automatic system header,
+  trailing end-of-turn removed, trailing space added). Prompts are 275–287 tokens.
+- The injected span includes the label tokens " SENTENCE", " ", "<digit>", ":". So the injection
+  also lands on the **label digit itself**. That copies their method. We report how often the label
+  comes back changed.
+- Copy-back prompt: their first two turns, then the same sentence line followed by "Please repeat
+  all ten sentences exactly as written above, in the same format.", then the copied line fed in
+  (teacher forcing). The perceived spans, joined by spaces, become the reader's sentence line in
+  their localization prompt, with no injection.
+- Vectors: their saved layer-2 files, loaded with `weights_only=True`. S6 recomputes them with
+  their recipe (`hidden_states[2]`, hand-built chat string, first 50 baseline words) and requires
+  cosine ≥ 0.99 for all 20.
+- Dry run on a tiny random model with the real Llama-3.1 tokenizer and fake vectors: every path
+  ran, including resume. Only in the dry-run script, S6's threshold was lowered because fake
+  vectors can't match. The real run uses 0.99.
