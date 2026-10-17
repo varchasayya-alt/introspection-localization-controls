@@ -208,3 +208,19 @@ residual-stream norm at the output of layer 2 over sentence-word tokens (plan §
 
 If a sanity check stops the study before trials, P1–P4 are "not scorable"; P5 and P6 are scored
 if their measurements were made.
+
+### Researcher's Study 6 predictions — verbatim
+
+Recorded 2026-10-17, after the scoring rules above were committed (a8cf4f0) and before any
+Study 6 data. Given as multiple-choice answers, exactly:
+
+> P1: b (arm A: 50-75%)
+> P2: b (40-149 exact copies) — first answered c (fewer than 40); changed to b before any data,
+> after being told that P2 c and P3 b cannot both come true
+> P3: b (main test FAIL, model < 50% in exact-copy trials)
+> P4: b (random vectors clearly worse than concept vectors)
+> P5: a (push about the same relative size in Tülu and Llama)
+> P6: c (Tülu vectors vs the authors' Llama vectors: mean cosine below 0.5)
+
+Researcher approval recorded with these predictions: plan approved as committed (a8cf4f0),
+including Tülu's own chat format for both the localization prompt and the vector recipe.
