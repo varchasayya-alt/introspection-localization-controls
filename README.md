@@ -29,6 +29,7 @@ sentence felt different; chance = 10%)?
 | S2 | Text-intact search (new pre-registered question) | Practice PASS (layer 8, ½×: 14/30, reader 3/30); **fresh test FAIL** (injected 36/200 = 18%, reader 20/200, random 28/200). Report: [`gates/study2_report.md`](gates/study2_report.md) |
 | S3 | Replicate *Detecting the Disturbance* headline on Llama-3.1-8B-Instruct + text control | **R1 PASS** (89.0%, paper 88%); **R2 loophole not confirmed** (clean reader 42.0%); with the target copied exactly: injected 94% vs reader 5%. Report: [`gates/study3_report.md`](gates/study3_report.md) |
 | S4 | Sentence-only vs label-only injection (Llama-3.1-8B-Instruct) | **Main test PASS**: words only 97.5%, and with the text copied exactly 97% vs reader 10%; label only 64% (label copy intact 200/200); random vectors 91%. Pre-registered conclusion: **both routes work**. Report: [`gates/study4_report.md`](gates/study4_report.md) |
+| S5 | Question-specificity control (Llama-3.1-8B-Instruct, words-only push) | Valid (Q0 pull 82.5). Q1 "longest" pull 41.0 → **partial** (spotlight bar 41.25); Q2 "like most" pull 6.0 → **question-specific**; overall **mixed**. The push lowers "longest" accuracy (55% → 36.5%); random ≈ concept on Q0/Q1. Report: [`gates/study5_report.md`](gates/study5_report.md) |
 
 ## Environment
 

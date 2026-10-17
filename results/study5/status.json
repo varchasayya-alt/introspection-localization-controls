@@ -1,0 +1,59 @@
+{
+  "sanity": "PASS",
+  "updated": "2026-10-17 18:55:22",
+  "result": {
+    "complete": true,
+    "arms": {
+      "Q0_concept": {
+        "n": 200,
+        "hits": 185,
+        "acc_pct": 92.5,
+        "baseline_hits": 20,
+        "pull_pts": 82.5
+      },
+      "Q0_random": {
+        "n": 200,
+        "hits": 182,
+        "acc_pct": 91.0,
+        "baseline_hits": 20,
+        "pull_pts": 81.0
+      },
+      "Q1_concept": {
+        "n": 200,
+        "hits": 102,
+        "acc_pct": 51.0,
+        "baseline_hits": 20,
+        "pull_pts": 41.0
+      },
+      "Q1_random": {
+        "n": 200,
+        "hits": 110,
+        "acc_pct": 55.0,
+        "baseline_hits": 20,
+        "pull_pts": 45.0
+      },
+      "Q2_concept": {
+        "n": 200,
+        "hits": 32,
+        "acc_pct": 16.0,
+        "baseline_hits": 20,
+        "pull_pts": 6.0
+      },
+      "Q2_random": {
+        "n": 200,
+        "hits": 57,
+        "acc_pct": 28.5,
+        "baseline_hits": 20,
+        "pull_pts": 18.5
+      }
+    },
+    "valid": true,
+    "labels": {
+      "Q1": "partial",
+      "Q2": "question-specific"
+    },
+    "overall": "mixed",
+    "Q1_longest_correct_with_push_pct": 36.5,
+    "Q1_longest_correct_no_push_pct": 55.0
+  }
+}
