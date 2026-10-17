@@ -21,10 +21,17 @@ no computation, rule, material or result changed.
 - `scripts/download_their_vectors.py`, which fetches the authors' vectors and checks their SHA-256;
 - this file.
 
+## History rewrite (D5)
+
+The full history is published. Before publication, every commit had the laptop's home-folder path
+replaced with `%USERPROFILE%` (Windows-style paths) or `$HOME` (shell paths). Authors, both dates,
+messages and order are unchanged, and nothing else changed. Commit hashes changed; see
+[`commit_hash_map.md`](commit_hash_map.md). The current documents cite the new hashes.
+
 ## How to verify
 
 The pre-registration order (proposal → scoring rules → predictions → frozen setup → run →
-results) is documented in the commit map in `README.md`, using development-history hashes. The
+results) is documented in the commit map in `README.md`, using the published commit hashes. The
 frozen materials' integrity can be checked:
 - the vector files by SHA-256 (`scripts/download_their_vectors.py`);
 - the sentence draws by re-running the seeded generation described in each stimuli file's `notes`.

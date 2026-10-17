@@ -2,8 +2,8 @@
 
 Model: `allenai/Llama-3.1-Tulu-3-8B` @ `6669437`. Run: 2026-10-15 22:19 → 2026-10-16 12:10, AC
 power, one uninterrupted run. Plan: [`text_intact_plan.md`](text_intact_plan.md). Predictions
-and scoring rules: [`../predictions.md`](../predictions.md) (rules `f6eb6c3`, predictions
-`3bdd3f2`, both before any data). Tables: [`../results/study2/summary.md`](../results/study2/summary.md)
+and scoring rules: [`../predictions.md`](../predictions.md) (rules `229a20d`, predictions
+`c5197b5`, both before any data). Tables: [`../results/study2/summary.md`](../results/study2/summary.md)
 (made by the analysis script committed before the run).
 
 This was a **new** pre-registered question. Gate 2's FAIL stands: at the Gate 1 setting,

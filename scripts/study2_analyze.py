@@ -1,5 +1,5 @@
 """Study 2 analysis: the tables fixed in gates/text_intact_plan.md and the prediction scoring
-rules committed in predictions.md (f6eb6c3). Writes results/study2/summary.md + summary.json.
+rules committed in predictions.md (229a20d). Writes results/study2/summary.md + summary.json.
 
 Usage: python scripts/study2_analyze.py [--data DIR] [--out DIR]
 """
@@ -93,7 +93,7 @@ def main():
                       f"{fmt(acc([x for x in rdr if x['concept'] == w], 'reader_correct'))} |")
         md.append("")
 
-    # --- prediction scoring (rules committed in predictions.md, f6eb6c3)
+    # --- prediction scoring (rules committed in predictions.md, 229a20d)
     pred = {"P1": "c", "P2": "a", "P3": "c", "P4": "d", "P5": "d", "P6": "b", "P7": "b"}
     out = {}
     if "practice1" in status and status["practice1"]["complete"]:
@@ -129,7 +129,7 @@ def main():
             out["P7"] = "a" if k12 <= 1 else "b"
         else:
             out["P7"] = "not scorable"
-    md.append("## Prediction scoring (rules committed before the predictions, f6eb6c3)\n")
+    md.append("## Prediction scoring (rules committed before the predictions, 229a20d)\n")
     md.append("| # | researcher | outcome letter | correct? |\n|---|---|---|---|")
     for q in ["P1", "P2", "P3", "P4", "P5", "P6", "P7"]:
         o = out.get(q, "pending")

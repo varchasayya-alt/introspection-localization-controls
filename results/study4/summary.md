@@ -56,7 +56,7 @@ No-injection answers over the 20 draws: 1: 0, 2: 1, 3: 9, 4: 1, 5: 0, 6: 1, 7: 4
 
 Mean KL on the pushed tokens: A 0.976, B 0.860, C 0.756
 
-## Prediction scoring (rules committed before the predictions, ef2431c)
+## Prediction scoring (rules committed before the predictions, ac653cb)
 
 | # | researcher | outcome letter | correct? |
 |---|---|---|---|

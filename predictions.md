@@ -75,7 +75,7 @@ Definitions used below:
 
 ### Researcher's Study 2 predictions — verbatim
 
-Recorded 2026-10-15, after the scoring rules above were committed (f6eb6c3) and before any
+Recorded 2026-10-15, after the scoring rules above were committed (229a20d) and before any
 Study 2 data. The researcher answered a simplified version (their teacher rephrased P1–P7 in the
 same order). Exactly as given:
 
@@ -108,7 +108,7 @@ injected model's accuracy; "reader" = the clean reader's accuracy on the same 40
 
 ### Researcher's Study 3 predictions — verbatim
 
-Recorded 2026-10-16, after the scoring rules above were committed (c23d17a) and before any
+Recorded 2026-10-16, after the scoring rules above were committed (b1b0336) and before any
 Study 3 data. The researcher's teacher rephrased Q1–Q7 simply, in the same order. Exactly as given:
 
 > Q1: b (50-75%, replication passes)
@@ -142,7 +142,7 @@ trials" = arm-A trials whose injected span is copied back exactly (with the D3 c
 
 ### Researcher's Study 4 predictions — verbatim
 
-Recorded 2026-10-17, after the scoring rules above were committed (ef2431c) and before any
+Recorded 2026-10-17, after the scoring rules above were committed (ac653cb) and before any
 Study 4 data. The researcher's teacher rephrased P1–P7 simply, in the same order. Exactly as given:
 
 > P1: a (arm A: 75% or more)
@@ -176,7 +176,7 @@ Q1 = "longest", Q2 = "like most"; "concept"/"random" = vector type of the arm.
 
 ### Researcher's Study 5 predictions — verbatim
 
-Recorded 2026-10-17, after the scoring rules above were committed (960ec22) and before any
+Recorded 2026-10-17, after the scoring rules above were committed (ab0e61c) and before any
 Study 5 data. The researcher's teacher rephrased P1–P7 simply, in the same order. Exactly as given:
 
 > P1: a (Q0: 85% or more)

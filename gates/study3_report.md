@@ -2,7 +2,7 @@
 
 Model: `meta-llama/Llama-3.1-8B-Instruct` @ `0e9e39f`. Run: 2026-10-16 13:49 → 22:21, AC power,
 one uninterrupted run. Plan: [`study3_plan.md`](study3_plan.md). Predictions and scoring rules:
-[`../predictions.md`](../predictions.md) (rules `c23d17a`, predictions `d925dc9`, both before any
+[`../predictions.md`](../predictions.md) (rules `b1b0336`, predictions `a07886f`, both before any
 data). Tables: [`../results/study3/summary.md`](../results/study3/summary.md), made by the
 analysis script committed before the run.
 

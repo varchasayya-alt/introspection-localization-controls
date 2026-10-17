@@ -61,7 +61,7 @@ Examples of perceived injected spans (first 6 non-exact):
 - Dust/last, pos 8: “SENTENCE 8: He is the boxes.”
 - Dust/last, pos 9: “SENTENCE 9: The man moves across the wall.”
 
-## Prediction scoring (rules committed before the predictions, c23d17a)
+## Prediction scoring (rules committed before the predictions, b1b0336)
 
 | # | researcher | outcome letter | correct? |
 |---|---|---|---|

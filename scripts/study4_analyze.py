@@ -1,5 +1,5 @@
 """Study 4 analysis: the rules in gates/study4_plan.md and the prediction scoring rules committed
-in predictions.md (ef2431c). Writes results/study4/summary.md + summary.json.
+in predictions.md (ac653cb). Writes results/study4/summary.md + summary.json.
 
 Usage: python scripts/study4_analyze.py [--data DIR] [--out DIR]
 """
@@ -72,7 +72,7 @@ def main():
         md.append("Mean KL on the pushed tokens: " + ", ".join(
             f"{a} {sum(x['kl_target'] for x in I[a]) / max(len(I[a]), 1):.3f}" for a in "ABC") + "\n")
 
-    # --- prediction scoring (rules committed in predictions.md, ef2431c)
+    # --- prediction scoring (rules committed in predictions.md, ac653cb)
     pred = {"P1": "a", "P2": "a", "P3": "d", "P4": "a", "P5": "b", "P6": "c", "P7": "a"}
     out = {}
     if v.get("complete"):
@@ -87,7 +87,7 @@ def main():
         out["P6"] = "a" if pct < 25 else "b" if 35 <= pct <= 65 else "c" if pct > 75 else "no letter"
         a_pass, b_alt = v["main_test"] == "PASS", v["B_label_alternative"]
         out["P7"] = "a" if a_pass and not b_alt else "b" if a_pass else "c" if b_alt else "d"
-    md.append("## Prediction scoring (rules committed before the predictions, ef2431c)\n")
+    md.append("## Prediction scoring (rules committed before the predictions, ac653cb)\n")
     md.append("| # | researcher | outcome letter | correct? |\n|---|---|---|---|")
     for q in ["P1", "P2", "P3", "P4", "P5", "P6", "P7"]:
         o = out.get(q, "pending")

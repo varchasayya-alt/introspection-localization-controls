@@ -47,7 +47,7 @@ No-injection answers per question (1…10): Q0: 0,0,8,0,3,1,1,2,2,3; Q1: 0,0,0,3
 
 Q1 split: pushed sentence IS the longest → picks it 19/20; pushed sentence is NOT the longest → picks the pushed one 83/180, picks the longest 54/180.
 
-## Prediction scoring (rules committed before the predictions, 960ec22)
+## Prediction scoring (rules committed before the predictions, ab0e61c)
 
 | # | researcher | outcome letter | correct? |
 |---|---|---|---|

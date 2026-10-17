@@ -1,5 +1,5 @@
 """Study 3 analysis: the rules in gates/study3_plan.md and the prediction scoring rules
-committed in predictions.md (c23d17a). Writes results/study3/summary.md + summary.json.
+committed in predictions.md (b1b0336). Writes results/study3/summary.md + summary.json.
 
 Usage: python scripts/study3_analyze.py [--data DIR] [--out DIR]
 """
@@ -72,7 +72,7 @@ def main():
                 shown += 1
         md.append("")
 
-    # --- prediction scoring (rules committed in predictions.md, c23d17a)
+    # --- prediction scoring (rules committed in predictions.md, b1b0336)
     pred = {"Q1": "b", "Q2": "c", "Q3": "a", "Q4": "a", "Q5": "b", "Q6": "b", "Q7": "a"}
     out = {}
     if v.get("complete"):
@@ -88,7 +88,7 @@ def main():
         ip = 100 * ik / 400
         out["Q6"] = "a" if ip > 63.7 else "c" if ip < 43.7 else "b"
         out["Q7"] = "a" if sum(r["correct"] for r in inj if r["pos"] in (1, 2)) <= 2 else "b"
-    md.append("## Prediction scoring (rules committed before the predictions, c23d17a)\n")
+    md.append("## Prediction scoring (rules committed before the predictions, b1b0336)\n")
     md.append("| # | researcher | outcome letter | correct? |\n|---|---|---|---|")
     for q in ["Q1", "Q2", "Q3", "Q4", "Q5", "Q6", "Q7"]:
         o = out.get(q, "pending")

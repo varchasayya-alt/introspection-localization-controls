@@ -53,7 +53,7 @@ Rules: injected ≥ 50/200, reader ≤ 30/200, injected − reader ≥ 20/200 �
 | telescope | 27.5% (11/40; 95% CI 16.1–42.8) | 10.0% (4/40; 95% CI 4.0–23.1) |
 | waterfall | 17.5% (7/40; 95% CI 8.7–32.0) | 10.0% (4/40; 95% CI 4.0–23.1) |
 
-## Prediction scoring (rules committed before the predictions, f6eb6c3)
+## Prediction scoring (rules committed before the predictions, 229a20d)
 
 | # | researcher | outcome letter | correct? |
 |---|---|---|---|

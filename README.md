@@ -14,13 +14,19 @@ There are five studies, on AllenAI's Tülu-3-8B and Meta's Llama-3.1-8B-Instruct
 ## About this public release
 
 - **All studies are closed.** No further experiments are planned in this repository.
-- **Single-commit snapshot.** This is a snapshot of a private development repository at its final
-  state (development commit `DEVCOMMIT`; the only later change is this paragraph). The development
-  history isn't published. Commit hashes cited in the reports, `predictions.md` and the commit map
-  below refer to that history.
-- **Redactions.** Local paths were replaced by portable defaults and placeholders before release
-  (deviation D4). See [`logs/public_release_redactions.md`](logs/public_release_redactions.md).
-  No study was re-run and no result changed.
+- **Full history.** The complete commit history is published, because it is the pre-registration
+  evidence: in each study, the scoring rules and the researcher's predictions were committed before
+  the run, and the mid-run Study 4 hypothesis has its own timestamp.
+- **Timestamps are self-reported.** The predictions and rules were committed locally before each run
+  and only pushed publicly later, so the commit timestamps are self-reported.
+- **One history rewrite (D5).** Before publication, the history was rewritten once to replace this
+  laptop's home-folder path with `%USERPROFILE%` / `$HOME` in every commit. Authors, dates, messages
+  and order are unchanged; no other content changed. Current documents cite the new commit hashes.
+  Older versions inside the history cite the pre-rewrite hashes, so see
+  [`logs/commit_hash_map.md`](logs/commit_hash_map.md).
+- **Redactions in the current files (D4).** Local paths were replaced by portable defaults; see
+  [`logs/public_release_redactions.md`](logs/public_release_redactions.md). No study was re-run and
+  no result changed.
 
 ## Status and claims
 
@@ -152,22 +158,22 @@ The other studies use `gate1_analyze.py`, `study2_analyze.py`, `study3_analyze.p
 - **Deviations** are logged before the runs they affect ([`logs/deviations.md`](logs/deviations.md)).
   Calibration attempts are capped and logged ([`logs/calibration_log.md`](logs/calibration_log.md)).
 
-## Commit map (development history)
+## Commit map
 
 | Study | Proposal | Scoring rules | Predictions | Frozen setup | Results |
 |---|---|---|---|---|---|
-| 0 | `0e71871` | — | — | — | `0e71871` |
-| 1 | `0e71871` | `acc7335`\* | `acc7335` | `0d82a56`, `8ef360d`, `89965b9` | `6b92130`, `89f30e3`, `ca120a2` |
-| 2 | `a97bf82` | `f6eb6c3` | `3bdd3f2` | `22e2cbd` | `e5caf91`, `faa4e18` |
-| 3 | `674f137` | `c23d17a` | `d925dc9` | `db5edbf` | `385dfba` |
-| 4 | `db69988` | `ef2431c` | `c7a3dc6` | `8d30992` | `8d7d9ee` |
-| 5 | `1135cc3` | `960ec22` | `b948ceb` | `5a5b121` | `ca4cb22` |
+| 0 | `83447df` | — | — | — | `83447df` |
+| 1 | `83447df` | `e268a7e`\* | `e268a7e` | `aaa7ba8`, `73e85a1`, `2036c8a` | `8aa3e9b`, `d27559a`, `48f22e3` |
+| 2 | `da4892a` | `229a20d` | `c5197b5` | `a31372a` | `34385fa`, `fc47e50` |
+| 3 | `97b5003` | `b1b0336` | `a07886f` | `4e17e38` | `423b45f` |
+| 4 | `d84560b` | `ac653cb` | `15abe21` | `da36436` | `0c68fde` |
+| 5 | `2bef5d6` | `ab0e61c` | `791e0e5` | `2134b4e` | `1930855` |
 
 \* In Study 1 the scoring rules were committed together with the predictions.
 
 Also:
-- `de698e5`: the Study 4 hypothesis, logged during the Study 3 run (D2).
-- Study 1's `8ef360d` (a memory fix) and `89965b9` (the analysis script) came before any Study 1
+- `824e556`: the Study 4 hypothesis, logged during the Study 3 run (D2).
+- Study 1's `73e85a1` (a memory fix) and `2036c8a` (the analysis script) came before any Study 1
   result.
 
 ## Contributions

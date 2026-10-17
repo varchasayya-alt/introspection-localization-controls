@@ -3,7 +3,7 @@
 Model: `meta-llama/Llama-3.1-8B-Instruct` @ `0e9e39f`, layer 2, α 5, the authors' prompt and
 vectors (SHA-256 identical to Study 3's). Run: 2026-10-16 22:51 → 2026-10-17 07:28, AC power,
 one uninterrupted run. Plan: [`study4_plan.md`](study4_plan.md). Predictions and scoring rules:
-[`../predictions.md`](../predictions.md) (rules `ef2431c`, predictions `c7a3dc6`, both before any
+[`../predictions.md`](../predictions.md) (rules `ac653cb`, predictions `15abe21`, both before any
 data). Tables: [`../results/study4/summary.md`](../results/study4/summary.md), made by the
 analysis script committed before the run.
 

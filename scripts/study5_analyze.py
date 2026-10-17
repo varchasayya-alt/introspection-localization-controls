@@ -1,5 +1,5 @@
 """Study 5 analysis: the rules in gates/study5_plan.md and the prediction scoring rules committed
-in predictions.md (960ec22). Writes results/study5/summary.md + summary.json.
+in predictions.md (ab0e61c). Writes results/study5/summary.md + summary.json.
 
 Usage: python scripts/study5_analyze.py [--data DIR] [--out DIR]
 """
@@ -65,7 +65,7 @@ def main():
                   f"pushed sentence is NOT the longest → picks the pushed one {sum(r['correct'] for r in nl)}/{len(nl)}, "
                   f"picks the longest {sum(r['pred'] == r['longest_pos'] for r in nl)}/{len(nl)}.\n")
 
-    # --- prediction scoring (rules committed in predictions.md, 960ec22)
+    # --- prediction scoring (rules committed in predictions.md, ab0e61c)
     pred = {"P1": "a", "P2": "a", "P3": "a", "P4": "b", "P5": "a", "P6": "a", "P7": "a"}
     out = {}
     if v.get("complete"):
@@ -87,7 +87,7 @@ def main():
 
         out["P5"], out["P6"] = cmp("Q0"), cmp("Q1")
         out["P7"] = "a" if v["Q1_longest_correct_with_push_pct"] >= v["Q1_longest_correct_no_push_pct"] - 10 else "b"
-    md.append("## Prediction scoring (rules committed before the predictions, 960ec22)\n")
+    md.append("## Prediction scoring (rules committed before the predictions, ab0e61c)\n")
     md.append("| # | researcher | outcome letter | correct? |\n|---|---|---|---|")
     for q in ["P1", "P2", "P3", "P4", "P5", "P6", "P7"]:
         o = out.get(q, "pending")
