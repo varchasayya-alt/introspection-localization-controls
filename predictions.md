@@ -189,3 +189,22 @@ Study 5 data. The researcher's teacher rephrased P1–P7 simply, in the same ord
 
 Researcher approvals recorded with these predictions: design approved (neutral intro for Q1/Q2,
 6-word + 4-word draws, the rules, arms 1-5); optional arm 6 (random vectors on Q2) included.
+
+## Study 6 — Tülu-3-8B with the Study 4 arm-A protocol (plan: `gates/study6_plan.md`)
+
+Scoring rules written 2026-10-17, **before** the researcher's Study 6 predictions were recorded
+and before any Study 6 data. Counts are out of 200 trials per arm. "Exact-copy trials" = arm-A
+trials whose copied target sentence is exactly right (D3 fix). "Relative size" = 5 / average
+residual-stream norm at the output of layer 2 over sentence-word tokens (plan §4).
+
+| # | Question | Outcome → letter |
+|---|---|---|
+| P1 | Arm A injected accuracy | a ≥ 75% (≥ 150); b = 50–75% (100–149); c = 25–50% (50–99); d < 25% (< 50) |
+| P2 | Number of arm-A exact-copy trials | a ≥ 150; b = 40–149; c < 40 |
+| P3 | Arm A main test | a = PASS; b = FAIL with injected < 50% in exact-copy trials; c = FAIL with injected ≥ 50% but reader > 15%; d = NOT TESTABLE (< 40 exact-copy trials) |
+| P4 | Arm C (random) vs arm A (injected) | a = within 20 trials (≤ 10 points); b = C lower by > 20 trials; c = C higher by > 20 trials |
+| P5 | Injection size: Tülu's relative size ÷ Llama's | a = 0.9–1.1 (about the same); b > 1.1 (relatively bigger in Tülu); c < 0.9 (relatively smaller in Tülu) |
+| P6 | Mean cosine, Tülu vectors vs the authors' Llama vectors (20 pairs) | a ≥ 0.9; b = 0.5–0.9; c < 0.5 |
+
+If a sanity check stops the study before trials, P1–P4 are "not scorable"; P5 and P6 are scored
+if their measurements were made.
