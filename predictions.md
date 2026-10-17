@@ -173,3 +173,19 @@ Q1 = "longest", Q2 = "like most"; "concept"/"random" = vector type of the arm.
 | P5 | Q0: random vs concept accuracy | a = within 20 trials (≤ 10 points); b = random lower by > 20 trials; c = random higher by > 20 trials |
 | P6 | Q1: random vs concept accuracy | same bins as P5 |
 | P7 | Q1 correctness (answer = the truly longest sentence) with push vs without | with push = share of the 200 Q1-concept trials answered with the longest sentence; without = share of the 20 no-injection Q1 answers that are the longest sentence. a = with push ≥ without − 10 points; b = with push lower by more than 10 points |
+
+### Researcher's Study 5 predictions — verbatim
+
+Recorded 2026-10-17, after the scoring rules above were committed (960ec22) and before any
+Study 5 data. The researcher's teacher rephrased P1–P7 simply, in the same order. Exactly as given:
+
+> P1: a (Q0: 85% or more)
+> P2: a (Q1 "longest": small pull, under 20 points)
+> P3: a (Q2 "like most": small pull)
+> P4: b (overall: question-specific)
+> P5: a (random vs concept on Q0: within 10 points)
+> P6: a (random vs concept on Q1: within 10 points)
+> P7: a (the model still picks the truly longest sentence about as often with the push on)
+
+Researcher approvals recorded with these predictions: design approved (neutral intro for Q1/Q2,
+6-word + 4-word draws, the rules, arms 1-5); optional arm 6 (random vectors on Q2) included.
