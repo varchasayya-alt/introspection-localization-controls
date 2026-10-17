@@ -4,7 +4,7 @@ Usage:
   python scripts/gate1.py --stage sanity|A|B|controls|summary|all
 
 All per-trial results are appended (fsync'd) to JSONL files under
-%USERPROFILE%\\IntrospectionData\\gate1 (outside OneDrive). Re-running any stage resumes:
+$INTROSPECTION_DATA/gate1 (default ./data/gate1). Re-running any stage resumes:
 trials already stored are skipped. Rules applied here are the ones approved in
 gates/gate0_report.md Section 5 and frozen in gates/gate1_plan.md.
 """

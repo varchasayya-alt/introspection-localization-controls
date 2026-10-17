@@ -7,7 +7,7 @@ test_localization, code/utils/all_prompts.py get_localization_messages).
 Usage:
   python scripts/study3.py --stage all|sanity|trials|summary
 
-Per-trial results: %USERPROFILE%\\IntrospectionData\\study3 (outside OneDrive), copied to
+Per-trial results: $INTROSPECTION_DATA/study3 (default ./data/study3), copied to
 results/study3/. Re-running resumes; finished trials are skipped.
 """
 import argparse

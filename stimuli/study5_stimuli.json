@@ -376,7 +376,7 @@
   }
  ],
  "random_vector_seed": 20261021,
- "vector_dir": "%USERPROFILE%\\IntrospectionData\\study3\\their_vectors",
+ "vector_dir": "<INTROSPECTION_DATA>/study3/their_vectors",
  "vector_sha256": {
   "Dust_2_avg.pt": "c1760e9ead18bff4e7fd6c87d2a81d14ed8a3f0d56085e5df34e81be9b105cd4",
   "Dust_2_last.pt": "65016bcc1f65e385fcaff7eb6cf408626a00a4f2b31a4f8d3448399c854d3ee3",

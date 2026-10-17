@@ -13,3 +13,10 @@ hf_cache/
 
 # Large raw outputs (summaries are committed; raw per-trial dumps may be big)
 results/raw/
+
+# Local per-trial outputs, logs and downloaded vectors (INTROSPECTION_DATA default)
+data/
+
+# OS
+Thumbs.db
+.DS_Store

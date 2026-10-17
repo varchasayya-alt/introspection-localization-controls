@@ -1,0 +1,396 @@
+# Where, not what: sentence localization of injected concepts reflects content-agnostic disturbance detection
+
+*A pre-registered, CPU-only replication and control study of the "sentence localization" test for
+introspective awareness in language models.*
+
+Varchas Yogesh Hebbale (principal investigator), with Claude Opus 5.5 (Anthropic), October 2026.
+Research record: this repository (pre-registrations, code, per-trial data, and one report per
+study under `gates/`).
+
+---
+
+## Plain-English summary
+
+Some recent papers test whether a language model can "introspect" in a particular way. They push
+a pattern of activity (a "concept vector") into the model's processing of **one of ten sentences**,
+then ask the model which sentence had the "injected thought". Guessing gives 10%. One paper reported
+88% for Meta's Llama-3.1-8B-Instruct, and a popular post argued "there is no way to fake high
+accuracy on this task".
+
+We asked whether there *is* a way to fake it. We ran five pre-registered studies on one laptop CPU.
+Before every run we wrote down the rules and recorded the researcher's predictions.
+
+1. **On AllenAI's Tülu-3-8B, the high score was fake.** The push garbled the words of the target
+   sentence. A clean copy of the model that saw *only* the garbled text found the sentence
+   **more often** (75%) than the injected model did (45%).
+2. **On Meta's Llama-3.1-8B-Instruct, the 88% is real in a narrow sense.** We reproduced it (89%).
+   Garbled text explains part of it, but **when the sentence comes back perfectly intact, the model
+   still finds it 94–97% of the time**, while a clean reader is at chance.
+3. **It isn't the label.** Pushing on the words alone works (97.5%); the "SENTENCE N" label isn't
+   needed. Pushing on the label alone also works (64%), through a route a text check can't see.
+4. **It isn't the concept.** A **random** direction of the same size works about as well as a
+   meaningful concept (91% vs 97.5%).
+5. **It's partly a spotlight.** The same push drags the answer to an unrelated factual question
+   ("which sentence is the longest?") toward the pushed sentence about half as strongly, and makes
+   the model worse at that question. It barely affects "which do you like most?".
+
+**Bottom line:** in Llama-3.1-8B-Instruct, sentence localization measures whether the model can
+tell **where** its processing was disturbed. It doesn't tell **what** was put there. The signal
+partly leaks into unrelated questions, and injection-themed questions bring it out most strongly.
+That is a real sensitivity to the model's own internal state, but it is a minimal one. It is **not**
+evidence of consciousness, and it isn't specific to "thoughts" or concepts.
+
+---
+
+## 1. Question and motivation
+
+**Introspection claims.** Recent work injects activation-space "concept vectors" into language
+models and asks whether the models notice. Anthropic's injected-thought experiments (Lindsey, 2025)
+asked yes/no questions ("Do you detect an injected thought?"). *Detecting the Disturbance*
+(Hahami et al., 2025; arXiv 2512.12411) argued that yes/no detection is confounded: a general push
+toward answering "yes" explains the apparent detection.
+
+**Localization as the "fixed" test.** The proposed fix is **sentence localization**:
+- inject the vector only into the tokens of one of N sentences;
+- ask which sentence contains the injected thought;
+- read the answer from the logits for "1"…"N".
+
+Any fixed answer preference scores exactly chance, because the target moves through every
+position. *Detecting the Disturbance* reported up to 88% (N = 10) for Llama-3.1-8B-Instruct, and
+Godet's LessWrong post "Introspection via localization" (2025) argued that "there is no way to fake
+high accuracy on this task".
+
+**Original goal and what changed.** This project set out to find *which training stage* (base →
+SFT → preference optimization → final) creates localization ability, using public checkpoint
+ladders (OLMo-2, OLMo-3, Tülu-3, SmolLM3; Gate 0). Before comparing stages, the protocol required a
+**positive control** plus **confound checks**. The first confound check failed (Study 1), which
+turned the project into a study of what the localization test actually measures.
+
+## 2. Methods common to all studies
+
+- **Hardware:** one Windows laptop, Intel Core Ultra 7 255U (AVX2 only), 32 GB RAM, CPU only.
+- **Numerics:** weights stored in bf16, all math in fp32 (deviation D1). On this CPU, native bf16
+  was 5.6× slower than fp32. The hybrid cost about 10% more than fp32, at bf16 memory.
+- **Injection:** add α · v̂ (unit-length concept vector) to the residual stream at the output of
+  one decoder block, only on the target sentence's tokens. The answer is the argmax over the logits
+  of "1"…"10". An exact KV-cache speed-up reuses the clean prefix; sanity checks show it matches a
+  full pass to < 10⁻³.
+- **Copy-back + clean reader (the key control, introduced here):**
+  - With the injection on, the model is asked to repeat all ten sentences. The correct copy is fed
+    in (teacher forcing), and we take the model's top prediction for each token. That gives the
+    text as the injected model "perceived" it.
+  - A **clean** copy of the same model (no injection) then gets only this perceived text in the
+    same localization prompt.
+  - If the clean reader can find the sentence, the injection's effect is visible in the text itself.
+- **Pre-registration protocol (every study):**
+  1. a design proposal;
+  2. researcher approval;
+  3. prediction scoring rules committed;
+  4. the researcher's multiple-choice predictions committed verbatim;
+  5. frozen materials, code and analysis script committed;
+  6. the run;
+  7. analysis with the pre-committed script;
+  8. a report.
+
+  Pass and stop rules were fixed in advance. Calibration attempts were capped and logged, and
+  deviations were logged before the runs they affected. Results were never re-judged with a
+  different metric. (In Study 1 the scoring rules were committed in the same commit as the
+  predictions, not before it; from Study 2 on, they were committed first.)
+- **Fresh material:** each study used new sentence draws or sets. Every run was also dry-run on a
+  tiny random model, where every condition came out at chance as expected.
+
+## 3. Studies
+
+### Study 1 — positive control and cheap-trick controls on Tülu-3-8B (Gates 1–2)
+
+- **Model:** `allenai/Llama-3.1-Tulu-3-8B` @ `6669437`.
+- **Prompt:** our own. Ten everyday sentences on separate lines; injection on the sentence text
+  only; IFT-style concept vectors (last token minus a 50-word baseline mean).
+
+**Design and rules.**
+- *Phase A (calibration, 720 trials):* layers {1,2,3,4,6,8} × α {2,5,8,14}; pass if the best cell
+  is ≥ 9/30.
+- *Phase B (300 fresh trials):* pass if ≥ 30% (3× chance).
+- *Gate 2:* pass only if the injected model beats the clean reader by ≥ 15 points **and** the reader
+  stays < 30%.
+
+**Results.**
+
+| | result |
+|---|---|
+| Phase A | best layer 2, α 5 = 26/30; almost every cell far above chance → PASS |
+| Phase B | **161/300 = 53.7%** (95% CI 48.0–59.2) → **Gate 1 PASS** |
+| Clean reader (same 150 trials) | **74.7%** vs injected **45.3%** → **Gate 2 FAIL** |
+| Copy-back | target sentence copied exactly **0/150** ("The store was crowded…" → "The **lhouse** crowded…") |
+| Random vectors | 53.3% (≈ concepts) → "disturbance localization" |
+| Concept word typed into the sentence | 89.3% |
+
+**Verdict:** localization is fully explained by text corruption. Pre-registered stop rule: drop the
+"introspection" framing for this setup.
+
+**Also found:** Tülu has a strong default against answering "1" or "2". It never named them in
+Phase B, which capped accuracy at 80%.
+
+### Study 2 — searching for a text-intact setting on Tülu-3-8B
+
+**Design and rules.**
+- *Practice (attempt 1 of max 2):* layers {2,4,8,12,16} × relative strength {¼, ½, 1}× the typical
+  activation size.
+- *Text-intact:* reader ≤ 4/30. Pick the best intact setting.
+- *Fresh test (new concepts and sentences, 200 trials):* injected ≥ 50/200, reader ≤ 30/200, and a
+  gap ≥ 20.
+
+**Results.**
+- **Practice:** 11 of 15 settings were intact. The best was layer 8 at ½× (14/30 vs reader 3/30)
+  → PASS.
+- **Fresh test:** injected **36/200 (18%)**, reader 20/200 (10%), random 28/200; 198/200 exact
+  copies → **FAIL**.
+
+**Verdict:** no text-intact localization that holds up on new material in Tülu. The practice score
+was the best of 15 noisy estimates. At weak pushes, Tülu mostly gave its favourite answer for each
+sentence set.
+
+### Study 3 — exact replication of the headline on Llama-3.1-8B-Instruct, plus the text control
+
+- **Model:** `meta-llama/Llama-3.1-8B-Instruct` @ `0e9e39f`.
+- **Setup copied from the authors' code** (`elyhahami18/llama-introspection-new` @ `7d9280d`):
+  - their prompt (sentences on one line);
+  - their 100-sentence pool and 10 concepts;
+  - their saved layer-2 vectors (our recomputation matched them: cosine 1.0);
+  - both their "avg" and "last" vector types;
+  - injection over the whole "SENTENCE N: …" span, **label included**;
+  - layer 2, α 5.
+- **Trials:** 400. **Rules:** replication if injected ≥ 50%; loophole confirmed if the reader comes
+  within 10 points of the injected model.
+
+**Results.**
+
+| | result |
+|---|---|
+| Injected | **356/400 = 89.0%** (paper: 88%) → **replication PASS** |
+| Clean reader | **168/400 = 42.0%** → **loophole not confirmed** (−47 points) |
+| Target copied exactly (202 trials) | injected **94%**, reader **5%** |
+| Target sentence changed (154 trials) | injected 81%, reader 84% (reading explains these) |
+| By concept | Satellites: loophole-like (77.5% vs 72.5%); recursion, Dust, betrayal: injected 92.5–100%, reader 10–15% |
+
+**Deviation / caveat:** the copy test showed a scoring quirk. Span 2's label always came back as
+"ENCE 2", because the model guesses a line break after the first copied sentence. It is fixed for
+Study 4 (deviation D3, logged before Study 4 ran).
+
+### Study 4 — label vs words, and concept vs random, on Llama-3.1-8B-Instruct
+
+The hypothesis was logged by the researcher during Study 3: the push on the label digit makes that
+digit a likelier answer.
+
+**Arms** (200 trials each, the same 20 fresh draws):
+- **A** words only;
+- **B** label only;
+- **C** words only with a random vector.
+
+A and B also get the copy-back + reader (with the D3 fix; a no-injection copy was exact in 20/20
+draws).
+
+**Rules:**
+- *Main test:* among arm-A trials with an exact copy (≥ 40 needed), injected ≥ 50% and reader ≤ 15%.
+- *Label test:* arm B ≥ 50% means label highlighting is a real alternative.
+
+**Results.**
+
+| arm | injected | reader | copied exactly |
+|---|---|---|---|
+| A words only | **97.5%** | 27.0% | 150/200 |
+| B label only | **64.0%** | 12.5% | 191/200 (label exact 200/200) |
+| C random, words only | **91.0%** | — | — |
+
+- **Main test (150 exact-copy trials):** injected **145 (97%)**, reader **15 (10%)** → **PASS**.
+- **Label test:** 64% → **a real alternative route**.
+- **Pre-registered conclusion: "both routes work".** C was within 10 points of A → not
+  concept-specific.
+
+### Study 5 — question specificity: noticing vs spotlight, on Llama-3.1-8B-Instruct
+
+**Design.** The same words-only push, on 20 fresh draws. Each draw has one 6-word sentence and nine
+4-word sentences, so the longest is unambiguous. Every pushed position was asked three questions in
+separate trials:
+- **Q0:** the original question (their prompt);
+- **Q1:** "Which sentence is the longest?" (neutral intro);
+- **Q2:** "Which sentence do you like most?" (neutral intro).
+
+Each question was asked with concept and random vectors, plus no-injection baselines.
+
+**Rules.**
+- *Pull* = accuracy − the no-injection hit rate (10%).
+- *Validity:* Q0 pull ≥ 50.
+- *Per neutral question:* "spotlight" if pull ≥ ½ of Q0's pull; "question-specific" if < 20;
+  otherwise "partial".
+
+**Results.**
+
+| question | concept: picks pushed sentence | pull | random | pull |
+|---|---|---|---|---|
+| Q0 injected thought? | 92.5% | **82.5** | 91.0% | 81.0 |
+| Q1 longest? | 51.0% | **41.0** | 55.0% | 45.0 |
+| Q2 like most? | 16.0% | **6.0** | 28.5% | 18.5 |
+
+- **Validity:** passed.
+- **Q1:** **partial**; its pull of 41.0 was 0.25 points under the spotlight bar of 41.25.
+- **Q2:** **question-specific**.
+- **Overall: "mixed".**
+- **The push lowered Q1 accuracy:** with it, the model picked the truly longest sentence 36.5% of
+  the time, vs 55% without.
+
+## 4. Main findings
+
+**(a) Text corruption fully explains localization on Tülu-3-8B at the original setting.** The clean
+reader beat the injected model (75% vs 45%). No text-intact setting held up on new material
+(Studies 1–2).
+
+**(b) On Llama-3.1-8B-Instruct, the 88% replicates (89%), and corruption explains only part of it.**
+A reader reaches 42% from the copied text alone. But with the text intact, localization stays at
+94% (Study 3) to 97% (Study 4), with the reader at chance.
+
+**(c) It isn't driven by the label digit.** Pushing on the words alone gives 97.5%, and 97% when
+the copy is exact. Pushing on the label alone also works (64%), invisibly to the copy test (Study 4).
+
+**(d) It isn't concept-specific.** Random vectors match concept vectors: 53% vs 54% (Study 1,
+Tülu), 91% vs 97.5% (Study 4), 91% vs 92.5% on Q0 (Study 5). This fits Lederman & Mahowald's (2026)
+finding that injected-thought detection is content-agnostic.
+
+**(e) It's partly a salience/spotlight signal.** The push leaks into an unrelated factual question
+(pull 41 vs 82.5) and lowers accuracy on it (55% → 36.5%), but barely moves a preference question
+(pull 6). Godet's LessWrong post likewise reports chance accuracy for a "Which sentence do you
+prefer?" question.
+
+## 5. Interpretation
+
+**What localization measures (in Llama-3.1-8B-Instruct, layer 2, α 5):** whether the model can
+report **where** in its input its processing was disturbed. The report doesn't depend on the
+disturbance's content (random directions work), and it isn't mediated by text the model would
+reproduce differently (the exact-copy result). It partly acts like a spotlight that drags other
+answers, and it is **amplified by questions about injected thoughts**, which draw out far more than
+neutral questions.
+
+**What this shows:**
+- The model's output depends on the location of a perturbation to its own activations, beyond
+  anything visible in its top-1 reading of the text.
+- In a minimal, functional sense, the model is sensitive to its own internal state.
+
+**What this does not show:**
+- **Not evidence of consciousness** or experience. Nothing here bears on phenomenal states.
+- **Not evidence that the model "noticed a thought".** The effect is content-agnostic, so "noticed
+  the concept" is too strong.
+- **Not a clean introspection measure across models.** The same test is fully explained by text
+  corruption in Tülu-3-8B. A localization score without controls can't tell the two cases apart.
+- **Not a mechanism.** We didn't identify how the location is read out. The paper's account
+  (attention-based routing) and a salience account are both compatible with our data. Study 5
+  suggests some of each.
+- **"Text intact" means the top-1 copy is intact.** The push still shifts the model's word
+  probabilities (KL ≈ 1 nat on pushed tokens). Picking up shifts in one's own confidence may be
+  exactly the mechanism. Whether to call that "introspection" is partly a matter of definition.
+
+## 6. Recommended controls for anyone using the localization test
+
+- [ ] **Copy-back + clean reader.** With the injection on, have the model copy the sentences
+  (teacher-forced, top-1 per token). Give the perceived text to a clean model in the same prompt.
+  Report the reader's accuracy next to the injected model's, and report accuracy separately for
+  exact-copy trials. Watch for boundary quirks in copy scoring (see D3).
+- [ ] **Label-excluded injection.** Inject on the sentence words only, not on "SENTENCE N:". A
+  label-only arm shows how much the label alone carries.
+- [ ] **Random-vector arm.** Use norm-matched random directions at the same layer and strength. If
+  random ≈ concept, describe the result as disturbance localization, not concept detection.
+- [ ] **Neutral-question control.** Ask a factual and a preference question about the same pushed
+  sentences, and report "pull" relative to no-injection baselines.
+- [ ] **Report averages, not only peaks.** Pick the setting on calibration data and score it on fresh
+  trials. The "88%" was the best of 77 settings; the IFT paper's grid average for an 8B Llama was
+  16.8%.
+- [ ] **Check answer-position defaults** (e.g. Tülu never answering "1" or "2"), and report accuracy
+  by position.
+
+## 7. Limitations
+
+- **One model per family:** Tülu-3-8B and Llama-3.1-8B-Instruct only (both on the Llama-3.1-8B base).
+  No training-stage ladder was run.
+- **CPU budget:** 200–400 trials per condition; mainly one setting per model (layer 2, α 5).
+  Study 2 covered more layers, but on Tülu only.
+- **Argmax copy test:** it sees only the top-1 token, not probability shifts. A
+  probability-sensitive reader would be a stronger control.
+- **Q0's intro differs from Q1/Q2's** (injection-themed vs neutral, pre-registered on purpose), so
+  part of Q0's larger pull may come from the intro.
+- **Small number of concepts:** 10 (Studies 3–5), 3 calibration + 6 test (Study 1), 3 practice + 5
+  fresh (Study 2). Per-concept results
+  rest on 20–50 trials.
+- **Different prompts across families:** Study 1 used our prompt (sentences on separate lines,
+  sentence-only injection). Studies 3–5 used the authors' prompt. The Tülu/Llama difference is
+  therefore not a pure model comparison.
+- **Teacher forcing** in the copy test may exaggerate garbling (Study 1) or miss subtle changes
+  (Studies 3–4).
+
+## 8. Prediction scorecards
+
+Before each run, the researcher made multiple-choice predictions, scored with rules committed
+beforehand (see [`predictions.md`](predictions.md)).
+
+| Study | Correct | Highlights |
+|---|---|---|
+| 1 (Tülu, Gates 1–2) | **2 / 6** | ✅ passes the 30% bar; ✅ random ≈ concept. ❌ predicted real noticing (reader beat the model) |
+| 2 (Tülu, text-intact search) | **0 / 7** | Predicted no intact setting would work. It failed one step later (practice passed, fresh test failed) |
+| 3 (Llama replication) | **1 / 7** | ✅ reader 40–70% (42%). ❌ predicted the reader beats the model; underestimated replication (89%) |
+| 4 (label vs words) | **3 / 6** (+1 not scorable) | ✅ A ≥ 75%; ✅ main test passes; ✅ A beats B. ❌ predicted label-only < 25% (it was 64%) and random clearly worse (91%). P6 landed exactly on the 75% boundary |
+| 5 (question specificity) | **4 / 7** | ✅ Q0 ≥ 85%; ✅ "like most" barely pulled; ✅ random ≈ concept on Q0 and Q1. ❌ "longest" pull small (it was 41) |
+| **Total** | **10 / 33** scorable | |
+
+The predictions were often wrong in instructive ways. Two points recur:
+- **Random vectors working as well as concepts** was predicted correctly three times.
+- **The size of the "reading changed text" effect** was misjudged in both directions (too small
+  for Tülu, too large for Llama).
+
+## 9. Deviations and notable events (full logs in `logs/`)
+
+- **D0:** project path and GitHub-ID lookup method (no effect on results).
+- **D1:** bf16 storage with fp32 math, for every model (approved).
+- **D2:** not a deviation. Logs the time the Study 4 hypothesis arose, during Study 3, after interim
+  numbers had been seen.
+- **D3:** copy-scoring fix for Study 4 onward (the first token of each copied span comes from the
+  real text). Logged before Study 4.
+- **Study 1 engineering (before any data):**
+  - a memory fix (an aborted sanity attempt paged to disk);
+  - BOS prepended for Tülu, whose chat template omits it but whose training adds it;
+  - a cache-crop API update.
+- **Throttling:** on battery the CPU ran about 2.75× slower, so all runs were done on AC power.
+- **Calibration:** Study 1 Phase A and Study 2 practice both passed on attempt 1. No further
+  attempts were used.
+
+## 10. Related work
+
+- **Lindsey (2025)**, Anthropic, *Emergent introspective awareness in large language models.* The
+  injected-thought paradigm with yes/no detection.
+- **Hahami, Sinha, Jain, Kaplan & Hahami (2025)**, *Detecting the Disturbance: A Nuanced View of
+  Introspective Abilities in LLMs*, arXiv 2512.12411.
+  - Argues yes/no detection is confounded by a yes-bias.
+  - Proposes sentence localization (up to 88% on Llama-3.1-8B-Instruct, early layers) and
+    strength comparison.
+  - No text-corruption control. We replicate the headline (89%) with their code's setup.
+- **Hahami, Sinha & Jain (2026)**, *Introspection Fine-Tuning (IFT): Training Small LLMs to
+  Introspect*, arXiv 2607.14111.
+  - Llama-3.2-1B is at chance before IFT (9.6%) and 60.6% after.
+  - Peak localization of about 65% (3B) and about 88% (8B); grid averages are much lower (16.8%
+    for the 8B).
+- **Macar, Yang, Wang, Wallich, Ameisen & Lindsey (2026)**, *Mechanisms of Introspective Awareness*,
+  arXiv 2603.21396.
+  - Detection "emerges specifically from post-training": DPO elicits it, standard SFT doesn't.
+  - Measured with detection-style questions. This motivated our original training-stage question.
+- **Lederman & Mahowald (2026)**, *Emergent Introspection in AI is Content-Agnostic*,
+  arXiv 2603.05414.
+  - Models detect *that* an anomaly occurred without reliably identifying its content.
+  - Our random-vector results show the same pattern for localization.
+- **Godet (2025)**, *Introspection via localization*, LessWrong (28 Dec 2025).
+  - Introduced the localization test for small models (five sentences).
+  - Argued it can't be faked.
+  - In the comments, reports chance accuracy for a "which do you prefer?" question.
+
+## 11. Reproducing
+
+See [`README.md`](README.md) for the environment, model access (Meta's model is gated) and
+commands. Every study can be re-run with `python scripts/<study>.py --stage all` and re-analysed
+with `python scripts/<study>_analyze.py`. Per-trial results are in `results/`. Pre-registrations
+and reports are in `gates/` and `predictions.md`.

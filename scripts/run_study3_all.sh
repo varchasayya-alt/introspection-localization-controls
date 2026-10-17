@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 # Runs Study 3 end to end (sanity -> 400 paired trials) with up to 3 automatic restarts.
 # Every finished trial is already on disk, so a restart resumes where it stopped.
-PY=$HOME/.venvs/introspection/Scripts/python
+PY="${PYTHON:-python}"
 REPO="$(cd "$(dirname "$0")/.." && pwd)"
-LOGDIR=$HOME/IntrospectionData/logs
+LOGDIR="${INTROSPECTION_DATA:-$REPO/data}/logs"
 mkdir -p "$LOGDIR"
 for attempt in 1 2 3 4; do
   echo "[runner] start attempt $attempt $(date '+%F %T')" >> "$LOGDIR/study3_runner.log"

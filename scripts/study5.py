@@ -74,7 +74,7 @@ class Ctx5:
         log(f"loaded {CFG['repo']}@{CFG['revision']} in {time.time() - t0:.0f}s")
         stim_path = stim_path or (L.REPO_ROOT / "stimuli" / "study5_stimuli.json")
         self.stim = json.loads(Path(stim_path).read_text(encoding="utf-8"))
-        self.vec_dir = Path(self.stim["vector_dir"])
+        self.vec_dir = Path(self.stim["vector_dir"].replace("<INTROSPECTION_DATA>", str(L.DATA_ROOT)))
         S3.VEC_DIR = self.vec_dir
         self.vecs = S3.load_their_vectors(self.stim["concepts"])
         g = torch.Generator().manual_seed(self.stim["random_vector_seed"])

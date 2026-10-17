@@ -14,13 +14,14 @@ import time
 from contextlib import contextmanager
 from pathlib import Path
 
-os.environ.setdefault("HF_HOME", r"%USERPROFILE%\.cache\huggingface")  # outside OneDrive
-
 import torch  # noqa: E402
 from transformers import AutoModelForCausalLM, AutoTokenizer  # noqa: E402
 
+# Per-trial outputs and logs go to $INTROSPECTION_DATA (default: ./data, git-ignored). Model weights
+# use the normal Hugging Face cache ($HF_HOME). During the research runs both lived outside the
+# synced project folder.
 REPO_ROOT = Path(__file__).resolve().parents[1]
-DATA_ROOT = Path(os.environ.get("INTROSPECTION_DATA", r"%USERPROFILE%\IntrospectionData"))
+DATA_ROOT = Path(os.environ.get("INTROSPECTION_DATA", REPO_ROOT / "data"))
 
 INTRO = (
     "I am an interpretability researcher studying how language models like you work. "

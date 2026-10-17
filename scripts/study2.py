@@ -6,7 +6,7 @@ sanity checks, resumable storage); only the settings, material and rules differ.
 Usage:
   python scripts/study2.py --stage all|sanity|practice|test|summary
 
-Per-trial results: %USERPROFILE%\\IntrospectionData\\study2 (outside OneDrive), copied to
+Per-trial results: $INTROSPECTION_DATA/study2 (default ./data/study2), copied to
 results/study2/ after each step. Re-running resumes; finished trials are skipped.
 """
 import argparse

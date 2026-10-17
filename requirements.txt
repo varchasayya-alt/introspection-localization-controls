@@ -1,5 +1,4 @@
-# Installed into %USERPROFILE%\.venvs\introspection (outside OneDrive)
-# torch from https://download.pytorch.org/whl/cpu
+# Versions used for all runs (CPU wheels from https://download.pytorch.org/whl/cpu for torch)
 torch==2.14.1
 transformers==5.19.0
 accelerate==1.15.0

@@ -8,8 +8,8 @@ This file pins the implementation details that the Gate 0 report left open. Code
 - `allenai/Llama-3.1-Tulu-3-8B` @ revision `666943798adbde0b1aff34626007e26986a3c107`
   (`stimuli/model_pins.json`). 32 layers, hidden size 4096.
 - Weights stored in bf16, all math in fp32 (D1). 12 CPU threads.
-- Hugging Face cache `%USERPROFILE%\.cache\huggingface`; per-trial outputs
-  `%USERPROFILE%\IntrospectionData\gate1` (both outside OneDrive). Small result files are copied
+- Hugging Face cache `<home>\.cache\huggingface`; per-trial outputs
+  `<home>\IntrospectionData\gate1` (both outside OneDrive). Small result files are copied
   into `results/gate1/` after each phase.
 
 ## Prompt (localization)
