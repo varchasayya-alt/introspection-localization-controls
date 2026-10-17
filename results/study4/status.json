@@ -1,0 +1,24 @@
+{
+  "sanity": "PASS",
+  "updated": "2026-10-17 07:28:20",
+  "result": {
+    "complete": true,
+    "inj_k": {
+      "A": 195,
+      "B": 128,
+      "C": 182
+    },
+    "reader_k": {
+      "A": 54,
+      "B": 25
+    },
+    "A_exact_n": 150,
+    "A_exact_inj_k": 145,
+    "A_exact_reader_k": 15,
+    "main_test": "PASS",
+    "B_label_alternative": true,
+    "A_loophole_secondary": "not confirmed",
+    "C_vs_A": "within 10 points (not concept-specific)",
+    "conclusion": "both routes work"
+  }
+}
