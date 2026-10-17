@@ -123,3 +123,19 @@ Study 3 data. The researcher's teacher rephrased Q1–Q7 simply, in the same ord
 Researcher approvals recorded with these predictions: design approved (including the
 label-included injection and both vector types); download of the authors' saved vectors
 (safe mode + match check); download of meta-llama/Llama-3.1-8B-Instruct.
+
+## Study 4 — sentence-only vs label-only injection (plan: `gates/study4_plan.md`)
+
+Scoring rules written 2026-10-17, **before** the researcher's Study 4 predictions were recorded
+and before any Study 4 data. Counts are out of 200 trials per arm unless stated. "Exact-copy
+trials" = arm-A trials whose injected span is copied back exactly (with the D3 copy fix).
+
+| # | Question | Outcome → letter |
+|---|---|---|
+| P1 | Arm A injected accuracy | a ≥ 75% (≥ 150); b = 50–75% (100–149); c = 25–50% (50–99); d < 25% (< 50) |
+| P2 | Arm A main test | d if fewer than 40 exact-copy trials; otherwise a = injected ≥ 50% **and** reader ≤ 15% in those trials; b = injected < 50% (whatever the reader does); c = injected ≥ 50% but reader > 15% |
+| P3 | Arm B injected accuracy | same bins as P1 |
+| P4 | Arm A vs arm B (injected) | a = A − B > 20 trials (> 10 points); b = B − A > 20 trials; c = otherwise |
+| P5 | Arm C (random) vs arm A (injected) | a = within 20 trials (≤ 10 points); b = C lower by > 20 trials; c = C higher by > 20 trials |
+| P6 | Arm A exact copy-back of the injected span | a < 25%; b = 35–65%; c > 75%; 25–35% and 65–75% match no letter |
+| P7 | Overall conclusion (table in plan §4) | a = A passes and B < 50%; b = A passes and B ≥ 50%; c = A does not pass and B ≥ 50%; d = A does not pass and B < 50%. "Not testable" counts as "does not pass". |
