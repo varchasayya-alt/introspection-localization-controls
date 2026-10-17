@@ -1,4 +1,8 @@
-# Study 5 — does the push answer only the "injection" question? (PROPOSED, awaiting approval)
+# Study 5 — does the push answer only the "injection" question? (APPROVED 2026-10-17)
+
+Approved by the researcher on 2026-10-17: the design (neutral intro for Q1/Q2, 6-word + 4-word draws,
+the rules, arms 1–5) **plus optional arm 6** (random vectors on Q2). Code `scripts/study5.py`,
+analysis `scripts/study5_analyze.py`, stimuli `stimuli/study5_stimuli.json`.
 
 **New pre-registered study.** Studies 1–4 stand as reported.
 
@@ -81,3 +85,15 @@ no-injection answer is one fixed sentence per draw, the baseline is exactly 10%.
 
 1. The design (neutral intro for Q1/Q2, the constrained draws, rules and arms 1–5).
 2. Optional arm 6 (random vectors on Q2), +0.8 h: yes or no.
+
+## 7. Implementation notes (fixed before any Study 5 data)
+- **Draws:** each draw is one 6-word sentence + nine 4-word sentences that are each at least
+  5 characters shorter, so the longest is unambiguous by both words and characters (sanity S9).
+  The longest sentence's position varies (2–9).
+- **Prompt sizes:** the Q0 prompt is byte-identical to the Study 3/4 prompt (S1). Q1/Q2 prompts are
+  about 182 tokens.
+- **Run order:** per draw, all 6 arms are run position by position, so a crash leaves the arms
+  balanced. Each question gets one no-injection answer per draw.
+- **Dry run:** a tiny random model with the real tokenizer covered every path, including resume.
+  No thresholds were changed for it.
+- **Estimated time:** about 5.3 h (1,200 injected trials).

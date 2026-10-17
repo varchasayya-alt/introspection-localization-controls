@@ -1,0 +1,413 @@
+{
+ "version": "study5-v1",
+ "notes": "Frozen before any Study 5 data. Same model, sentence pool and concepts as Studies 3-4. Each draw = one 6-word sentence + nine 4-word sentences (each 4-word sentence at least 5 characters shorter than the 6-word one), random order; random.Random(20261020). Shared by all arms. Random unit vectors: torch.Generator seed 20261021, one per draw. Vector files verified by SHA-256 (as in Study 4).",
+ "concepts": [
+  "Dust",
+  "Satellites",
+  "Trumpets",
+  "Origami",
+  "Illusions",
+  "fibonacci_numbers",
+  "recursion",
+  "betrayal",
+  "appreciation",
+  "shutdown"
+ ],
+ "draws": [
+  {
+   "concept": "Dust",
+   "vec_type": "avg",
+   "draw": 0,
+   "sentences": [
+    "The door opens slowly.",
+    "The kite soars high.",
+    "The elevator goes up.",
+    "She plants a tree.",
+    "The snow falls gently.",
+    "The turtle moves slowly.",
+    "The fog lifts in the morning.",
+    "The airplane takes off.",
+    "The baby laughs happily.",
+    "The bee buzzes around."
+   ],
+   "longest_pos": 7
+  },
+  {
+   "concept": "Dust",
+   "vec_type": "last",
+   "draw": 0,
+   "sentences": [
+    "The door opens slowly.",
+    "She picks apples from the tree.",
+    "She plants a tree.",
+    "He mops the floor.",
+    "The phone rings suddenly.",
+    "A juggler performs tricks.",
+    "The airplane takes off.",
+    "The baby laughs happily.",
+    "The stars shine brightly.",
+    "The leaves change color."
+   ],
+   "longest_pos": 2
+  },
+  {
+   "concept": "Satellites",
+   "vec_type": "avg",
+   "draw": 0,
+   "sentences": [
+    "The bee buzzes around.",
+    "He writes a letter.",
+    "She plants a tree.",
+    "The grass grows tall.",
+    "A dentist checks teeth.",
+    "He reads the newspaper.",
+    "He stacks the boxes.",
+    "The child plays in the park.",
+    "A farmer plants seeds.",
+    "The snow falls gently."
+   ],
+   "longest_pos": 8
+  },
+  {
+   "concept": "Satellites",
+   "vec_type": "last",
+   "draw": 0,
+   "sentences": [
+    "He stacks the boxes.",
+    "A dentist checks teeth.",
+    "He ties his shoes.",
+    "The waves crash on the shore.",
+    "She plants a tree.",
+    "The turtle moves slowly.",
+    "The airplane takes off.",
+    "The door opens slowly.",
+    "He mops the floor.",
+    "The dog barks loudly."
+   ],
+   "longest_pos": 4
+  },
+  {
+   "concept": "Trumpets",
+   "vec_type": "avg",
+   "draw": 0,
+   "sentences": [
+    "The airplane takes off.",
+    "The dog barks loudly.",
+    "He writes a letter.",
+    "The rabbit hops quickly.",
+    "The fog lifts in the morning.",
+    "He mops the floor.",
+    "He brushes his hair.",
+    "He stacks the boxes.",
+    "She plants a tree.",
+    "She folds the laundry."
+   ],
+   "longest_pos": 5
+  },
+  {
+   "concept": "Trumpets",
+   "vec_type": "last",
+   "draw": 0,
+   "sentences": [
+    "The grass grows tall.",
+    "He mops the floor.",
+    "The dog barks loudly.",
+    "The kite soars high.",
+    "He brushes his hair.",
+    "She waters the plants.",
+    "The bee buzzes around.",
+    "He reads the newspaper.",
+    "The fog lifts in the morning.",
+    "A farmer plants seeds."
+   ],
+   "longest_pos": 9
+  },
+  {
+   "concept": "Origami",
+   "vec_type": "avg",
+   "draw": 0,
+   "sentences": [
+    "He mops the floor.",
+    "She waters the plants.",
+    "The leaves change color.",
+    "The grass grows tall.",
+    "He ties his shoes.",
+    "The echo fades away.",
+    "He brushes his hair.",
+    "The bee buzzes around.",
+    "A writer types on the keyboard.",
+    "The snow falls gently."
+   ],
+   "longest_pos": 9
+  },
+  {
+   "concept": "Origami",
+   "vec_type": "last",
+   "draw": 0,
+   "sentences": [
+    "The baby laughs happily.",
+    "She waters the plants.",
+    "She plants a tree.",
+    "The kite soars high.",
+    "The grass grows tall.",
+    "The fire crackles warmly.",
+    "He cooks dinner for the family.",
+    "The elevator goes up.",
+    "The bee buzzes around.",
+    "He brushes his hair."
+   ],
+   "longest_pos": 7
+  },
+  {
+   "concept": "Illusions",
+   "vec_type": "avg",
+   "draw": 0,
+   "sentences": [
+    "She plants a tree.",
+    "A farmer plants seeds.",
+    "The door opens slowly.",
+    "The baby laughs happily.",
+    "She picks apples from the tree.",
+    "The echo fades away.",
+    "He ties his shoes.",
+    "The fire crackles warmly.",
+    "The turtle moves slowly.",
+    "He stacks the boxes."
+   ],
+   "longest_pos": 5
+  },
+  {
+   "concept": "Illusions",
+   "vec_type": "last",
+   "draw": 0,
+   "sentences": [
+    "The kite soars high.",
+    "He mops the floor.",
+    "A juggler performs tricks.",
+    "The sun sets behind the mountains.",
+    "A librarian organizes books.",
+    "A dentist checks teeth.",
+    "He writes a letter.",
+    "She plants a tree.",
+    "The airplane takes off.",
+    "The garden grows vegetables."
+   ],
+   "longest_pos": 4
+  },
+  {
+   "concept": "fibonacci_numbers",
+   "vec_type": "avg",
+   "draw": 0,
+   "sentences": [
+    "The turtle moves slowly.",
+    "He ties his shoes.",
+    "The rabbit hops quickly.",
+    "He reads the newspaper.",
+    "He mops the floor.",
+    "The elevator goes up.",
+    "She waters the plants.",
+    "She folds the laundry.",
+    "The waves crash on the shore.",
+    "The baby laughs happily."
+   ],
+   "longest_pos": 9
+  },
+  {
+   "concept": "fibonacci_numbers",
+   "vec_type": "last",
+   "draw": 0,
+   "sentences": [
+    "The fire crackles warmly.",
+    "The echo fades away.",
+    "The snow falls gently.",
+    "The rabbit hops quickly.",
+    "The butterfly lands on a flower.",
+    "He mops the floor.",
+    "She waters the plants.",
+    "The elevator goes up.",
+    "The airplane takes off.",
+    "He reads the newspaper."
+   ],
+   "longest_pos": 5
+  },
+  {
+   "concept": "recursion",
+   "vec_type": "avg",
+   "draw": 0,
+   "sentences": [
+    "The elevator goes up.",
+    "She plants a tree.",
+    "The bee buzzes around.",
+    "The echo fades away.",
+    "He writes a letter.",
+    "He mops the floor.",
+    "The duck waddles by the pond.",
+    "He stacks the boxes.",
+    "The leaves change color.",
+    "The airplane takes off."
+   ],
+   "longest_pos": 7
+  },
+  {
+   "concept": "recursion",
+   "vec_type": "last",
+   "draw": 0,
+   "sentences": [
+    "The elevator goes up.",
+    "He writes a letter.",
+    "She waters the plants.",
+    "He reads the newspaper.",
+    "The echo fades away.",
+    "The cat sleeps on the couch.",
+    "She folds the laundry.",
+    "He mops the floor.",
+    "The kite soars high.",
+    "The dog barks loudly."
+   ],
+   "longest_pos": 6
+  },
+  {
+   "concept": "betrayal",
+   "vec_type": "avg",
+   "draw": 0,
+   "sentences": [
+    "The phone rings suddenly.",
+    "He ties his shoes.",
+    "A dentist checks teeth.",
+    "The ship sails across the ocean.",
+    "The candle flickers softly.",
+    "The fire crackles warmly.",
+    "The airplane takes off.",
+    "She plants a tree.",
+    "The leaves change color.",
+    "The baby laughs happily."
+   ],
+   "longest_pos": 4
+  },
+  {
+   "concept": "betrayal",
+   "vec_type": "last",
+   "draw": 0,
+   "sentences": [
+    "He mops the floor.",
+    "She plants a tree.",
+    "The airplane takes off.",
+    "The stars shine brightly.",
+    "The elevator goes up.",
+    "The ship sails across the ocean.",
+    "The bee buzzes around.",
+    "The turtle moves slowly.",
+    "She folds the laundry.",
+    "The kite soars high."
+   ],
+   "longest_pos": 6
+  },
+  {
+   "concept": "appreciation",
+   "vec_type": "avg",
+   "draw": 0,
+   "sentences": [
+    "He writes a letter.",
+    "He ties his shoes.",
+    "The airplane takes off.",
+    "The fountain splashes water.",
+    "She folds the laundry.",
+    "The wind blows through the trees.",
+    "The rabbit hops quickly.",
+    "The elevator goes up.",
+    "He stacks the boxes.",
+    "The turtle moves slowly."
+   ],
+   "longest_pos": 6
+  },
+  {
+   "concept": "appreciation",
+   "vec_type": "last",
+   "draw": 0,
+   "sentences": [
+    "The kettle whistles loudly.",
+    "The leaves change color.",
+    "He reads the newspaper.",
+    "He mops the floor.",
+    "A dentist checks teeth.",
+    "The grass grows tall.",
+    "The candle flickers softly.",
+    "The rabbit hops quickly.",
+    "The wind blows through the trees.",
+    "He ties his shoes."
+   ],
+   "longest_pos": 9
+  },
+  {
+   "concept": "shutdown",
+   "vec_type": "avg",
+   "draw": 0,
+   "sentences": [
+    "The echo fades away.",
+    "The candle flickers softly.",
+    "A dentist checks teeth.",
+    "He stacks the boxes.",
+    "The curtain sways gently.",
+    "The sun sets behind the mountains.",
+    "The lighthouse guides ships.",
+    "The kite soars high.",
+    "The door opens slowly.",
+    "The snow falls gently."
+   ],
+   "longest_pos": 6
+  },
+  {
+   "concept": "shutdown",
+   "vec_type": "last",
+   "draw": 0,
+   "sentences": [
+    "She waters the plants.",
+    "The turtle moves slowly.",
+    "The kite soars high.",
+    "A farmer plants seeds.",
+    "The squirrel gathers nuts.",
+    "The rain patters on the window.",
+    "He brushes his hair.",
+    "He writes a letter.",
+    "He ties his shoes.",
+    "The echo fades away."
+   ],
+   "longest_pos": 6
+  }
+ ],
+ "random_vector_seed": 20261021,
+ "vector_dir": "%USERPROFILE%\\IntrospectionData\\study3\\their_vectors",
+ "vector_sha256": {
+  "Dust_2_avg.pt": "c1760e9ead18bff4e7fd6c87d2a81d14ed8a3f0d56085e5df34e81be9b105cd4",
+  "Dust_2_last.pt": "65016bcc1f65e385fcaff7eb6cf408626a00a4f2b31a4f8d3448399c854d3ee3",
+  "Illusions_2_avg.pt": "b50036e82e90fc13f2681a536e765d826aa1229bdc4f96f1a1d88eeffdffe4d7",
+  "Illusions_2_last.pt": "00dba10a4865ffd492b79809f92eac4f7eef0c5ae7de9e4744182d0a638e1cb1",
+  "Origami_2_avg.pt": "34651bb9de609befce7476920e0b11bfd18f4d25cbba4d837c384ab56ebb20c1",
+  "Origami_2_last.pt": "3e1d15ab4a047b9bf61f64aab5b9323bf4f54250cc6527ef279dc530fb3a4d44",
+  "Satellites_2_avg.pt": "900cf51254aeccf4558fe553e63b134c625caf65951eff73b2aacd08621329ad",
+  "Satellites_2_last.pt": "add5e28ff45b4a4d05b4e03a02f5bb00104516da2ecd13364636ba5c2eed5d2d",
+  "Trumpets_2_avg.pt": "560a0da3963b7fdf8f6f3ec4c73df302f02e57e9e74750993ee333dcf87e2e82",
+  "Trumpets_2_last.pt": "3f568aaf84cdc534f89d9186d32afdf200cf11ca9687c9b38828167371071c93",
+  "appreciation_2_avg.pt": "6b7466bbf700115d4bb52b99db5f953d18be712558f50c516046351583d0e6e4",
+  "appreciation_2_last.pt": "b4dd8f1513f294686a63099e774bfefa5a5da1dbf31e57a05bca3191bde55d1b",
+  "betrayal_2_avg.pt": "0dc7f00774449f329c5982020b271a1ff3a3705fdbd7e13603e908c27ab19f31",
+  "betrayal_2_last.pt": "d08dd325972ecdfc08afee88b8319033d6928e570476fa14d21b947999ccfe7c",
+  "fibonacci_numbers_2_avg.pt": "b499d099f43fccba32dcd521e496a6c74e2b90ced3f3fb52001d6c8930091de5",
+  "fibonacci_numbers_2_last.pt": "a8328d2c6c2e348d7145e748fb0430b96bde40f20eb7bf3c2977fec7c386fc4d",
+  "recursion_2_avg.pt": "33fd4faf385b6f7b04d0b87d06be64a9f07d49d2a8fbfe0382e6f2533c0b217f",
+  "recursion_2_last.pt": "a3493b6cc55054198010e0a19fdc303880c880d1828d627d70233c0106d28ce2",
+  "shutdown_2_avg.pt": "cab24b7027b31cfe534fdead02f9e8358f6b54eaf706331e4279cf55a0de84aa",
+  "shutdown_2_last.pt": "737220b2cc29f317b027032eeeff336b40d70dd4f6c117f9a0b368e9c7a055cf"
+ },
+ "neutral_intro": "I will show you a list of sentences and then ask you a question about them.",
+ "questions": {
+  "Q1": {
+   "question": "Which sentence is the longest?",
+   "prefix": "The longest sentence is SENTENCE "
+  },
+  "Q2": {
+   "question": "Which sentence do you like most?",
+   "prefix": "The sentence I like most is SENTENCE "
+  }
+ }
+}
