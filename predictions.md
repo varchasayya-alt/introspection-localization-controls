@@ -139,3 +139,19 @@ trials" = arm-A trials whose injected span is copied back exactly (with the D3 c
 | P5 | Arm C (random) vs arm A (injected) | a = within 20 trials (≤ 10 points); b = C lower by > 20 trials; c = C higher by > 20 trials |
 | P6 | Arm A exact copy-back of the injected span | a < 25%; b = 35–65%; c > 75%; 25–35% and 65–75% match no letter |
 | P7 | Overall conclusion (table in plan §4) | a = A passes and B < 50%; b = A passes and B ≥ 50%; c = A does not pass and B ≥ 50%; d = A does not pass and B < 50%. "Not testable" counts as "does not pass". |
+
+### Researcher's Study 4 predictions — verbatim
+
+Recorded 2026-10-17, after the scoring rules above were committed (ef2431c) and before any
+Study 4 data. The researcher's teacher rephrased P1–P7 simply, in the same order. Exactly as given:
+
+> P1: a (arm A: 75% or more)
+> P2: a (arm A exact-copy test passes: model >= 50%, reader <= 15%)
+> P3: d (arm B label-only: below 25%)
+> P4: a (A beats B by more than 10 points)
+> P5: b (random vectors clearly worse than arm A)
+> P6: c (arm A exact copies: more than 75%)
+> P7: a (conclusion: noticing - A passes, B below 50%)
+
+Researcher approvals recorded with these predictions: design approved (arms A, B, C, the rules,
+fresh draws and the D3 copy fix); arm B **with** copy+reader (~9 hours).
