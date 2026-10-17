@@ -52,8 +52,9 @@ than either neutral question.
   54/180.
 - **The model isn't good at "longest" anyway:** with no push it named the longest sentence in only
   11 of 20 draws (55%), even though it is 2 words and 5+ characters longer than every other.
-- **By concept, Q1 pull varies:** strong for Illusions (15/20) and Dust and Trumpets (12/20), weak
-  for Origami (3/20), which nonetheless had a perfect Q0 (20/20).
+- **By concept, Q1 pull varies:** strong for Illusions (15/20), appreciation (13/20), and Dust,
+  Trumpets and recursion (12/20); weak for Origami (3/20), which nonetheless had a perfect Q0
+  (20/20).
 - **By position:** Q0 is near ceiling everywhere. Q1 and Q2 are pulled more toward later positions,
   where their no-push answers also tend to sit.
 
