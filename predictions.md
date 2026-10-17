@@ -155,3 +155,21 @@ Study 4 data. The researcher's teacher rephrased P1–P7 simply, in the same ord
 
 Researcher approvals recorded with these predictions: design approved (arms A, B, C, the rules,
 fresh draws and the D3 copy fix); arm B **with** copy+reader (~9 hours).
+
+## Study 5 — question-specificity control (plan: `gates/study5_plan.md`)
+
+Scoring rules written 2026-10-17, **before** the researcher's Study 5 predictions were recorded
+and before any Study 5 data. Counts are out of 200 trials per arm. "Pull" (points) = 100 ×
+(trials answered with the injected sentence − trials whose no-injection answer for that draw and
+question is the injected sentence) / 200 (= accuracy − 10 points). Q0 = original question,
+Q1 = "longest", Q2 = "like most"; "concept"/"random" = vector type of the arm.
+
+| # | Question | Outcome → letter |
+|---|---|---|
+| P1 | Q0 concept accuracy | a ≥ 85% (≥ 170); b = 60–85% (120–169); c < 60% (< 120) |
+| P2 | Q1 concept pull | a < 20 points; c ≥ 20 points **and** ≥ half of Q0-concept pull; b = otherwise |
+| P3 | Q2 concept pull | same bins as P2 |
+| P4 | Overall conclusion (plan §4) | a = spotlight; b = question-specific; c = mixed; "not scorable" if the validity check fails (Q0-concept pull < 50 points) |
+| P5 | Q0: random vs concept accuracy | a = within 20 trials (≤ 10 points); b = random lower by > 20 trials; c = random higher by > 20 trials |
+| P6 | Q1: random vs concept accuracy | same bins as P5 |
+| P7 | Q1 correctness (answer = the truly longest sentence) with push vs without | with push = share of the 200 Q1-concept trials answered with the longest sentence; without = share of the 20 no-injection Q1 answers that are the longest sentence. a = with push ≥ without − 10 points; b = with push lower by more than 10 points |
