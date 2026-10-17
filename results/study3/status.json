@@ -1,0 +1,22 @@
+{
+  "sanity": "PASS",
+  "updated": "2026-10-16 22:21:45",
+  "result": {
+    "complete": true,
+    "inj_k": 356,
+    "inj_n": 400,
+    "reader_k": 168,
+    "reader_n": 400,
+    "inj_wilson95": [
+      85.6,
+      91.7
+    ],
+    "reader_wilson95": [
+      37.3,
+      46.9
+    ],
+    "exact_copy_k": 202,
+    "R1_replication_pass": true,
+    "R2_loophole": "not confirmed"
+  }
+}

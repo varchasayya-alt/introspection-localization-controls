@@ -27,6 +27,7 @@ sentence felt different; chance = 10%)?
 | 2 | Cheap-trick controls on the positive control | **FAIL** — a clean reader of the perceived text scores 74.7% (> injected 45.3%); random vectors 53.3%. Stop rule: no "introspection" framing |
 | 3 | Training-stage ladder | Not run (Gate 2 stop rule); next step needs a new pre-registration |
 | S2 | Text-intact search (new pre-registered question) | Practice PASS (layer 8, ½×: 14/30, reader 3/30); **fresh test FAIL** (injected 36/200 = 18%, reader 20/200, random 28/200). Report: [`gates/study2_report.md`](gates/study2_report.md) |
+| S3 | Replicate *Detecting the Disturbance* headline on Llama-3.1-8B-Instruct + text control | **R1 PASS** (89.0%, paper 88%); **R2 loophole not confirmed** (clean reader 42.0%); with the target copied exactly: injected 94% vs reader 5%. Report: [`gates/study3_report.md`](gates/study3_report.md) |
 
 ## Environment
 
