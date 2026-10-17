@@ -1,4 +1,9 @@
-# Study 4 — noticing vs label-digit highlighting (PROPOSED, awaiting approval)
+# Study 4 — noticing vs label-digit highlighting (APPROVED 2026-10-17)
+
+Approved by the researcher on 2026-10-17: arms A, B and C, the rules, fresh draws, the D3 copy fix,
+and arm B **with** copy+reader (~9 h). Code `scripts/study4.py`, analysis `scripts/study4_analyze.py`,
+stimuli `stimuli/study4_stimuli.json` (20 draws, seed 20261018; random vectors seed 20261019;
+SHA-256 of the 20 vector files).
 
 **New pre-registered study.** Study 3's results stand. The hypothesis was logged by the researcher
 during Study 3 (`study3_plan.md` §7, 2026-10-16 16:04).
@@ -90,3 +95,12 @@ couldn't tell whether a label push visibly changes the copied label.
 
 1. The design above (arms A, B, C; rules; fresh draws; the copy fix).
 2. Arm B with copy+reader (~9 h total, recommended) or without (~5.9 h).
+
+## 7. Implementation notes (fixed before any Study 4 data)
+- Per draw, all arms are run position by position (A, A-reader, B, B-reader, C), so a crash leaves
+  the arms balanced.
+- Arm spans come from character offsets: label = "SENTENCE N:", sentence = the words after
+  "SENTENCE N: ". S8 checks they're disjoint and add up to the Study 3 span.
+- Dry run on a tiny random model with the real tokenizer and fake vectors: every path ran, including
+  resume. Only in the dry-run script, S7's threshold was set to 0 (a random model can't copy). The
+  real run requires 19/20.
