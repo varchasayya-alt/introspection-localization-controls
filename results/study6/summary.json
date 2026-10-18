@@ -1,0 +1,37 @@
+{
+  "status": {
+    "sanity": "PASS",
+    "updated": "2026-10-18 01:45:31",
+    "result": {
+      "complete": true,
+      "inj_k": {
+        "A": 186,
+        "C": 186
+      },
+      "reader_k_A": 28,
+      "A_exact_n": 192,
+      "A_exact_inj_k": 178,
+      "A_exact_reader_k": 20,
+      "main_test": "PASS",
+      "main_fail_reason": null,
+      "C_vs_A": "within 10 points",
+      "conclusion": "setup"
+    }
+  },
+  "size": {
+    "tulu_norm": 2.322,
+    "llama_norm": 2.287,
+    "tulu_rel": 2.1537,
+    "llama_rel": 2.1858,
+    "ratio": 0.985,
+    "cos_mean": 0.5308
+  },
+  "prediction_outcomes": {
+    "P1": "a",
+    "P2": "a",
+    "P3": "a",
+    "P4": "a",
+    "P5": "a",
+    "P6": "b"
+  }
+}
