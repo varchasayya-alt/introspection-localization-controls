@@ -224,3 +224,17 @@ Study 6 data. Given as multiple-choice answers, exactly:
 
 Researcher approval recorded with these predictions: plan approved as committed (a8cf4f0),
 including Tülu's own chat format for both the localization prompt and the vector recipe.
+
+## Studies 7–8 — Tülu-3-8B SFT (Study 7) and DPO (Study 8) checkpoints (plan: `gates/study7_8_plan.md`)
+
+Scoring rules written 2026-10-18, **before** the researcher's Study 7–8 predictions were recorded
+and before any Study 7–8 data. Scored separately for each checkpoint. Counts are out of 200 arm-A
+trials.
+
+| # | Question | Outcome → letter |
+|---|---|---|
+| Q1 | Arm A localization rate | a ≥ 75% (≥ 150); b = 50–75% (100–149); c = 25–50% (50–99); d < 25% (< 50) |
+| Q2 | Arm A main test (same rule as Study 6) | a = PASS; b = FAIL with injected < 50% in exact-copy trials; c = FAIL with injected ≥ 50% but reader > 15%; d = NOT TESTABLE (< 40 exact-copy trials) |
+| Q3 | Arm A compared with final Tülu (Study 6: 186/200) | a = about the same (within 20 trials, ≤ 10 points); b = clearly lower (more than 20 trials lower); c = clearly higher (more than 20 trials higher; this needs ≥ 207/200, so it cannot happen) |
+
+If a sanity check stops a study before trials, its Q1–Q3 are "not scorable".
