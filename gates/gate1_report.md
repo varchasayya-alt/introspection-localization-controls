@@ -1,5 +1,9 @@
 # Gate 1 + Gate 2 report — positive control and cheap-trick controls
 
+> **Update (Study 6, 2026-10-18):** this result holds for *our* protocol (our prompt, injection span
+> and strength). Under the authors' protocol, Tülu-3-8B localizes 93% with the text intact
+> ([`study6_report.md`](study6_report.md)), so this failure is protocol-specific, not a model property.
+
 Model: `allenai/Llama-3.1-Tulu-3-8B` @ `6669437`. Run: 2026-10-15, 01:52 → 11:32, on AC power,
 one uninterrupted run (no crashes, no restarts). Plan: [`gate1_plan.md`](gate1_plan.md).
 Predictions: [`../predictions.md`](../predictions.md) (committed before the run).

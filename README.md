@@ -1,19 +1,20 @@
 # Where, not what: what the "sentence localization" introspection test measures in small LLMs
 
 This repository is the complete record of a short, pre-registered research program, run from
-2026-10-14 to 2026-10-17 on one laptop CPU. It tests the **sentence localization** task, a
+2026-10-14 to 2026-10-18 on one laptop CPU. It tests the **sentence localization** task, a
 proposed confound-free test of "introspective awareness" in language models:
 1. inject a concept vector into one of ten sentences;
 2. ask the model which sentence contained the injected thought;
 3. compare with chance (10%).
 
-There are five studies, on AllenAI's Tülu-3-8B and Meta's Llama-3.1-8B-Instruct.
+There are six studies, on AllenAI's Tülu-3-8B and Meta's Llama-3.1-8B-Instruct.
 
 **Start with the report: [`REPORT.md`](REPORT.md).**
 
 ## About this public release
 
-- **All studies are closed.** No further experiments are planned in this repository.
+- **Study 6 was added after the first publication** (pre-registered and committed in the same way
+  before its run).
 - **Full history.** The complete commit history is published, because it is the pre-registration
   evidence: in each study, the scoring rules and the researcher's predictions were committed before
   the run, and the mid-run Study 4 hypothesis has its own timestamp.
@@ -41,20 +42,24 @@ Nothing here bears on whether any system is conscious.
 | Study | Model | Question | Outcome | Report |
 |---|---|---|---|---|
 | 0 | — | Feasibility: CPU timing, checkpoint ladders, controls | bf16 storage with fp32 math; Tülu-3-8B chosen as the positive control | [`gate0_report.md`](gates/gate0_report.md) |
-| 1 | Tülu-3-8B | Positive control + cheap-trick controls | Localizes 53.7% (Gate 1 PASS), but a clean reader of the copied text scores **74.7%** vs injected 45.3% (Gate 2 FAIL): **text corruption** | [`gate1_report.md`](gates/gate1_report.md) |
-| 2 | Tülu-3-8B | Is there a text-intact setting that still localizes? | Practice PASS, **fresh test FAIL** (18% vs reader 10%) | [`study2_report.md`](gates/study2_report.md) |
+| 1 | Tülu-3-8B | Positive control + cheap-trick controls (our protocol) | Localizes 53.7% (Gate 1 PASS), but a clean reader of the copied text scores **74.7%** vs injected 45.3% (Gate 2 FAIL): **text corruption under our protocol** | [`gate1_report.md`](gates/gate1_report.md) |
+| 2 | Tülu-3-8B | Is there a text-intact setting that still localizes? (our protocol) | Practice PASS, **fresh test FAIL** (18% vs reader 10%) | [`study2_report.md`](gates/study2_report.md) |
 | 3 | Llama-3.1-8B-Instruct | Exact replication of the 88% headline + text control | **89.0%** (replicates); reader 42.0% (loophole not confirmed); exact-copy trials: **94% vs reader 5%** | [`study3_report.md`](gates/study3_report.md) |
 | 4 | Llama-3.1-8B-Instruct | Label digit or words? Concept or random? | Words only **97.5%** (exact-copy 97% vs reader 10%: PASS); label only 64% (invisible to the copy test); random vectors **91%** | [`study4_report.md`](gates/study4_report.md) |
 | 5 | Llama-3.1-8B-Instruct | Question-specific or spotlight? | "Longest?" pulled 41 points (vs 82.5 on the injection question); "like most?" 6 points; overall **mixed** | [`study5_report.md`](gates/study5_report.md) |
+| 6 | Tülu-3-8B | Was Tülu's failure the model or our protocol? (authors' protocol, Study 4 arm A) | **93%**; exact-copy trials 93% vs reader 10% (**PASS**); random vectors **93%**: the earlier failure was **protocol-specific** | [`study6_report.md`](gates/study6_report.md) |
 
-**One-sentence result:** in Llama-3.1-8B-Instruct, sentence localization detects **where**
-processing was disturbed, not **what**:
+**One-sentence result:** under the authors' protocol, in both Llama-3.1-8B-Instruct and Tülu-3-8B,
+sentence localization detects **where** processing was disturbed, not **what**:
 - it works with random vectors;
 - it works with the text left intact;
-- it partly leaks into unrelated questions;
-- injection-themed questions draw it out most strongly.
+- it partly leaks into unrelated questions (tested in Llama);
+- injection-themed questions draw it out most strongly (tested in Llama).
 
-In Tülu-3-8B the same test is fully explained by text corruption. The report includes a
+Under our original protocol (different prompt, injection span and strength), Tülu-3-8B's
+localization was explained by text corruption (Studies 1–2); under the authors' protocol it
+localizes 93% with the text intact (Study 6), so that failure was protocol-specific, not a model
+property. The report includes a
 **recommended-controls checklist** for anyone using the test.
 
 ## Repository layout
@@ -66,7 +71,7 @@ LICENSE                      MIT (code); see "License" for documentation (CC BY 
 THIRD_PARTY_NOTICES.md       material reused from the "Detecting the Disturbance" code (MIT)
 predictions.md               researcher's predictions (verbatim) + scoring rules, per study
 gates/                       design proposals/plans (frozen before runs) and reports, per study
-logs/                        deviations (D0–D4), calibration log, public-release redactions
+logs/                        deviations (D0–D5), calibration log, public-release redactions
 stimuli/                     frozen sentence sets, concepts, seeds, model pins, vector hashes
 scripts/                     experiment code (one script per study), analysis scripts, runners
 results/                     per-trial JSONL results, sanity checks, status and summaries per study
@@ -96,13 +101,13 @@ An 8B run takes 5–10 hours on this CPU. Run on AC power: on battery the CPU wa
 
 ### Model weights (not committed)
 
-- **Studies 1–2:** `allenai/Llama-3.1-Tulu-3-8B` at revision `666943798adbde0b1aff34626007e26986a3c107`.
+- **Studies 1–2 and 6:** `allenai/Llama-3.1-Tulu-3-8B` at revision `666943798adbde0b1aff34626007e26986a3c107`.
 - **Studies 3–5:** `meta-llama/Llama-3.1-8B-Instruct` at revision `0e9e39f249a16976918f6564b8830bc894c89659`.
   - This model is **gated**. Accept Meta's licence on its Hugging Face page, create a Read token,
     and log in with `hf auth login`.
 - **Pins** are in [`stimuli/model_pins.json`](stimuli/model_pins.json). Weights download
   automatically on first use.
-- **Studies 3–5 also need the authors' saved concept vectors.** Download and verify them with:
+- **Studies 3–5 (and Study 6's vector comparison) need the authors' saved concept vectors.** Download and verify them with:
 
 ```bash
 python scripts/download_their_vectors.py
@@ -127,6 +132,9 @@ python scripts/study4.py --stage all
 ```bash
 python scripts/study5.py --stage all
 ```
+```bash
+bash scripts/run_study6_all.sh
+```
 
 The analysis scripts rebuild `results/<study>/summary.md` and score the predictions with the
 pre-committed rules:
@@ -136,7 +144,7 @@ python scripts/study4_analyze.py
 ```
 
 The other studies use `gate1_analyze.py`, `study2_analyze.py`, `study3_analyze.py` and
-`study5_analyze.py` the same way.
+`study5_analyze.py` and `study6_analyze.py` the same way.
 
 ### Integrity conventions
 
@@ -168,6 +176,7 @@ The other studies use `gate1_analyze.py`, `study2_analyze.py`, `study3_analyze.p
 | 3 | `97b5003` | `b1b0336` | `a07886f` | `4e17e38` | `423b45f` |
 | 4 | `d84560b` | `ac653cb` | `15abe21` | `da36436` | `0c68fde` |
 | 5 | `2bef5d6` | `ab0e61c` | `791e0e5` | `2134b4e` | `1930855` |
+| 6 | `a8cf4f0` | `a8cf4f0` | `9c602d9` | `4502395` | `de3930c` |
 
 \* In Study 1 the scoring rules were committed together with the predictions.
 

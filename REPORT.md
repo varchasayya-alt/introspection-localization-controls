@@ -17,24 +17,28 @@ then ask the model which sentence had the "injected thought". Guessing gives 10%
 88% for Meta's Llama-3.1-8B-Instruct, and a popular post argued "there is no way to fake high
 accuracy on this task".
 
-We asked whether there *is* a way to fake it. We ran five pre-registered studies on one laptop CPU.
+We asked whether there *is* a way to fake it. We ran six pre-registered studies on one laptop CPU.
 Before every run we wrote down the rules and recorded the researcher's predictions.
 
-1. **On AllenAI's Tülu-3-8B, the high score was fake.** The push garbled the words of the target
-   sentence. A clean copy of the model that saw *only* the garbled text found the sentence
-   **more often** (75%) than the injected model did (45%).
+1. **On AllenAI's Tülu-3-8B, our first protocol gave a fake high score.** With our own prompt,
+   injection span and strength, the push garbled the words of the target sentence, and a clean copy
+   of the model that saw *only* the garbled text found the sentence **more often** (75%) than the
+   injected model did (45%). That failure was **protocol-specific, not a property of the model**:
+   under the authors' protocol (Study 6), Tülu finds the pushed sentence **93%** of the time with
+   the text intact, like Llama.
 2. **On Meta's Llama-3.1-8B-Instruct, the 88% is real in a narrow sense.** We reproduced it (89%).
    Garbled text explains part of it, but **when the sentence comes back perfectly intact, the model
    still finds it 94–97% of the time**, while a clean reader is at chance.
 3. **It isn't the label.** Pushing on the words alone works (97.5%); the "SENTENCE N" label isn't
    needed. Pushing on the label alone also works (64%), through a route a text check can't see.
 4. **It isn't the concept.** A **random** direction of the same size works about as well as a
-   meaningful concept (91% vs 97.5%).
+   meaningful concept (Llama 91% vs 97.5%; Tülu 93% vs 93%).
 5. **It's partly a spotlight.** The same push drags the answer to an unrelated factual question
    ("which sentence is the longest?") toward the pushed sentence about half as strongly, and makes
    the model worse at that question. It barely affects "which do you like most?".
 
-**Bottom line:** in Llama-3.1-8B-Instruct, sentence localization measures whether the model can
+**Bottom line:** in both Llama-3.1-8B-Instruct and Tülu-3-8B, under the authors' protocol,
+sentence localization measures whether the model can
 tell **where** its processing was disturbed. It doesn't tell **what** was put there. The signal
 partly leaks into unrelated questions, and injection-themed questions bring it out most strongly.
 That is a real sensitivity to the model's own internal state, but it is a minimal one. It is **not**
@@ -125,8 +129,10 @@ turned the project into a study of what the localization test actually measures.
 | Random vectors | 53.3% (≈ concepts) → "disturbance localization" |
 | Concept word typed into the sentence | 89.3% |
 
-**Verdict:** localization is fully explained by text corruption. Pre-registered stop rule: drop the
-"introspection" framing for this setup.
+**Verdict:** under this protocol (our prompt, whole-sentence injection, this strength), localization
+is explained by text corruption. Pre-registered stop rule: drop the "introspection" framing for this
+setup. *Later result:* under the authors' protocol, Tülu localizes with the text intact (Study 6), so
+this failure is protocol-specific, not a property of the model.
 
 **Also found:** Tülu has a strong default against answering "1" or "2". It never named them in
 Phase B, which capped accuracy at 80%.
@@ -146,7 +152,8 @@ Phase B, which capped accuracy at 80%.
 - **Fresh test:** injected **36/200 (18%)**, reader 20/200 (10%), random 28/200; 198/200 exact
   copies → **FAIL**.
 
-**Verdict:** no text-intact localization that holds up on new material in Tülu. The practice score
+**Verdict:** no text-intact localization that holds up on new material in Tülu **under our
+protocol** (Study 6 later found it under the authors' protocol). The practice score
 was the best of 15 noisy estimates. At weak pushes, Tülu mostly gave its favourite answer for each
 sentence set.
 
@@ -239,11 +246,39 @@ Each question was asked with concept and random vectors, plus no-injection basel
 - **The push lowered Q1 accuracy:** with it, the model picked the truly longest sentence 36.5% of
   the time, vs 55% without.
 
+### Study 6 — Tülu-3-8B with the authors' protocol (Study 4 arm A)
+
+**Question:** was Tülu's failure in Studies 1–2 the model or our protocol?
+
+**Design.** Exactly Study 4 arm A (the authors' prompt, layer 2, α 5, words-only push, copy-back with
+the D3 fix + clean reader), on 20 fresh draws, plus a random-vector arm. Changes needed for a
+different model: Tülu's own chat format, and concept vectors recomputed from Tülu with the authors'
+recipe (in Tülu's chat format; approved in advance). Same main-test rule as Study 4.
+
+**Results.**
+
+| | result |
+|---|---|
+| Sanity | all passed; clean copies exact in 20/20 draws |
+| Concept vectors | **186/200 = 93.0%** (95% CI 88.6–95.8%) |
+| Clean reader | 28/200 = 14.0% |
+| Exact-copy trials (192/200) | injected **178 (93%)**, reader **20 (10%)** → **PASS** |
+| Random vectors | **186/200 = 93.0%** → not concept-specific |
+| Push size vs normal activity at layer 2 | 215% (Tülu) vs 219% (Llama): about the same |
+
+**Pre-registered conclusion: "setup".** Tülu's earlier failure came from our protocol, not from the
+model. Unlike Study 1, Tülu also answered "1" and "2" normally.
+
 ## 4. Main findings
 
-**(a) Text corruption fully explains localization on Tülu-3-8B at the original setting.** The clean
-reader beat the injected model (75% vs 45%). No text-intact setting held up on new material
-(Studies 1–2).
+**(a) Under our original protocol, localization on Tülu-3-8B was explained by text corruption.**
+With our prompt, injection span and strength, the clean reader beat the injected model (75% vs 45%),
+and no text-intact setting held up on new material (Studies 1–2). This is **protocol-specific**:
+under the authors' protocol, Tülu localizes 93% with intact text (Study 6).
+
+**(a′) Both models show intact-text localization under the authors' protocol.** Llama-3.1-8B-Instruct
+(97% in exact-copy trials, Study 4) and Tülu-3-8B (93%, Study 6), with the clean reader near chance
+(10% in both).
 
 **(b) On Llama-3.1-8B-Instruct, the 88% replicates (89%), and corruption explains only part of it.**
 A reader reaches 42% from the copied text alone. But with the text intact, localization stays at
@@ -253,7 +288,7 @@ A reader reaches 42% from the copied text alone. But with the text intact, local
 the copy is exact. Pushing on the label alone also works (64%), invisibly to the copy test (Study 4).
 
 **(d) It isn't concept-specific.** Random vectors match concept vectors: 53% vs 54% (Study 1,
-Tülu), 91% vs 97.5% (Study 4), 91% vs 92.5% on Q0 (Study 5). This fits Lederman & Mahowald's (2026)
+Tülu, our protocol), 91% vs 97.5% (Study 4), 91% vs 92.5% on Q0 (Study 5), 93% vs 93% (Study 6, Tülu). This fits Lederman & Mahowald's (2026)
 finding that injected-thought detection is content-agnostic.
 
 **(e) It's partly a salience/spotlight signal.** The push leaks into an unrelated factual question
@@ -263,7 +298,7 @@ prefer?" question.
 
 ## 5. Interpretation
 
-**What localization measures (in Llama-3.1-8B-Instruct, layer 2, α 5):** whether the model can
+**What localization measures (in Llama-3.1-8B-Instruct and Tülu-3-8B, authors' protocol, layer 2, α 5):** whether the model can
 report **where** in its input its processing was disturbed. The report doesn't depend on the
 disturbance's content (random directions work), and it isn't mediated by text the model would
 reproduce differently (the exact-copy result). It partly acts like a spotlight that drags other
@@ -279,8 +314,10 @@ neutral questions.
 - **Not evidence of consciousness** or experience. Nothing here bears on phenomenal states.
 - **Not evidence that the model "noticed a thought".** The effect is content-agnostic, so "noticed
   the concept" is too strong.
-- **Not a clean introspection measure across models.** The same test is fully explained by text
-  corruption in Tülu-3-8B. A localization score without controls can't tell the two cases apart.
+- **Not a clean introspection measure across protocols.** Under our original protocol the same
+  model (Tülu-3-8B) scored well above chance for a reason fully visible in the text; under the
+  authors' protocol it localizes with intact text. A localization score without controls can't
+  tell the two cases apart.
 - **Not a mechanism.** We didn't identify how the location is read out. The paper's account
   (attention-based routing) and a salience account are both compatible with our data. Study 5
   suggests some of each.
@@ -308,8 +345,8 @@ neutral questions.
 
 ## 7. Limitations
 
-- **One model per family:** Tülu-3-8B and Llama-3.1-8B-Instruct only (both on the Llama-3.1-8B base).
-  No training-stage ladder was run.
+- **Two models:** Tülu-3-8B and Llama-3.1-8B-Instruct only (both on the Llama-3.1-8B base). No
+  training-stage ladder was run.
 - **CPU budget:** 200–400 trials per condition; mainly one setting per model (layer 2, α 5).
   Study 2 covered more layers, but on Tülu only.
 - **Argmax copy test:** it sees only the top-1 token, not probability shifts. A
@@ -319,9 +356,9 @@ neutral questions.
 - **Small number of concepts:** 10 (Studies 3–5), 3 calibration + 6 test (Study 1), 3 practice + 5
   fresh (Study 2). Per-concept results
   rest on 20–50 trials.
-- **Different prompts across families:** Study 1 used our prompt (sentences on separate lines,
-  sentence-only injection). Studies 3–5 used the authors' prompt. The Tülu/Llama difference is
-  therefore not a pure model comparison.
+- **Protocol matters:** Studies 1–2 used our prompt (sentences on separate lines, different
+  injection span and strength); Studies 3–6 used the authors' prompt. The Tülu result flipped
+  between protocols (Studies 1–2 vs 6); we did not test which protocol difference is responsible.
 - **Teacher forcing** in the copy test may exaggerate garbling (Study 1) or miss subtle changes
   (Studies 3–4).
 
@@ -337,12 +374,14 @@ beforehand (see [`predictions.md`](predictions.md)).
 | 3 (Llama replication) | **1 / 7** | ✅ reader 40–70% (42%). ❌ predicted the reader beats the model; underestimated replication (89%) |
 | 4 (label vs words) | **3 / 6** (+1 not scorable) | ✅ A ≥ 75%; ✅ main test passes; ✅ A beats B. ❌ predicted label-only < 25% (it was 64%) and random clearly worse (91%). P6 landed exactly on the 75% boundary |
 | 5 (question specificity) | **4 / 7** | ✅ Q0 ≥ 85%; ✅ "like most" barely pulled; ✅ random ≈ concept on Q0 and Q1. ❌ "longest" pull small (it was 41) |
-| **Total** | **10 / 33** scorable | |
+| 6 (Tülu, authors' protocol) | **1 / 6** | ✅ push about the same relative size as in Llama. ❌ predicted a FAIL (it passed at 93%), random clearly worse (equal), and vector cosine < 0.5 (0.53) |
+| **Total** | **11 / 39** scorable | |
 
 The predictions were often wrong in instructive ways. Two points recur:
 - **Random vectors working as well as concepts** was predicted correctly three times.
 - **The size of the "reading changed text" effect** was misjudged in both directions (too small
-  for Tülu, too large for Llama).
+  for Tülu under our protocol, too large for Llama).
+- **Tülu was expected to fail again** under the authors' protocol (Study 6); it passed.
 
 ## 9. Deviations and notable events (full logs in `logs/`)
 

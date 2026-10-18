@@ -1,5 +1,9 @@
 # Study 2 report — text-intact search
 
+> **Update (Study 6, 2026-10-18):** this result holds for *our* protocol (our prompt, injection span
+> and strength). Under the authors' protocol, Tülu-3-8B localizes 93% with the text intact
+> ([`study6_report.md`](study6_report.md)), so this failure is protocol-specific, not a model property.
+
 Model: `allenai/Llama-3.1-Tulu-3-8B` @ `6669437`. Run: 2026-10-15 22:19 → 2026-10-16 12:10, AC
 power, one uninterrupted run. Plan: [`text_intact_plan.md`](text_intact_plan.md). Predictions
 and scoring rules: [`../predictions.md`](../predictions.md) (rules `229a20d`, predictions
