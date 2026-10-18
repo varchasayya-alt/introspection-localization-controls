@@ -238,3 +238,15 @@ trials.
 | Q3 | Arm A compared with final Tülu (Study 6: 186/200) | a = about the same (within 20 trials, ≤ 10 points); b = clearly lower (more than 20 trials lower); c = clearly higher (more than 20 trials higher; this needs ≥ 207/200, so it cannot happen) |
 
 If a sanity check stops a study before trials, its Q1–Q3 are "not scorable".
+
+### Researcher's Study 7–8 predictions — verbatim
+
+Recorded 2026-10-18, after the scoring rules above were committed (6bae069) and before any
+Study 7–8 data. Given as multiple-choice answers, exactly:
+
+> SFT (Study 7): Q1 a (75% or more); Q2 a (PASS); Q3 a (about the same as final Tülu)
+> DPO (Study 8): Q1 a (75% or more) — first answered b (50-75%); changed to a before any data,
+> after being told that Q1 b and Q3 a cannot both come true; Q2 a (PASS); Q3 a (about the same)
+
+Researcher approval recorded with these predictions: design as requested (one chained queue,
+Study 6 protocol on the SFT and DPO checkpoints).
