@@ -11,6 +11,8 @@ Usage:
   python scripts/study6.py --stage vectors       # recompute Tülu vectors, write hashes to stimuli
   python scripts/study6.py --stage llama_norms   # Llama-3.1-8B-Instruct activation size (plan §4)
   python scripts/study6.py --stage all|sanity|trials|summary
+  Add --study 7 (Tülu-3-8B-SFT) or --study 8 (Tülu-3-8B-DPO) to run the same protocol on those
+  checkpoints (gates/study7_8_plan.md); default --study 6.
 """
 import argparse
 import hashlib
@@ -44,6 +46,18 @@ LOG = L.DATA_ROOT / "logs" / "study6.log"
 REPO_RESULTS = L.REPO_ROOT / "results" / "study6"
 STIM = L.REPO_ROOT / "stimuli" / "study6_stimuli.json"
 BOS, EOT = "<|begin_of_text|>", "<|end_of_text|>"
+STUDY_REPOS = {6: "allenai/Llama-3.1-Tulu-3-8B", 7: "allenai/Llama-3.1-Tulu-3-8B-SFT",
+               8: "allenai/Llama-3.1-Tulu-3-8B-DPO"}
+
+
+def configure(study):
+    """Point CFG and all paths at one study (6 = final, 7 = SFT, 8 = DPO); same protocol."""
+    global OUT, LOG, REPO_RESULTS, STIM
+    CFG["repo"] = STUDY_REPOS[study]
+    OUT = L.DATA_ROOT / f"study{study}"
+    LOG = L.DATA_ROOT / "logs" / f"study{study}.log"
+    REPO_RESULTS = L.REPO_ROOT / "results" / f"study{study}"
+    STIM = L.REPO_ROOT / "stimuli" / f"study{study}_stimuli.json"
 
 
 def log(msg):
@@ -373,19 +387,22 @@ def stage_summary():
     REPO_RESULTS.mkdir(parents=True, exist_ok=True)
     for f in sorted(OUT.glob("*.json")) + sorted(OUT.glob("*.jsonl")):
         shutil.copy2(f, REPO_RESULTS / f.name)
-    log(f"copied results to results/study6")
+    log(f"copied results to results/{REPO_RESULTS.name}")
 
 
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--stage", required=True, choices=["vectors", "llama_norms", "all", "sanity", "trials", "summary"])
+    ap.add_argument("--study", type=int, default=6, choices=sorted(STUDY_REPOS))
     args = ap.parse_args()
+    configure(args.study)
     CFG["revision"] = json.loads((L.REPO_ROOT / "stimuli" / "model_pins.json").read_text())[CFG["repo"]]
     if args.stage == "summary":
         stage_summary()
         return
     if args.stage == "vectors":
         stage_vectors()
+        stage_summary()
         return
     if args.stage == "llama_norms":
         stage_llama_norms()
