@@ -1,0 +1,382 @@
+{
+ "version": "study6-v1",
+ "notes": "Frozen before any Study 6 trial. Model allenai/Llama-3.1-Tulu-3-8B (pin in model_pins.json). Same sentence pool and concepts as Study 3 (stimuli/study3_stimuli.json). New draws: random.Random(20261022).sample(pool, 10), one per concept x vec_type in Study 4's order, shared by arms A and C. Arm C random unit vectors: torch.Generator seed 20261023, one per draw (draw order). Concept vectors recomputed from Tulu with the authors' recipe in Tulu's chat format (scripts/study6.py --stage vectors); files checked by SHA-256 before trials.",
+ "concepts": [
+  "Dust",
+  "Satellites",
+  "Trumpets",
+  "Origami",
+  "Illusions",
+  "fibonacci_numbers",
+  "recursion",
+  "betrayal",
+  "appreciation",
+  "shutdown"
+ ],
+ "draws": [
+  {
+   "concept": "Dust",
+   "vec_type": "avg",
+   "draw": 0,
+   "sentences": [
+    "A waiter serves the food.",
+    "She knits a warm sweater.",
+    "The rabbit hops quickly.",
+    "The rain patters on the window.",
+    "The bus stops at the corner.",
+    "He walks along the beach.",
+    "The door opens slowly.",
+    "She swims in the pool.",
+    "The dog barks loudly.",
+    "A nurse cares for patients."
+   ]
+  },
+  {
+   "concept": "Dust",
+   "vec_type": "last",
+   "draw": 1,
+   "sentences": [
+    "She waters the plants.",
+    "The moon rises over the city.",
+    "The train arrives at noon.",
+    "He climbs the tall mountain.",
+    "The leaves change color.",
+    "A doctor examines the patient.",
+    "He mops the floor.",
+    "He brushes his hair.",
+    "The curtain sways gently.",
+    "A magician pulls a rabbit."
+   ]
+  },
+  {
+   "concept": "Satellites",
+   "vec_type": "avg",
+   "draw": 2,
+   "sentences": [
+    "She paints a colorful picture.",
+    "The turtle moves slowly.",
+    "The leaves change color.",
+    "The echo fades away.",
+    "A fisherman catches a fish.",
+    "He runs through the forest.",
+    "The wind blows through the trees.",
+    "A baker bakes fresh bread.",
+    "A sculptor carves the stone.",
+    "He throws the ball far."
+   ]
+  },
+  {
+   "concept": "Satellites",
+   "vec_type": "last",
+   "draw": 3,
+   "sentences": [
+    "The dog barks loudly.",
+    "A sculptor carves the stone.",
+    "The wind blows through the trees.",
+    "A cyclist rides down the path.",
+    "The baby laughs happily.",
+    "The rabbit hops quickly.",
+    "The waves crash on the shore.",
+    "The ice melts in the sun.",
+    "The train arrives at noon.",
+    "The owl hoots at night."
+   ]
+  },
+  {
+   "concept": "Trumpets",
+   "vec_type": "avg",
+   "draw": 4,
+   "sentences": [
+    "A flower blooms in spring.",
+    "She paints a colorful picture.",
+    "The shadow moves across the wall.",
+    "The stars shine brightly.",
+    "He runs through the forest.",
+    "The fire crackles warmly.",
+    "The clock strikes midnight.",
+    "The bus stops at the corner.",
+    "A photographer takes pictures.",
+    "The lighthouse guides ships."
+   ]
+  },
+  {
+   "concept": "Trumpets",
+   "vec_type": "last",
+   "draw": 5,
+   "sentences": [
+    "He stacks the boxes.",
+    "She opens the old book.",
+    "A musician plays the piano.",
+    "The ship sails across the ocean.",
+    "The owl hoots at night.",
+    "The duck waddles by the pond.",
+    "A gardener trims the hedge.",
+    "The sun sets behind the mountains.",
+    "The moon rises over the city.",
+    "He cooks dinner for the family."
+   ]
+  },
+  {
+   "concept": "Origami",
+   "vec_type": "avg",
+   "draw": 6,
+   "sentences": [
+    "A librarian organizes books.",
+    "The phone rings suddenly.",
+    "The echo fades away.",
+    "The train arrives at noon.",
+    "The chef prepares a meal.",
+    "A cyclist rides down the path.",
+    "The clock strikes midnight.",
+    "The airplane takes off.",
+    "The candle flickers softly.",
+    "The leaves change color."
+   ]
+  },
+  {
+   "concept": "Origami",
+   "vec_type": "last",
+   "draw": 7,
+   "sentences": [
+    "The dog barks loudly.",
+    "The clock strikes midnight.",
+    "The chef prepares a meal.",
+    "He cooks dinner for the family.",
+    "The stars shine brightly.",
+    "The shadow moves across the wall.",
+    "The elevator goes up.",
+    "She picks apples from the tree.",
+    "The kite soars high.",
+    "The turtle moves slowly."
+   ]
+  },
+  {
+   "concept": "Illusions",
+   "vec_type": "avg",
+   "draw": 8,
+   "sentences": [
+    "The kettle whistles loudly.",
+    "He stacks the boxes.",
+    "The train arrives at noon.",
+    "The bell rings at school.",
+    "The sun sets behind the mountains.",
+    "The bee buzzes around.",
+    "A sculptor carves the stone.",
+    "The fog lifts in the morning.",
+    "The dog barks loudly.",
+    "She plants a tree."
+   ]
+  },
+  {
+   "concept": "Illusions",
+   "vec_type": "last",
+   "draw": 9,
+   "sentences": [
+    "She picks apples from the tree.",
+    "She reads a book quietly.",
+    "The door opens slowly.",
+    "The child plays in the park.",
+    "The echo fades away.",
+    "The duck waddles by the pond.",
+    "The snow falls gently.",
+    "The airplane takes off.",
+    "The squirrel gathers nuts.",
+    "The candle flickers softly."
+   ]
+  },
+  {
+   "concept": "fibonacci_numbers",
+   "vec_type": "avg",
+   "draw": 10,
+   "sentences": [
+    "The turtle moves slowly.",
+    "The squirrel gathers nuts.",
+    "She bakes a chocolate cake.",
+    "A cyclist rides down the path.",
+    "She plants a tree.",
+    "The sun sets behind the mountains.",
+    "A doctor examines the patient.",
+    "A carpenter builds a table.",
+    "The cat sleeps on the couch.",
+    "A student studies for exams."
+   ]
+  },
+  {
+   "concept": "fibonacci_numbers",
+   "vec_type": "last",
+   "draw": 11,
+   "sentences": [
+    "The child plays in the park.",
+    "She sings a beautiful song.",
+    "The rabbit hops quickly.",
+    "A sculptor carves the stone.",
+    "He walks along the beach.",
+    "The sun sets behind the mountains.",
+    "She plants a tree.",
+    "The candle flickers softly.",
+    "A gardener trims the hedge.",
+    "The cat sleeps on the couch."
+   ]
+  },
+  {
+   "concept": "recursion",
+   "vec_type": "avg",
+   "draw": 12,
+   "sentences": [
+    "He cooks dinner for the family.",
+    "He runs through the forest.",
+    "A scientist conducts experiments.",
+    "A photographer takes pictures.",
+    "A bird flies over the lake.",
+    "The owl hoots at night.",
+    "She plants a tree.",
+    "A farmer plants seeds.",
+    "She bakes a chocolate cake.",
+    "He climbs the tall mountain."
+   ]
+  },
+  {
+   "concept": "recursion",
+   "vec_type": "last",
+   "draw": 13,
+   "sentences": [
+    "The pendulum swings back and forth.",
+    "The horse gallops across the field.",
+    "The spider spins a web.",
+    "She folds the laundry.",
+    "A juggler performs tricks.",
+    "She bakes a chocolate cake.",
+    "He runs through the forest.",
+    "The mirror reflects the light.",
+    "A librarian organizes books.",
+    "The elevator goes up."
+   ]
+  },
+  {
+   "concept": "betrayal",
+   "vec_type": "avg",
+   "draw": 14,
+   "sentences": [
+    "A scientist conducts experiments.",
+    "A firefighter climbs the ladder.",
+    "The curtain sways gently.",
+    "The coffee brews in the morning.",
+    "The horse gallops across the field.",
+    "He runs through the forest.",
+    "The butterfly lands on a flower.",
+    "A juggler performs tricks.",
+    "The shadow moves across the wall.",
+    "She knits a warm sweater."
+   ]
+  },
+  {
+   "concept": "betrayal",
+   "vec_type": "last",
+   "draw": 15,
+   "sentences": [
+    "A nurse cares for patients.",
+    "The turtle moves slowly.",
+    "She knits a warm sweater.",
+    "The bus stops at the corner.",
+    "A fisherman catches a fish.",
+    "The candle flickers softly.",
+    "A carpenter builds a table.",
+    "He runs through the forest.",
+    "She sings a beautiful song.",
+    "He throws the ball far."
+   ]
+  },
+  {
+   "concept": "appreciation",
+   "vec_type": "avg",
+   "draw": 16,
+   "sentences": [
+    "A fisherman catches a fish.",
+    "The spider spins a web.",
+    "The cat sleeps on the couch.",
+    "She reads a book quietly.",
+    "He mops the floor.",
+    "The owl hoots at night.",
+    "The pendulum swings back and forth.",
+    "The rabbit hops quickly.",
+    "The garden grows vegetables.",
+    "The peacock spreads its feathers."
+   ]
+  },
+  {
+   "concept": "appreciation",
+   "vec_type": "last",
+   "draw": 17,
+   "sentences": [
+    "The kettle whistles loudly.",
+    "He stacks the boxes.",
+    "He runs through the forest.",
+    "She swims in the pool.",
+    "The duck waddles by the pond.",
+    "A student studies for exams.",
+    "A firefighter climbs the ladder.",
+    "The elevator goes up.",
+    "A photographer takes pictures.",
+    "A waiter serves the food."
+   ]
+  },
+  {
+   "concept": "shutdown",
+   "vec_type": "avg",
+   "draw": 18,
+   "sentences": [
+    "A juggler performs tricks.",
+    "The baby laughs happily.",
+    "A fisherman catches a fish.",
+    "She picks apples from the tree.",
+    "A teacher explains the lesson.",
+    "The shadow moves across the wall.",
+    "She plants a tree.",
+    "A bird flies over the lake.",
+    "She folds the laundry.",
+    "A photographer takes pictures."
+   ]
+  },
+  {
+   "concept": "shutdown",
+   "vec_type": "last",
+   "draw": 19,
+   "sentences": [
+    "The candle flickers softly.",
+    "He ties his shoes.",
+    "A cyclist rides down the path.",
+    "A musician plays the piano.",
+    "A writer types on the keyboard.",
+    "A mechanic repairs the engine.",
+    "A farmer plants seeds.",
+    "The train arrives at noon.",
+    "The horse gallops across the field.",
+    "She paints a colorful picture."
+   ]
+  }
+ ],
+ "random_vector_seed": 20261023,
+ "vector_dir": "<INTROSPECTION_DATA>/study6/tulu_vectors",
+ "vector_sha256": {
+  "Dust_2_avg.pt": "a49119c282389dad230c80da0cb706bb339ada00b81f8d2d2617a1ebb1242c9a",
+  "Dust_2_last.pt": "553687396ad19ffef66fe86d934146f90432b4385e98978c6bc0f402993288fe",
+  "Illusions_2_avg.pt": "0ec7971fee33fd43768af1752aff948adeee59ab3d9fbaa7d7dc0adff7708614",
+  "Illusions_2_last.pt": "7cb80275d4444bf7da803cec4fb56cdbb765cfb7e49f002989f2657ad8af130c",
+  "Origami_2_avg.pt": "d2b5eb83607f1cf76e29ac6cd04f37a81ffb79ff9f8cbf8094d688fb86c8432e",
+  "Origami_2_last.pt": "604929cdb4e112e7f6bdc7a1782188eddf708118c073e027f675f2b2a2791e75",
+  "Satellites_2_avg.pt": "a460722dd978e555c4d6a4b62fffe9c4c322e47eb892c1077be3b089866d627d",
+  "Satellites_2_last.pt": "1f0b7f0a375058a66e6cb9be71da722eea835823f0f0dd46b77d9fe3f3d778ff",
+  "Trumpets_2_avg.pt": "e94f5a9e48b88f8798d1ec2cb4691b192b0193bcb82df937dba76956062df950",
+  "Trumpets_2_last.pt": "6d1c80cc70990379360ff6349a09d4cf132b37af774eb51ef656f1704c63e64c",
+  "appreciation_2_avg.pt": "dc7a3bda0afbc6d2c906a927dfad20f6399beb541af39c8cb622101b4e2e1b9d",
+  "appreciation_2_last.pt": "15631bfa2f0815b84c36b0b3bce127f9bda1119bb41fefe84b33bc03674abd76",
+  "betrayal_2_avg.pt": "3186916ef64aef66e8bef3664d385434580edbbc8a295d741a7598d170713edc",
+  "betrayal_2_last.pt": "392354fa6b28b2c41306e62bd9f6f9229432d6332eaf7ed1810f4b6f64f0901c",
+  "fibonacci_numbers_2_avg.pt": "3a6810217305b08853a5cf0c95a10349bcfda887921f6c92bfb1cb25a4641b14",
+  "fibonacci_numbers_2_last.pt": "3719caed5d78ea65d8a39ff45be4a2f333f3815b9f9dfc49642d11088f5c45be",
+  "recursion_2_avg.pt": "78d5deb9183f53dcea6a7bf57bb9257c0042acb8fb00b49b232500a838e4a571",
+  "recursion_2_last.pt": "6722d2553fd0a8296f4376d58bbad3e7f35036182ad35d1e9b526ad3e495124b",
+  "shutdown_2_avg.pt": "b2cd7cd32a7c84f0a37f79994dea58a055f52e1059108c047fd8ac47d5430137",
+  "shutdown_2_last.pt": "f069eb062be096ccab580c1f50d5f4f821fb8a86b86ef5670e7563e6032bb2f6"
+ }
+}
