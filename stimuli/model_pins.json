@@ -2,5 +2,6 @@
   "allenai/Llama-3.1-Tulu-3-8B": "666943798adbde0b1aff34626007e26986a3c107",
   "meta-llama/Llama-3.1-8B-Instruct": "0e9e39f249a16976918f6564b8830bc894c89659",
   "allenai/Llama-3.1-Tulu-3-8B-SFT": "f2a0b46b0cfda21003c6141b1ff837b7e165524d",
-  "allenai/Llama-3.1-Tulu-3-8B-DPO": "a7beb67e33ffd01cc87ac3b46cadc1000985b8db"
+  "allenai/Llama-3.1-Tulu-3-8B-DPO": "a7beb67e33ffd01cc87ac3b46cadc1000985b8db",
+  "meta-llama/Llama-3.1-8B": "d04e592bb4f6aa9cfee91e2e20afa771667e1d4b"
 }

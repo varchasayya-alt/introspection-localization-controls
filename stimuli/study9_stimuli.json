@@ -1,0 +1,1301 @@
+{
+ "version": "study9-v1",
+ "notes": "Frozen before any Study 9 trial. Model meta-llama/Llama-3.1-8B (pin in model_pins.json). Sentence pool and concepts from Study 3. Per draw, rng = random.Random(20261030) in draw order: test = rng.sample(pool, 10); 30 example sentences = rng.sample(pool minus test, 30) -> 3 lists of 10; odd positions = rng.sample(1..10, 3). Copy-back uses the first 2 example lists (plain). Arm C random unit vectors: torch.Generator seed 20261031, one per draw. Concept vectors recomputed from the base model as plain text (scripts/study9.py --stage vectors) at the start of the queued run; hashes filled in then.",
+ "concepts": [
+  "Dust",
+  "Satellites",
+  "Trumpets",
+  "Origami",
+  "Illusions",
+  "fibonacci_numbers",
+  "recursion",
+  "betrayal",
+  "appreciation",
+  "shutdown"
+ ],
+ "draws": [
+  {
+   "concept": "Dust",
+   "vec_type": "avg",
+   "draw": 0,
+   "sentences": [
+    "She waters the plants.",
+    "The stars shine brightly.",
+    "A juggler performs tricks.",
+    "The fire crackles warmly.",
+    "The thunder rumbles in the distance.",
+    "She reads a book quietly.",
+    "She plants a tree.",
+    "The squirrel gathers nuts.",
+    "A sculptor carves the stone.",
+    "He reads the newspaper."
+   ],
+   "examples": [
+    {
+     "sentences": [
+      "The duck waddles by the pond.",
+      "She sings a beautiful song.",
+      "The moon rises over the city.",
+      "A cyclist rides down the path.",
+      "A doctor examines the patient.",
+      "He throws the ball far.",
+      "A fisherman catches a fish.",
+      "The mirror reflects the light.",
+      "She dances in the rain.",
+      "A musician plays the piano."
+     ],
+     "odd": 7
+    },
+    {
+     "sentences": [
+      "The child plays in the park.",
+      "A firefighter climbs the ladder.",
+      "A nurse cares for patients.",
+      "The fog lifts in the morning.",
+      "She picks apples from the tree.",
+      "The lighthouse guides ships.",
+      "The owl hoots at night.",
+      "She knits a warm sweater.",
+      "The clock strikes midnight.",
+      "A flower blooms in spring."
+     ],
+     "odd": 9
+    },
+    {
+     "sentences": [
+      "A librarian organizes books.",
+      "The echo fades away.",
+      "A photographer takes pictures.",
+      "The bridge spans the river.",
+      "The leaves change color.",
+      "The coffee brews in the morning.",
+      "He writes a letter.",
+      "She folds the laundry.",
+      "A pilot flies the plane.",
+      "The curtain sways gently."
+     ],
+     "odd": 3
+    }
+   ]
+  },
+  {
+   "concept": "Dust",
+   "vec_type": "last",
+   "draw": 1,
+   "sentences": [
+    "He mops the floor.",
+    "A writer types on the keyboard.",
+    "The dog barks loudly.",
+    "The owl hoots at night.",
+    "The chef prepares a meal.",
+    "The mirror reflects the light.",
+    "He reads the newspaper.",
+    "She picks apples from the tree.",
+    "The shadow moves across the wall.",
+    "He climbs the tall mountain."
+   ],
+   "examples": [
+    {
+     "sentences": [
+      "The baby laughs happily.",
+      "The spider spins a web.",
+      "The clock strikes midnight.",
+      "The wind blows through the trees.",
+      "The kettle whistles loudly.",
+      "The rain patters on the window.",
+      "A musician plays the piano.",
+      "The bridge spans the river.",
+      "A photographer takes pictures.",
+      "A nurse cares for patients."
+     ],
+     "odd": 9
+    },
+    {
+     "sentences": [
+      "The curtain sways gently.",
+      "The train arrives at noon.",
+      "She dances in the rain.",
+      "A scientist conducts experiments.",
+      "She paints a colorful picture.",
+      "He stacks the boxes.",
+      "A carpenter builds a table.",
+      "The thunder rumbles in the distance.",
+      "She plants a tree.",
+      "A student studies for exams."
+     ],
+     "odd": 5
+    },
+    {
+     "sentences": [
+      "The door opens slowly.",
+      "The elevator goes up.",
+      "A doctor examines the patient.",
+      "The coffee brews in the morning.",
+      "She knits a warm sweater.",
+      "The echo fades away.",
+      "A sculptor carves the stone.",
+      "The fire crackles warmly.",
+      "A gardener trims the hedge.",
+      "The candle flickers softly."
+     ],
+     "odd": 4
+    }
+   ]
+  },
+  {
+   "concept": "Satellites",
+   "vec_type": "avg",
+   "draw": 2,
+   "sentences": [
+    "The squirrel gathers nuts.",
+    "The kettle whistles loudly.",
+    "The sun sets behind the mountains.",
+    "He reads the newspaper.",
+    "She knits a warm sweater.",
+    "The curtain sways gently.",
+    "The baby laughs happily.",
+    "The spider spins a web.",
+    "The kite soars high.",
+    "The river flows to the sea."
+   ],
+   "examples": [
+    {
+     "sentences": [
+      "He walks along the beach.",
+      "The pendulum swings back and forth.",
+      "The thunder rumbles in the distance.",
+      "He runs through the forest.",
+      "A pilot flies the plane.",
+      "The bus stops at the corner.",
+      "A cyclist rides down the path.",
+      "The cat sleeps on the couch.",
+      "A gardener trims the hedge.",
+      "She opens the old book."
+     ],
+     "odd": 4
+    },
+    {
+     "sentences": [
+      "He writes a letter.",
+      "A mechanic repairs the engine.",
+      "A carpenter builds a table.",
+      "She paints a colorful picture.",
+      "The bee buzzes around.",
+      "The waves crash on the shore.",
+      "A fisherman catches a fish.",
+      "A baker bakes fresh bread.",
+      "The duck waddles by the pond.",
+      "The phone rings suddenly."
+     ],
+     "odd": 8
+    },
+    {
+     "sentences": [
+      "The chef prepares a meal.",
+      "The stars shine brightly.",
+      "The clock strikes midnight.",
+      "He brushes his hair.",
+      "The fire crackles warmly.",
+      "He throws the ball far.",
+      "He climbs the tall mountain.",
+      "The elevator goes up.",
+      "She dances in the rain.",
+      "She folds the laundry."
+     ],
+     "odd": 5
+    }
+   ]
+  },
+  {
+   "concept": "Satellites",
+   "vec_type": "last",
+   "draw": 3,
+   "sentences": [
+    "A dentist checks teeth.",
+    "She sings a beautiful song.",
+    "He reads the newspaper.",
+    "A student studies for exams.",
+    "A writer types on the keyboard.",
+    "A teacher explains the lesson.",
+    "A farmer plants seeds.",
+    "She reads a book quietly.",
+    "He runs through the forest.",
+    "The horse gallops across the field."
+   ],
+   "examples": [
+    {
+     "sentences": [
+      "A firefighter climbs the ladder.",
+      "The waves crash on the shore.",
+      "The baby laughs happily.",
+      "The squirrel gathers nuts.",
+      "He stacks the boxes.",
+      "He cooks dinner for the family.",
+      "She dances in the rain.",
+      "The airplane takes off.",
+      "He climbs the tall mountain.",
+      "The clock strikes midnight."
+     ],
+     "odd": 7
+    },
+    {
+     "sentences": [
+      "The train arrives at noon.",
+      "The owl hoots at night.",
+      "The sun sets behind the mountains.",
+      "He walks along the beach.",
+      "The lighthouse guides ships.",
+      "A photographer takes pictures.",
+      "She knits a warm sweater.",
+      "The rain patters on the window.",
+      "She paints a colorful picture.",
+      "He mops the floor."
+     ],
+     "odd": 8
+    },
+    {
+     "sentences": [
+      "A fisherman catches a fish.",
+      "The kite soars high.",
+      "The chef prepares a meal.",
+      "The moon rises over the city.",
+      "The leaves change color.",
+      "She bakes a chocolate cake.",
+      "The shadow moves across the wall.",
+      "The fire crackles warmly.",
+      "She waters the plants.",
+      "A sculptor carves the stone."
+     ],
+     "odd": 5
+    }
+   ]
+  },
+  {
+   "concept": "Trumpets",
+   "vec_type": "avg",
+   "draw": 4,
+   "sentences": [
+    "He climbs the tall mountain.",
+    "The lighthouse guides ships.",
+    "He ties his shoes.",
+    "A sculptor carves the stone.",
+    "A baker bakes fresh bread.",
+    "The turtle moves slowly.",
+    "He runs through the forest.",
+    "The garden grows vegetables.",
+    "The sun sets behind the mountains.",
+    "He stacks the boxes."
+   ],
+   "examples": [
+    {
+     "sentences": [
+      "The child plays in the park.",
+      "The pendulum swings back and forth.",
+      "The train arrives at noon.",
+      "She dances in the rain.",
+      "The bee buzzes around.",
+      "A scientist conducts experiments.",
+      "He fixes the broken car.",
+      "The clock strikes midnight.",
+      "He mops the floor.",
+      "The chef prepares a meal."
+     ],
+     "odd": 8
+    },
+    {
+     "sentences": [
+      "The airplane takes off.",
+      "The horse gallops across the field.",
+      "The shadow moves across the wall.",
+      "He reads the newspaper.",
+      "He writes a letter.",
+      "The coffee brews in the morning.",
+      "He walks along the beach.",
+      "The squirrel gathers nuts.",
+      "A pilot flies the plane.",
+      "A magician pulls a rabbit."
+     ],
+     "odd": 6
+    },
+    {
+     "sentences": [
+      "The butterfly lands on a flower.",
+      "The fountain splashes water.",
+      "The mirror reflects the light.",
+      "The bus stops at the corner.",
+      "The owl hoots at night.",
+      "The bell rings at school.",
+      "A firefighter climbs the ladder.",
+      "She swims in the pool.",
+      "He cooks dinner for the family.",
+      "The kite soars high."
+     ],
+     "odd": 1
+    }
+   ]
+  },
+  {
+   "concept": "Trumpets",
+   "vec_type": "last",
+   "draw": 5,
+   "sentences": [
+    "A flower blooms in spring.",
+    "He fixes the broken car.",
+    "The cat sleeps on the couch.",
+    "He climbs the tall mountain.",
+    "The train arrives at noon.",
+    "The garden grows vegetables.",
+    "The sun sets behind the mountains.",
+    "He walks along the beach.",
+    "A doctor examines the patient.",
+    "The river flows to the sea."
+   ],
+   "examples": [
+    {
+     "sentences": [
+      "A sculptor carves the stone.",
+      "He stacks the boxes.",
+      "The fire crackles warmly.",
+      "The ice melts in the sun.",
+      "The grass grows tall.",
+      "The clock strikes midnight.",
+      "The phone rings suddenly.",
+      "A cyclist rides down the path.",
+      "The ship sails across the ocean.",
+      "She bakes a chocolate cake."
+     ],
+     "odd": 8
+    },
+    {
+     "sentences": [
+      "The peacock spreads its feathers.",
+      "He ties his shoes.",
+      "The pendulum swings back and forth.",
+      "The stars shine brightly.",
+      "The echo fades away.",
+      "A juggler performs tricks.",
+      "The bell rings at school.",
+      "The snow falls gently.",
+      "The mirror reflects the light.",
+      "She dances in the rain."
+     ],
+     "odd": 9
+    },
+    {
+     "sentences": [
+      "The horse gallops across the field.",
+      "The bus stops at the corner.",
+      "A scientist conducts experiments.",
+      "The chef prepares a meal.",
+      "The door opens slowly.",
+      "The fog lifts in the morning.",
+      "The dog barks loudly.",
+      "He throws the ball far.",
+      "A mechanic repairs the engine.",
+      "The child plays in the park."
+     ],
+     "odd": 3
+    }
+   ]
+  },
+  {
+   "concept": "Origami",
+   "vec_type": "avg",
+   "draw": 6,
+   "sentences": [
+    "The bridge spans the river.",
+    "He throws the ball far.",
+    "The ship sails across the ocean.",
+    "He brushes his hair.",
+    "The grass grows tall.",
+    "A cyclist rides down the path.",
+    "A magician pulls a rabbit.",
+    "The peacock spreads its feathers.",
+    "The river flows to the sea.",
+    "A flower blooms in spring."
+   ],
+   "examples": [
+    {
+     "sentences": [
+      "The fountain splashes water.",
+      "A carpenter builds a table.",
+      "The coffee brews in the morning.",
+      "The bus stops at the corner.",
+      "A bird flies over the lake.",
+      "The garden grows vegetables.",
+      "He cooks dinner for the family.",
+      "The duck waddles by the pond.",
+      "The ice melts in the sun.",
+      "The child plays in the park."
+     ],
+     "odd": 8
+    },
+    {
+     "sentences": [
+      "The train arrives at noon.",
+      "A firefighter climbs the ladder.",
+      "The bee buzzes around.",
+      "A student studies for exams.",
+      "The elevator goes up.",
+      "The wind blows through the trees.",
+      "The airplane takes off.",
+      "She opens the old book.",
+      "A baker bakes fresh bread.",
+      "A waiter serves the food."
+     ],
+     "odd": 10
+    },
+    {
+     "sentences": [
+      "The door opens slowly.",
+      "A gardener trims the hedge.",
+      "The lighthouse guides ships.",
+      "The butterfly lands on a flower.",
+      "He writes a letter.",
+      "She swims in the pool.",
+      "A fisherman catches a fish.",
+      "She knits a warm sweater.",
+      "He fixes the broken car.",
+      "The rain patters on the window."
+     ],
+     "odd": 1
+    }
+   ]
+  },
+  {
+   "concept": "Origami",
+   "vec_type": "last",
+   "draw": 7,
+   "sentences": [
+    "He writes a letter.",
+    "The owl hoots at night.",
+    "A pilot flies the plane.",
+    "He cooks dinner for the family.",
+    "A flower blooms in spring.",
+    "He stacks the boxes.",
+    "A writer types on the keyboard.",
+    "A teacher explains the lesson.",
+    "She swims in the pool.",
+    "She dances in the rain."
+   ],
+   "examples": [
+    {
+     "sentences": [
+      "The grass grows tall.",
+      "The clock strikes midnight.",
+      "He climbs the tall mountain.",
+      "The butterfly lands on a flower.",
+      "The thunder rumbles in the distance.",
+      "The dog barks loudly.",
+      "The fire crackles warmly.",
+      "The fog lifts in the morning.",
+      "The kettle whistles loudly.",
+      "A baker bakes fresh bread."
+     ],
+     "odd": 10
+    },
+    {
+     "sentences": [
+      "The rabbit hops quickly.",
+      "She knits a warm sweater.",
+      "A librarian organizes books.",
+      "A bird flies over the lake.",
+      "She paints a colorful picture.",
+      "The ice melts in the sun.",
+      "He walks along the beach.",
+      "A scientist conducts experiments.",
+      "The peacock spreads its feathers.",
+      "The echo fades away."
+     ],
+     "odd": 8
+    },
+    {
+     "sentences": [
+      "He fixes the broken car.",
+      "She folds the laundry.",
+      "The door opens slowly.",
+      "The river flows to the sea.",
+      "The wind blows through the trees.",
+      "The airplane takes off.",
+      "A nurse cares for patients.",
+      "She sings a beautiful song.",
+      "A sculptor carves the stone.",
+      "A gardener trims the hedge."
+     ],
+     "odd": 6
+    }
+   ]
+  },
+  {
+   "concept": "Illusions",
+   "vec_type": "avg",
+   "draw": 8,
+   "sentences": [
+    "The pendulum swings back and forth.",
+    "A gardener trims the hedge.",
+    "The cat sleeps on the couch.",
+    "The elevator goes up.",
+    "She reads a book quietly.",
+    "He writes a letter.",
+    "The phone rings suddenly.",
+    "A librarian organizes books.",
+    "The baby laughs happily.",
+    "The child plays in the park."
+   ],
+   "examples": [
+    {
+     "sentences": [
+      "The train arrives at noon.",
+      "The dog barks loudly.",
+      "The peacock spreads its feathers.",
+      "A musician plays the piano.",
+      "A cyclist rides down the path.",
+      "He climbs the tall mountain.",
+      "He throws the ball far.",
+      "The leaves change color.",
+      "The lighthouse guides ships.",
+      "The duck waddles by the pond."
+     ],
+     "odd": 3
+    },
+    {
+     "sentences": [
+      "The stars shine brightly.",
+      "The river flows to the sea.",
+      "The bridge spans the river.",
+      "The echo fades away.",
+      "A firefighter climbs the ladder.",
+      "The rabbit hops quickly.",
+      "The turtle moves slowly.",
+      "She paints a colorful picture.",
+      "He brushes his hair.",
+      "She swims in the pool."
+     ],
+     "odd": 10
+    },
+    {
+     "sentences": [
+      "He ties his shoes.",
+      "The spider spins a web.",
+      "The owl hoots at night.",
+      "The moon rises over the city.",
+      "The horse gallops across the field.",
+      "She dances in the rain.",
+      "The candle flickers softly.",
+      "The clock strikes midnight.",
+      "The bell rings at school.",
+      "A baker bakes fresh bread."
+     ],
+     "odd": 6
+    }
+   ]
+  },
+  {
+   "concept": "Illusions",
+   "vec_type": "last",
+   "draw": 9,
+   "sentences": [
+    "The squirrel gathers nuts.",
+    "The waves crash on the shore.",
+    "The mirror reflects the light.",
+    "The stars shine brightly.",
+    "A student studies for exams.",
+    "A waiter serves the food.",
+    "The fire crackles warmly.",
+    "The leaves change color.",
+    "She knits a warm sweater.",
+    "A nurse cares for patients."
+   ],
+   "examples": [
+    {
+     "sentences": [
+      "She reads a book quietly.",
+      "The clock strikes midnight.",
+      "The grass grows tall.",
+      "He brushes his hair.",
+      "A doctor examines the patient.",
+      "The coffee brews in the morning.",
+      "The ship sails across the ocean.",
+      "The child plays in the park.",
+      "The spider spins a web.",
+      "The lighthouse guides ships."
+     ],
+     "odd": 4
+    },
+    {
+     "sentences": [
+      "The curtain sways gently.",
+      "He runs through the forest.",
+      "The baby laughs happily.",
+      "The thunder rumbles in the distance.",
+      "He climbs the tall mountain.",
+      "The ice melts in the sun.",
+      "The fountain splashes water.",
+      "The fog lifts in the morning.",
+      "A musician plays the piano.",
+      "She plants a tree."
+     ],
+     "odd": 5
+    },
+    {
+     "sentences": [
+      "The horse gallops across the field.",
+      "A pilot flies the plane.",
+      "The cat sleeps on the couch.",
+      "The kettle whistles loudly.",
+      "A gardener trims the hedge.",
+      "She opens the old book.",
+      "A scientist conducts experiments.",
+      "The chef prepares a meal.",
+      "He walks along the beach.",
+      "A cyclist rides down the path."
+     ],
+     "odd": 10
+    }
+   ]
+  },
+  {
+   "concept": "fibonacci_numbers",
+   "vec_type": "avg",
+   "draw": 10,
+   "sentences": [
+    "The peacock spreads its feathers.",
+    "The owl hoots at night.",
+    "A photographer takes pictures.",
+    "The curtain sways gently.",
+    "The coffee brews in the morning.",
+    "The elevator goes up.",
+    "A waiter serves the food.",
+    "A firefighter climbs the ladder.",
+    "The cat sleeps on the couch.",
+    "The wind blows through the trees."
+   ],
+   "examples": [
+    {
+     "sentences": [
+      "A fisherman catches a fish.",
+      "The river flows to the sea.",
+      "He walks along the beach.",
+      "The leaves change color.",
+      "The squirrel gathers nuts.",
+      "The bridge spans the river.",
+      "The thunder rumbles in the distance.",
+      "The stars shine brightly.",
+      "The rain patters on the window.",
+      "A gardener trims the hedge."
+     ],
+     "odd": 5
+    },
+    {
+     "sentences": [
+      "The bus stops at the corner.",
+      "The kettle whistles loudly.",
+      "The dog barks loudly.",
+      "The clock strikes midnight.",
+      "A student studies for exams.",
+      "He ties his shoes.",
+      "She waters the plants.",
+      "The baby laughs happily.",
+      "A doctor examines the patient.",
+      "A pilot flies the plane."
+     ],
+     "odd": 7
+    },
+    {
+     "sentences": [
+      "The bell rings at school.",
+      "A writer types on the keyboard.",
+      "She dances in the rain.",
+      "He cooks dinner for the family.",
+      "A sculptor carves the stone.",
+      "The snow falls gently.",
+      "A juggler performs tricks.",
+      "The child plays in the park.",
+      "The spider spins a web.",
+      "The kite soars high."
+     ],
+     "odd": 2
+    }
+   ]
+  },
+  {
+   "concept": "fibonacci_numbers",
+   "vec_type": "last",
+   "draw": 11,
+   "sentences": [
+    "A student studies for exams.",
+    "A writer types on the keyboard.",
+    "The garden grows vegetables.",
+    "A nurse cares for patients.",
+    "The moon rises over the city.",
+    "She folds the laundry.",
+    "The waves crash on the shore.",
+    "He reads the newspaper.",
+    "A juggler performs tricks.",
+    "She reads a book quietly."
+   ],
+   "examples": [
+    {
+     "sentences": [
+      "The lighthouse guides ships.",
+      "He throws the ball far.",
+      "The candle flickers softly.",
+      "The grass grows tall.",
+      "The elevator goes up.",
+      "The shadow moves across the wall.",
+      "He cooks dinner for the family.",
+      "A mechanic repairs the engine.",
+      "He walks along the beach.",
+      "The turtle moves slowly."
+     ],
+     "odd": 9
+    },
+    {
+     "sentences": [
+      "The phone rings suddenly.",
+      "She knits a warm sweater.",
+      "The child plays in the park.",
+      "The airplane takes off.",
+      "He climbs the tall mountain.",
+      "A waiter serves the food.",
+      "A librarian organizes books.",
+      "The rain patters on the window.",
+      "The bus stops at the corner.",
+      "She opens the old book."
+     ],
+     "odd": 4
+    },
+    {
+     "sentences": [
+      "The kite soars high.",
+      "She dances in the rain.",
+      "The chef prepares a meal.",
+      "She bakes a chocolate cake.",
+      "The peacock spreads its feathers.",
+      "The rabbit hops quickly.",
+      "The mirror reflects the light.",
+      "The thunder rumbles in the distance.",
+      "The sun sets behind the mountains.",
+      "A flower blooms in spring."
+     ],
+     "odd": 7
+    }
+   ]
+  },
+  {
+   "concept": "recursion",
+   "vec_type": "avg",
+   "draw": 12,
+   "sentences": [
+    "A gardener trims the hedge.",
+    "The butterfly lands on a flower.",
+    "She dances in the rain.",
+    "A fisherman catches a fish.",
+    "He climbs the tall mountain.",
+    "The lighthouse guides ships.",
+    "The thunder rumbles in the distance.",
+    "The train arrives at noon.",
+    "The sun sets behind the mountains.",
+    "The wind blows through the trees."
+   ],
+   "examples": [
+    {
+     "sentences": [
+      "The child plays in the park.",
+      "She folds the laundry.",
+      "The moon rises over the city.",
+      "The garden grows vegetables.",
+      "The ice melts in the sun.",
+      "She picks apples from the tree.",
+      "The fog lifts in the morning.",
+      "She sings a beautiful song.",
+      "A waiter serves the food.",
+      "The phone rings suddenly."
+     ],
+     "odd": 7
+    },
+    {
+     "sentences": [
+      "He mops the floor.",
+      "The kite soars high.",
+      "The horse gallops across the field.",
+      "A sculptor carves the stone.",
+      "A scientist conducts experiments.",
+      "A writer types on the keyboard.",
+      "He brushes his hair.",
+      "The rabbit hops quickly.",
+      "The turtle moves slowly.",
+      "The fire crackles warmly."
+     ],
+     "odd": 9
+    },
+    {
+     "sentences": [
+      "The rain patters on the window.",
+      "A student studies for exams.",
+      "The echo fades away.",
+      "The baby laughs happily.",
+      "A carpenter builds a table.",
+      "The bus stops at the corner.",
+      "A mechanic repairs the engine.",
+      "He stacks the boxes.",
+      "She reads a book quietly.",
+      "She paints a colorful picture."
+     ],
+     "odd": 4
+    }
+   ]
+  },
+  {
+   "concept": "recursion",
+   "vec_type": "last",
+   "draw": 13,
+   "sentences": [
+    "She folds the laundry.",
+    "A dentist checks teeth.",
+    "A gardener trims the hedge.",
+    "The garden grows vegetables.",
+    "The rabbit hops quickly.",
+    "The thunder rumbles in the distance.",
+    "She knits a warm sweater.",
+    "The cat sleeps on the couch.",
+    "The turtle moves slowly.",
+    "The shadow moves across the wall."
+   ],
+   "examples": [
+    {
+     "sentences": [
+      "A baker bakes fresh bread.",
+      "She reads a book quietly.",
+      "A pilot flies the plane.",
+      "A sculptor carves the stone.",
+      "He cooks dinner for the family.",
+      "A magician pulls a rabbit.",
+      "The duck waddles by the pond.",
+      "A firefighter climbs the ladder.",
+      "The river flows to the sea.",
+      "The lighthouse guides ships."
+     ],
+     "odd": 10
+    },
+    {
+     "sentences": [
+      "The kite soars high.",
+      "A cyclist rides down the path.",
+      "The rain patters on the window.",
+      "The stars shine brightly.",
+      "The squirrel gathers nuts.",
+      "He walks along the beach.",
+      "The candle flickers softly.",
+      "A waiter serves the food.",
+      "She waters the plants.",
+      "She paints a colorful picture."
+     ],
+     "odd": 9
+    },
+    {
+     "sentences": [
+      "He reads the newspaper.",
+      "She dances in the rain.",
+      "He climbs the tall mountain.",
+      "The butterfly lands on a flower.",
+      "She swims in the pool.",
+      "The snow falls gently.",
+      "He runs through the forest.",
+      "The phone rings suddenly.",
+      "The ship sails across the ocean.",
+      "The train arrives at noon."
+     ],
+     "odd": 4
+    }
+   ]
+  },
+  {
+   "concept": "betrayal",
+   "vec_type": "avg",
+   "draw": 14,
+   "sentences": [
+    "A writer types on the keyboard.",
+    "The bell rings at school.",
+    "She swims in the pool.",
+    "The bridge spans the river.",
+    "He runs through the forest.",
+    "The child plays in the park.",
+    "The moon rises over the city.",
+    "The mirror reflects the light.",
+    "The ship sails across the ocean.",
+    "A firefighter climbs the ladder."
+   ],
+   "examples": [
+    {
+     "sentences": [
+      "The butterfly lands on a flower.",
+      "He brushes his hair.",
+      "She opens the old book.",
+      "The stars shine brightly.",
+      "A scientist conducts experiments.",
+      "She dances in the rain.",
+      "A doctor examines the patient.",
+      "The duck waddles by the pond.",
+      "The train arrives at noon.",
+      "The coffee brews in the morning."
+     ],
+     "odd": 5
+    },
+    {
+     "sentences": [
+      "She reads a book quietly.",
+      "A teacher explains the lesson.",
+      "The river flows to the sea.",
+      "The grass grows tall.",
+      "She picks apples from the tree.",
+      "A waiter serves the food.",
+      "She folds the laundry.",
+      "He stacks the boxes.",
+      "A mechanic repairs the engine.",
+      "The turtle moves slowly."
+     ],
+     "odd": 7
+    },
+    {
+     "sentences": [
+      "The kite soars high.",
+      "The rabbit hops quickly.",
+      "She knits a warm sweater.",
+      "The echo fades away.",
+      "He throws the ball far.",
+      "The peacock spreads its feathers.",
+      "A juggler performs tricks.",
+      "The phone rings suddenly.",
+      "The fog lifts in the morning.",
+      "The thunder rumbles in the distance."
+     ],
+     "odd": 3
+    }
+   ]
+  },
+  {
+   "concept": "betrayal",
+   "vec_type": "last",
+   "draw": 15,
+   "sentences": [
+    "He ties his shoes.",
+    "The garden grows vegetables.",
+    "A cyclist rides down the path.",
+    "The dog barks loudly.",
+    "A nurse cares for patients.",
+    "The elevator goes up.",
+    "The turtle moves slowly.",
+    "A sculptor carves the stone.",
+    "She dances in the rain.",
+    "A waiter serves the food."
+   ],
+   "examples": [
+    {
+     "sentences": [
+      "The baby laughs happily.",
+      "The rabbit hops quickly.",
+      "A magician pulls a rabbit.",
+      "She bakes a chocolate cake.",
+      "The curtain sways gently.",
+      "The sun sets behind the mountains.",
+      "He brushes his hair.",
+      "A photographer takes pictures.",
+      "A juggler performs tricks.",
+      "The butterfly lands on a flower."
+     ],
+     "odd": 9
+    },
+    {
+     "sentences": [
+      "She opens the old book.",
+      "The ship sails across the ocean.",
+      "The rain patters on the window.",
+      "He throws the ball far.",
+      "The bell rings at school.",
+      "She picks apples from the tree.",
+      "A fisherman catches a fish.",
+      "The grass grows tall.",
+      "The bus stops at the corner.",
+      "She plants a tree."
+     ],
+     "odd": 10
+    },
+    {
+     "sentences": [
+      "A firefighter climbs the ladder.",
+      "She sings a beautiful song.",
+      "The child plays in the park.",
+      "He writes a letter.",
+      "The lighthouse guides ships.",
+      "A pilot flies the plane.",
+      "The door opens slowly.",
+      "The moon rises over the city.",
+      "The cat sleeps on the couch.",
+      "She paints a colorful picture."
+     ],
+     "odd": 8
+    }
+   ]
+  },
+  {
+   "concept": "appreciation",
+   "vec_type": "avg",
+   "draw": 16,
+   "sentences": [
+    "He throws the ball far.",
+    "A bird flies over the lake.",
+    "He cooks dinner for the family.",
+    "The lighthouse guides ships.",
+    "The kite soars high.",
+    "The curtain sways gently.",
+    "He brushes his hair.",
+    "The bus stops at the corner.",
+    "She knits a warm sweater.",
+    "A juggler performs tricks."
+   ],
+   "examples": [
+    {
+     "sentences": [
+      "The bridge spans the river.",
+      "A student studies for exams.",
+      "The waves crash on the shore.",
+      "A fisherman catches a fish.",
+      "A pilot flies the plane.",
+      "The snow falls gently.",
+      "The grass grows tall.",
+      "The turtle moves slowly.",
+      "She opens the old book.",
+      "The ice melts in the sun."
+     ],
+     "odd": 5
+    },
+    {
+     "sentences": [
+      "The squirrel gathers nuts.",
+      "The chef prepares a meal.",
+      "The shadow moves across the wall.",
+      "The coffee brews in the morning.",
+      "A writer types on the keyboard.",
+      "A cyclist rides down the path.",
+      "The wind blows through the trees.",
+      "She waters the plants.",
+      "The rain patters on the window.",
+      "She swims in the pool."
+     ],
+     "odd": 2
+    },
+    {
+     "sentences": [
+      "The echo fades away.",
+      "She dances in the rain.",
+      "She sings a beautiful song.",
+      "A scientist conducts experiments.",
+      "He ties his shoes.",
+      "He climbs the tall mountain.",
+      "She picks apples from the tree.",
+      "A photographer takes pictures.",
+      "The child plays in the park.",
+      "The garden grows vegetables."
+     ],
+     "odd": 6
+    }
+   ]
+  },
+  {
+   "concept": "appreciation",
+   "vec_type": "last",
+   "draw": 17,
+   "sentences": [
+    "The chef prepares a meal.",
+    "A cyclist rides down the path.",
+    "The duck waddles by the pond.",
+    "The elevator goes up.",
+    "A carpenter builds a table.",
+    "The garden grows vegetables.",
+    "The bridge spans the river.",
+    "He mops the floor.",
+    "The kite soars high.",
+    "The snow falls gently."
+   ],
+   "examples": [
+    {
+     "sentences": [
+      "The child plays in the park.",
+      "He climbs the tall mountain.",
+      "A scientist conducts experiments.",
+      "A pilot flies the plane.",
+      "The moon rises over the city.",
+      "She opens the old book.",
+      "A juggler performs tricks.",
+      "The bus stops at the corner.",
+      "The rabbit hops quickly.",
+      "The owl hoots at night."
+     ],
+     "odd": 7
+    },
+    {
+     "sentences": [
+      "A doctor examines the patient.",
+      "A baker bakes fresh bread.",
+      "The lighthouse guides ships.",
+      "The pendulum swings back and forth.",
+      "The door opens slowly.",
+      "The grass grows tall.",
+      "The fog lifts in the morning.",
+      "The shadow moves across the wall.",
+      "The candle flickers softly.",
+      "The rain patters on the window."
+     ],
+     "odd": 1
+    },
+    {
+     "sentences": [
+      "A waiter serves the food.",
+      "He reads the newspaper.",
+      "The mirror reflects the light.",
+      "She picks apples from the tree.",
+      "A teacher explains the lesson.",
+      "A sculptor carves the stone.",
+      "A writer types on the keyboard.",
+      "A firefighter climbs the ladder.",
+      "The ice melts in the sun.",
+      "The fire crackles warmly."
+     ],
+     "odd": 10
+    }
+   ]
+  },
+  {
+   "concept": "shutdown",
+   "vec_type": "avg",
+   "draw": 18,
+   "sentences": [
+    "The bus stops at the corner.",
+    "A sculptor carves the stone.",
+    "A teacher explains the lesson.",
+    "The door opens slowly.",
+    "A mechanic repairs the engine.",
+    "He cooks dinner for the family.",
+    "He reads the newspaper.",
+    "A nurse cares for patients.",
+    "She folds the laundry.",
+    "She swims in the pool."
+   ],
+   "examples": [
+    {
+     "sentences": [
+      "He runs through the forest.",
+      "She bakes a chocolate cake.",
+      "She knits a warm sweater.",
+      "A cyclist rides down the path.",
+      "She paints a colorful picture.",
+      "The child plays in the park.",
+      "The bell rings at school.",
+      "A musician plays the piano.",
+      "A dentist checks teeth.",
+      "The shadow moves across the wall."
+     ],
+     "odd": 2
+    },
+    {
+     "sentences": [
+      "The lighthouse guides ships.",
+      "The fountain splashes water.",
+      "The coffee brews in the morning.",
+      "The sun sets behind the mountains.",
+      "A writer types on the keyboard.",
+      "He stacks the boxes.",
+      "The river flows to the sea.",
+      "He walks along the beach.",
+      "The stars shine brightly.",
+      "The squirrel gathers nuts."
+     ],
+     "odd": 10
+    },
+    {
+     "sentences": [
+      "The baby laughs happily.",
+      "The curtain sways gently.",
+      "The thunder rumbles in the distance.",
+      "The rabbit hops quickly.",
+      "He climbs the tall mountain.",
+      "She sings a beautiful song.",
+      "The leaves change color.",
+      "A carpenter builds a table.",
+      "A flower blooms in spring.",
+      "A gardener trims the hedge."
+     ],
+     "odd": 8
+    }
+   ]
+  },
+  {
+   "concept": "shutdown",
+   "vec_type": "last",
+   "draw": 19,
+   "sentences": [
+    "She swims in the pool.",
+    "A doctor examines the patient.",
+    "She paints a colorful picture.",
+    "The bee buzzes around.",
+    "She bakes a chocolate cake.",
+    "A baker bakes fresh bread.",
+    "He runs through the forest.",
+    "The bus stops at the corner.",
+    "A student studies for exams.",
+    "The airplane takes off."
+   ],
+   "examples": [
+    {
+     "sentences": [
+      "She waters the plants.",
+      "The pendulum swings back and forth.",
+      "She picks apples from the tree.",
+      "She sings a beautiful song.",
+      "A cyclist rides down the path.",
+      "A librarian organizes books.",
+      "She reads a book quietly.",
+      "The river flows to the sea.",
+      "A dentist checks teeth.",
+      "The moon rises over the city."
+     ],
+     "odd": 9
+    },
+    {
+     "sentences": [
+      "He walks along the beach.",
+      "The spider spins a web.",
+      "She folds the laundry.",
+      "A musician plays the piano.",
+      "A nurse cares for patients.",
+      "The baby laughs happily.",
+      "A bird flies over the lake.",
+      "A writer types on the keyboard.",
+      "The sun sets behind the mountains.",
+      "The door opens slowly."
+     ],
+     "odd": 10
+    },
+    {
+     "sentences": [
+      "A fisherman catches a fish.",
+      "A waiter serves the food.",
+      "The thunder rumbles in the distance.",
+      "He writes a letter.",
+      "He mops the floor.",
+      "The peacock spreads its feathers.",
+      "He fixes the broken car.",
+      "The horse gallops across the field.",
+      "The elevator goes up.",
+      "The curtain sways gently."
+     ],
+     "odd": 6
+    }
+   ]
+  }
+ ],
+ "random_vector_seed": 20261031,
+ "vector_dir": "<INTROSPECTION_DATA>/study9/base_vectors",
+ "vector_sha256": {}
+}
