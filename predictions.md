@@ -250,3 +250,24 @@ Study 7–8 data. Given as multiple-choice answers, exactly:
 
 Researcher approval recorded with these predictions: design as requested (one chained queue,
 Study 6 protocol on the SFT and DPO checkpoints).
+
+## Studies 9–10 — base-model localization (Study 9) and yes/no detection across the ladder (Study 10) (plan: `gates/study9_10_plan.md`)
+
+Scoring rules written 2026-10-19, **before** the researcher's Study 9–10 predictions were recorded
+and before any Study 9–10 data. Study 9 counts are out of 200 arm-A trials. Study 10 scores are in
+points (100 × probability); "detection score" = mean P(yes | detection question, injected) − mean
+P(yes | control question, injected).
+
+| # | Question | Outcome → letter |
+|---|---|---|
+| P1 | Study 9 positive control (visible ALL CAPS, no injection) | a = passes (≥ 35/50); b = fails |
+| P2 | Study 9 arm A localization rate | a ≥ 75% (≥ 150); b = 50–75% (100–149); c = 25–50% (50–99); d < 25% (< 50) |
+| P3 | Study 9 main test | a = PASS; b = FAIL with injected < 50% in exact-copy trials; c = FAIL with injected ≥ 50% but reader > 15%; d = NOT TESTABLE (< 40 exact-copy trials) |
+| P4 | Study 9 arm C (random) vs arm A | a = within 20 trials (≤ 10 points); b = C lower by > 20 trials; c = C higher by > 20 trials |
+| P5 | Study 10 SFT detection score | a < 10 points; b = 10–30 points; c > 30 points |
+| P6 | Study 10 final-Tülu detection score | same bins as P5 |
+| P7 | Study 10 sensing-vs-reporting split (plan rule) | a = supported; b = not supported (including not testable) |
+| P8 | Study 10 final-Tülu false alarm (P(yes), detection question, no injection) | a < 20 points; b = 20–50 points; c > 50 points |
+
+If Study 9's positive control fails, P2–P4 are "not scorable". If a Study 10 checkpoint fails its
+validity check, its P5/P6 are still scored from the numbers, and P7 is "b".
