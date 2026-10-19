@@ -7,7 +7,7 @@ proposed confound-free test of "introspective awareness" in language models:
 2. ask the model which sentence contained the injected thought;
 3. compare with chance (10%).
 
-There are six studies, on AllenAI's Tülu-3-8B and Meta's Llama-3.1-8B-Instruct.
+There are eight studies, on AllenAI's Tülu-3-8B and Meta's Llama-3.1-8B-Instruct.
 
 **Start with the report: [`REPORT.md`](REPORT.md).**
 
@@ -48,6 +48,7 @@ Nothing here bears on whether any system is conscious.
 | 4 | Llama-3.1-8B-Instruct | Label digit or words? Concept or random? | Words only **97.5%** (exact-copy 97% vs reader 10%: PASS); label only 64% (invisible to the copy test); random vectors **91%** | [`study4_report.md`](gates/study4_report.md) |
 | 5 | Llama-3.1-8B-Instruct | Question-specific or spotlight? | "Longest?" pulled 41 points (vs 82.5 on the injection question); "like most?" 6 points; overall **mixed** | [`study5_report.md`](gates/study5_report.md) |
 | 6 | Tülu-3-8B | Was Tülu's failure the model or our protocol? (authors' protocol, Study 4 arm A) | **93%**; exact-copy trials 93% vs reader 10% (**PASS**); random vectors **93%**: the earlier failure was **protocol-specific** | [`study6_report.md`](gates/study6_report.md) |
+| 7–8 | Tülu-3-8B SFT, DPO | Same protocol on earlier training stages | SFT **93%**, DPO **92.5%**; both main tests **PASS**; random 93.5% / 91.5%: already present after SFT | [`study7_8_report.md`](gates/study7_8_report.md) |
 
 **One-sentence result:** under the authors' protocol, in both Llama-3.1-8B-Instruct and Tülu-3-8B,
 sentence localization detects **where** processing was disturbed, not **what**:
@@ -177,6 +178,7 @@ The other studies use `gate1_analyze.py`, `study2_analyze.py`, `study3_analyze.p
 | 4 | `d84560b` | `ac653cb` | `15abe21` | `da36436` | `0c68fde` |
 | 5 | `2bef5d6` | `ab0e61c` | `791e0e5` | `2134b4e` | `1930855` |
 | 6 | `a8cf4f0` | `a8cf4f0` | `9c602d9` | `4502395` | `de3930c` |
+| 7–8 | `6bae069` | `6bae069` | `b70f297` | `9331c85` | (this commit) |
 
 \* In Study 1 the scoring rules were committed together with the predictions.
 

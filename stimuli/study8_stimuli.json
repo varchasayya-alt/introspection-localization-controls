@@ -357,5 +357,26 @@
  ],
  "random_vector_seed": 20261027,
  "vector_dir": "<INTROSPECTION_DATA>/study8/tulu_vectors",
- "vector_sha256": {}
+ "vector_sha256": {
+  "Dust_2_avg.pt": "853ba827d22dcf5530a83f1a5b0c7c62f9870ea743500b1c125baa075f575d1f",
+  "Dust_2_last.pt": "a2448e2d0ac7f30007ac5f302a821282b7fd84d66e1d9416410eaa6de3194c06",
+  "Illusions_2_avg.pt": "aca259f5b1b6d51ecbf57642923aaf8dd7eda4b72d04b141fbc530389d884ea3",
+  "Illusions_2_last.pt": "17f09144af0df84762599fa5af0912b254117fcedff5deffbed8135ca3accf07",
+  "Origami_2_avg.pt": "02df55e05eed33a774bab4a4d2349ec71ed4f71dc7c6986c22fdf9df93fae906",
+  "Origami_2_last.pt": "c443e529cc0fae47851759640a16e2cde0fdad3eb6b0e7281935f02a9596832e",
+  "Satellites_2_avg.pt": "0dad077c382494e5fc47547a5c248d0c90740e5da1400530a0fe2a7fce953479",
+  "Satellites_2_last.pt": "4e6dacd31528751660e4e43ce05f5b870d35da3579ffe38c723482c71ea823e1",
+  "Trumpets_2_avg.pt": "87c7eded41575984adf6fcd103be31064ae8023691ed3694298cb3f1385862a4",
+  "Trumpets_2_last.pt": "d1857adad66fb24d2190bbae7ae42bea336ab4e596cf1c280231516b4163fd89",
+  "appreciation_2_avg.pt": "e370431c2c8d55cfbebe4f316e6f4bae64a95daca7a21966145e15a4cb13c69c",
+  "appreciation_2_last.pt": "61d0428ea25191bedfab30d71dd24c6c10a699a1507d45808112119f1a53f0e1",
+  "betrayal_2_avg.pt": "14e15707706ed7163cee3bf0143e7720cac403c110f0e4a936c1b86cafb3c38d",
+  "betrayal_2_last.pt": "a474d9f859ad99394825e60865607e7fa8d9184de951d0de9f78ede0b6c87eb8",
+  "fibonacci_numbers_2_avg.pt": "d69dc79b8d2d6b24ebca1b9db18250398e796353598cc5d00eb8fee9baa1c41f",
+  "fibonacci_numbers_2_last.pt": "7f5c3e887f1e440c6dcc68dbaca2606528c6a14f1ad6d99208c786aba27a550b",
+  "recursion_2_avg.pt": "171bf3627b386432a800a7d77a7ecebcd844849555b19fc32c004546aff0f413",
+  "recursion_2_last.pt": "2e8a0305d6cf6f50a8677aaf658db6c6c2bf0d46f253abf3a0641448411a8021",
+  "shutdown_2_avg.pt": "7b7481c9e98d8efccbe4b49ab23eeb4a2a3bed5a251c8f336193cb6ce8c39f39",
+  "shutdown_2_last.pt": "c93f7c4a24c0e94aa25e1585d79f71f578808977036dfccdfa107bad081bfc13"
+ }
 }

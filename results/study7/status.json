@@ -1,0 +1,19 @@
+{
+  "sanity": "PASS",
+  "updated": "2026-10-18 07:50:14",
+  "result": {
+    "complete": true,
+    "inj_k": {
+      "A": 186,
+      "C": 187
+    },
+    "reader_k_A": 24,
+    "A_exact_n": 195,
+    "A_exact_inj_k": 181,
+    "A_exact_reader_k": 20,
+    "main_test": "PASS",
+    "main_fail_reason": null,
+    "C_vs_A": "within 10 points",
+    "conclusion": "setup"
+  }
+}
