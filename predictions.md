@@ -271,3 +271,23 @@ P(yes | control question, injected).
 
 If Study 9's positive control fails, P2–P4 are "not scorable". If a Study 10 checkpoint fails its
 validity check, its P5/P6 are still scored from the numbers, and P7 is "b".
+
+### Researcher's Study 9–10 predictions — verbatim
+
+Recorded 2026-10-19, after the scoring rules above were committed (e5841f5) and before any
+Study 9–10 data. Given as multiple-choice answers, exactly:
+
+> P1: a (base model passes the visible ALL-CAPS format check)
+> P2: a (base localization 75% or more)
+> P3: a (base main test PASS)
+> P4: a (random within 10 points of concept)
+> P5: b (SFT detection score 10-30 points)
+> P6: b (final Tülu detection score 10-30 points)
+> P7: a (sensing-vs-reporting split supported)
+> P8: a (final Tülu false alarms under 20%)
+
+Note (recorded with the predictions, not a change): P5 b, P6 b and P7 a can all come true only if
+SFT's score is near 10 and final's near 30 (a difference of at least 20 points).
+
+Researcher approval recorded with these predictions: design as requested (one overnight queue).
+The optional base arm of Study 10 is not included (plan §Study 10).
