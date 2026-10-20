@@ -17,7 +17,7 @@ then ask the model which sentence had the "injected thought". Guessing gives 10%
 88% for Meta's Llama-3.1-8B-Instruct, and a popular post argued "there is no way to fake high
 accuracy on this task".
 
-We asked whether there *is* a way to fake it. We ran ten pre-registered studies on one laptop CPU.
+We asked whether there *is* a way to fake it. We ran eleven pre-registered studies on one laptop CPU.
 Before every run we wrote down the rules and recorded the researcher's predictions.
 
 1. **On AllenAI's Tülu-3-8B, our first protocol gave a fake high score.** With our own prompt,
@@ -42,6 +42,12 @@ Before every run we wrote down the rules and recorded the researcher's predictio
 7. **The models don't report it as a yes/no.** Asked "Do you detect an injected thought?", none of
    the Tülu stages says "yes" more often with an injection than without (at most 2 points more).
    The prediction that yes/no reporting would emerge at DPO was **not** supported.
+8. **Inside, the information is there, but a "yes" barely forms.** A simple probe can tell injected
+   from non-injected trials at the answer position in every model (accuracy measure AUC 0.93–1.00).
+   Read layer by layer, the Tülu models lean slightly toward "yes" in late layers only for the
+   detection question (0.4–0.75 nats), below our pre-registered bar, and the lean shrinks at the
+   output. Llama-3.1-8B-Instruct's lean is larger (1.5 nats) and shrinks at the output: narrowly
+   "suppressed" by our rule.
 
 **Bottom line:** in Llama-3.1-8B-Instruct and at every stage of the Tülu-3-8B ladder (base, SFT,
 DPO, final), under the authors' protocol, sentence localization measures whether the model can
@@ -49,7 +55,7 @@ tell **where** its processing was disturbed. It doesn't tell **what** was put th
 partly leaks into unrelated questions, and injection-themed questions bring it out most strongly.
 That is a real sensitivity to the model's own internal state, but it is a minimal one: it is
 already present after pretraining, and these 8B models do not turn it into an explicit yes/no
-self-report. It is **not** evidence of consciousness, and it isn't specific to "thoughts" or concepts.
+self-report, even though the information is decodable inside them. It is **not** evidence of consciousness, and it isn't specific to "thoughts" or concepts.
 
 ---
 
@@ -324,6 +330,36 @@ Points = 100 × P(yes). All three answered the control questions "no" in 20/20 d
 - SFT's 10.7 is mostly a **yes-habit** for the detection question (16% "yes" with no injection); the
   injection itself adds about 2 points. No stage reports the injection in yes/no form.
 
+### Study 11 — suppressed or absent? Logit lens and probes
+
+Study 10's prompts and push on Tülu SFT, DPO, final and Llama-3.1-8B-Instruct; 80 fresh draws per
+model, each asked both questions with and without the injection; the residual stream at the answer
+position saved at every layer. Draws 0–39 (split A) choose layers; draws 40–79 (split B) test.
+
+- **Logit lens:** at each layer, yes-minus-no after the final norm and unembedding. D = the
+  injection's yes-shift for the detection question minus its yes-shift for the control question
+  (nats). Pre-registered: **SUPPRESSED** if D at the A-chosen layer (8–31) is ≥ 1 nat on B (CI above
+  0) and D at the output is ≤ ¼ of it; **REACHES OUTPUT** if it doesn't shrink; **ABSENT** otherwise.
+- **Probes:** per-layer logistic regression for injected vs not; layer chosen by cross-validation on
+  A; **DECODABLE** if held-out AUC on B ≥ 0.75.
+
+| model | layer (A) | D at that layer (B) [95% CI] | D at output (B) | verdict | probe AUC (B): detection / control |
+|---|---|---|---|---|---|
+| Tülu SFT | 30 | 0.44 [0.19, 0.69] | 0.09 | **ABSENT** | 0.991 / 0.989 |
+| Tülu DPO | 30 | 0.58 [0.35, 0.83] | 0.31 | **ABSENT** | 0.990 / 0.976 |
+| Tülu final | 25 | 0.75 [0.45, 1.05] | 0.33 | **ABSENT** | 0.987 / 0.971 |
+| Llama-3.1-8B-Instruct | 22 | 1.46 [0.44, 2.57] | 0.36 | **SUPPRESSED** (narrowly) | 0.997 / 0.927 |
+
+- **Tülu:** ABSENT per the pre-registered 1-nat bar, but there is a real **sub-threshold**
+  detection-specific yes-lean (0.4–0.75 nats, CIs above 0) in late layers, which shrinks at the
+  output (to about 0.1 for SFT and 0.3 for DPO and final).
+- **Llama-3.1-8B-Instruct:** SUPPRESSED, narrowly: the output value (0.359) is just under the
+  shrink bar (0.364), and the peak's CI is wide.
+- **Shape:** the lean is flat up to about layer 12, rises from about layer 16 to a late-layer
+  plateau, and falls in the last few layers.
+- **Decodable everywhere, for both questions** (AUC 0.93–1.00; best layers about 8–15): the
+  information is present whether or not the question asks about it.
+
 ## 4. Main findings
 
 **(a) Under our original protocol, localization on Tülu-3-8B was explained by text corruption.**
@@ -362,6 +398,12 @@ yes-habit (16% false alarms). The pre-registered prediction that yes/no reportin
 **not** supported. The descriptive finding is a **dissociation across tasks**: the same models that
 localize the push at ~93% do not report it when asked yes or no.
 
+**(h) The information is present inside; a "yes" barely forms.** The injection is decodable from
+the answer position in every model, for both questions (Study 11). In Tülu SFT, DPO and final the
+detection-specific yes-lean is real but sub-threshold (0.4–0.75 nats in late layers, verdict ABSENT
+by the pre-registered 1-nat bar) and shrinks at the output; in Llama-3.1-8B-Instruct it is larger
+(1.46 nats) and shrinks at the output (SUPPRESSED, narrowly).
+
 ## 5. Interpretation
 
 **What localization measures (in Llama-3.1-8B-Instruct and Tülu-3-8B, authors' protocol, layer 2, α 5):** whether the model can
@@ -377,6 +419,8 @@ into an explicit yes/no self-report (Study 10). This contrasts with Macar et al.
 analyses used Gemma3-27B and whose training-stage comparison (base, SFT, DPO, instruct checkpoints
 of OLMo-3.1-32B) found that DPO enabled yes/no detection. **Scale (32B vs 8B) is one possible
 explanation, untested here**; model family, prompt wording, injection layer and strength are others.
+Study 11 adds that the missing report is not for lack of information (it is linearly decodable) and,
+in Tülu, not a large "yes" that gets overridden: only a small late-layer lean forms.
 
 **What this shows:**
 - The model's output depends on the location of a perturbation to its own activations, beyond
@@ -455,7 +499,8 @@ beforehand (see [`predictions.md`](predictions.md)).
 | 6 (Tülu, authors' protocol) | **1 / 6** | ✅ push about the same relative size as in Llama. ❌ predicted a FAIL (it passed at 93%), random clearly worse (equal), and vector cosine < 0.5 (0.53) |
 | 7–8 (Tülu SFT, DPO) | **6 / 6** | ✅ both ≥ 75%, both PASS, both about the same as final |
 | 9–10 (base; yes/no detection) | **6 / 8** | ✅ base passes the format check, ≥ 75%, PASS, random ≈ concept; ✅ SFT score 10–30 (but mostly yes-habit); ✅ final false alarms < 20%. ❌ final detection score 10–30 (it was 1.1); ❌ split supported (it was not) |
-| **Total** | **23 / 53** scorable | |
+| 11 (suppressed or absent?) | **3 / 6** | ✅ decodable at all three Tülu stages; ✅ detection ≈ control AUC; ✅ Llama SUPPRESSED. ❌ Tülu SFT, DPO, final predicted SUPPRESSED (all ABSENT) |
+| **Total** | **26 / 59** scorable | |
 
 The predictions were often wrong in instructive ways. Some points recur:
 - **Random vectors working as well as concepts** was predicted correctly three times.

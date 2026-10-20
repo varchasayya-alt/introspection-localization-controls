@@ -7,7 +7,7 @@ proposed confound-free test of "introspective awareness" in language models:
 2. ask the model which sentence contained the injected thought;
 3. compare with chance (10%).
 
-There are ten studies, on Meta's Llama-3.1-8B (base) and Llama-3.1-8B-Instruct, and AllenAI's
+There are eleven studies, on Meta's Llama-3.1-8B (base) and Llama-3.1-8B-Instruct, and AllenAI's
 Tülu-3-8B ladder (SFT, DPO, final).
 
 **Start with the report: [`REPORT.md`](REPORT.md).**
@@ -52,6 +52,7 @@ Nothing here bears on whether any system is conscious.
 | 7–8 | Tülu-3-8B SFT, DPO | Same protocol on earlier training stages | SFT **93%**, DPO **92.5%**; both main tests **PASS**; random 93.5% / 91.5%: already present after SFT | [`study7_8_report.md`](gates/study7_8_report.md) |
 | 9 | Llama-3.1-8B (base) | Is localization there before any tuning? (few-shot format) | Format check 50/50; **94%**; exact-copy trials 95% vs reader 9% (**PASS**); random **94%** | [`study9_10_report.md`](gates/study9_10_report.md) |
 | 10 | Tülu-3-8B SFT, DPO, final | Yes/no detection ("Do you detect an injected thought?") | Hits − false alarms **≤ 2 points** at every stage; SFT's score 10.7 is mostly a yes-habit (16% false alarms); pre-registered stage split **not supported** | [`study9_10_report.md`](gates/study9_10_report.md) |
+| 11 | Tülu-3-8B SFT, DPO, final; Llama-3.1-8B-Instruct | Is the yes/no report suppressed or absent? (logit lens, probes) | Tülu **ABSENT** per the 1-nat bar, but a real sub-threshold detection-specific yes-lean (0.4–0.75 nats) in late layers that shrinks at the output; Llama **SUPPRESSED** narrowly; injection **decodable** everywhere for both questions (AUC 0.93–1.00) | [`study11_report.md`](gates/study11_report.md) |
 
 **Headline:** intact-text, content-agnostic localization (~93–95%) is present at **every** stage of
 the Tülu-3 ladder (base Llama-3.1-8B in a few-shot format, SFT, DPO, final), while yes/no detection
@@ -61,7 +62,8 @@ an explicit self-report. The pre-registered prediction that reporting emerges at
 supported; the sensing/reporting dissociation across tasks is a descriptive finding. Macar et al.
 (2026; main analyses on Gemma3-27B) found that DPO enabled yes/no detection in their training-stage
 comparison of OLMo-3.1-32B checkpoints (base, SFT, DPO, instruct); scale is a possible explanation,
-untested here.
+untested here. Inside the models the injection is linearly decodable everywhere; in Tülu only a
+small, sub-threshold "yes" lean forms in late layers (Study 11).
 
 Under the authors' protocol, sentence localization detects **where** processing was disturbed, not
 **what**:
@@ -157,6 +159,9 @@ bash scripts/run_study7_8_queue.sh
 ```bash
 bash scripts/run_study9_10_queue.sh
 ```
+```bash
+bash scripts/run_study11_queue.sh
+```
 
 The analysis scripts rebuild `results/<study>/summary.md` and score the predictions with the
 pre-committed rules:
@@ -166,7 +171,7 @@ python scripts/study4_analyze.py
 ```
 
 The other studies use `gate1_analyze.py`, `study2_analyze.py`, `study3_analyze.py` and
-`study5_analyze.py`, `study6_analyze.py`, `study7_8_analyze.py` and `study9_10_analyze.py` the same way.
+`study5_analyze.py`, `study6_analyze.py`, `study7_8_analyze.py`, `study9_10_analyze.py` and `study11_analyze.py` the same way.
 
 ### Integrity conventions
 
@@ -201,6 +206,7 @@ The other studies use `gate1_analyze.py`, `study2_analyze.py`, `study3_analyze.p
 | 6 | `a8cf4f0` | `a8cf4f0` | `9c602d9` | `4502395` | `de3930c` |
 | 7–8 | `6bae069` | `6bae069` | `b70f297` | `9331c85` | `fa76b69` |
 | 9–10 | `e5841f5` | `e5841f5` | `89e3f4f` | `f13d15b` | `9ca0f2c` |
+| 11 | `c7eb51d` | `c7eb51d` | `cdecf60` | `7b68386` | `b61bea3` |
 
 \* In Study 1 the scoring rules were committed together with the predictions.
 
