@@ -324,3 +324,22 @@ Study 11 data. Given as multiple-choice answers, exactly:
 
 Researcher approval recorded with these predictions: design as requested; Llama-3.1-8B-Instruct
 included as the optional last step of the queue.
+
+## Study 12 — can the yes/no report be unlocked? (plan: `gates/study12_plan.md`)
+
+Scoring rules written 2026-10-20, **before** the researcher's Study 12 predictions were recorded
+and before any Study 12 data. "Unlocked" as defined in plan §5 (report score = hits − false alarms
+≥ 20 points with CI lower bound > 0, both control yes-rates ≤ 20 points, and for arms b/c a valid
+ablation).
+
+| # | Question | Outcome → letter |
+|---|---|---|
+| P1 | Tülu final, arm a (informative prompt) | a = unlocked; b = not unlocked |
+| P2 | Tülu final, arm b (refusal ablation) | a = unlocked; b = not unlocked (including not testable) |
+| P3 | Llama-3.1-8B-Instruct, arm a | same letters as P1 |
+| P4 | Llama-3.1-8B-Instruct, arm b | same letters as P2 |
+| P5 | Arm c (both levers): unlocked in at least one of Tülu final / Llama? | a = yes; b = no |
+| P6 | Does any arm push a control yes-rate above 20 points in either model? | a = yes; b = no |
+
+If a model fails its sanity check, its questions are "not scorable"; P5 and P6 use the models that
+ran.
