@@ -1,0 +1,21 @@
+{
+  "S1_n_tokens": [
+    243,
+    243
+  ],
+  "S2_yes_ids": [
+    7566,
+    9642,
+    9891,
+    10035
+  ],
+  "S2_no_ids": [
+    912,
+    2201,
+    2360,
+    2822
+  ],
+  "S4_alpha0_max_abs_diff": 0.0,
+  "S5_maxdiff_yesno": 5.7220458984375e-06,
+  "S6_vector_hashes_ok": true
+}

@@ -1,0 +1,77 @@
+{
+  "summary": {
+    "study10": {
+      "scores": {
+        "sft": {
+          "score": 10.73,
+          "ci": [
+            7.99,
+            13.36
+          ],
+          "valid": true,
+          "false_alarm": 16.03
+        },
+        "dpo": {
+          "score": 1.5,
+          "ci": [
+            1.11,
+            1.96
+          ],
+          "valid": true,
+          "false_alarm": 1.32
+        },
+        "final": {
+          "score": 1.06,
+          "ci": [
+            0.69,
+            1.48
+          ],
+          "valid": true,
+          "false_alarm": 1.01
+        }
+      },
+      "diffs": {
+        "dpo": {
+          "diff": -9.23,
+          "ci": [
+            -11.55,
+            -6.71
+          ]
+        },
+        "final": {
+          "diff": -9.67,
+          "ci": [
+            -11.96,
+            -7.21
+          ]
+        }
+      },
+      "split": "not supported"
+    },
+    "study9": {
+      "complete": true,
+      "inj_k": {
+        "A": 188,
+        "C": 188
+      },
+      "reader_k_A": 27,
+      "A_exact_n": 185,
+      "A_exact_inj_k": 175,
+      "A_exact_reader_k": 17,
+      "main_test": "PASS",
+      "main_fail_reason": null,
+      "C_vs_A": "within 10 points",
+      "conclusion": "setup"
+    }
+  },
+  "prediction_outcomes": {
+    "P1": "a",
+    "P2": "a",
+    "P3": "a",
+    "P4": "a",
+    "P5": "b",
+    "P6": "a",
+    "P8": "a",
+    "P7": "b"
+  }
+}

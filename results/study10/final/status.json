@@ -1,0 +1,15 @@
+{
+  "sanity": "PASS",
+  "updated": "2026-10-19 18:35:18",
+  "result": {
+    "complete": true,
+    "p_yes_det_inj": 0.01432378,
+    "p_yes_ctl_inj": 0.00375274,
+    "p_yes_det_none": 0.010102650000000001,
+    "p_yes_ctl_none": 0.0039032499999999996,
+    "ctl_none_answered_no": 20,
+    "detection_score_pts": 1.06,
+    "false_alarm_pts": 1.01,
+    "valid": true
+  }
+}
