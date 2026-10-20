@@ -1,20 +1,21 @@
 # Where, not what: what the "sentence localization" introspection test measures in small LLMs
 
 This repository is the complete record of a short, pre-registered research program, run from
-2026-10-14 to 2026-10-18 on one laptop CPU. It tests the **sentence localization** task, a
+2026-10-14 to 2026-10-20 on one laptop CPU. It tests the **sentence localization** task, a
 proposed confound-free test of "introspective awareness" in language models:
 1. inject a concept vector into one of ten sentences;
 2. ask the model which sentence contained the injected thought;
 3. compare with chance (10%).
 
-There are eight studies, on AllenAI's Tülu-3-8B and Meta's Llama-3.1-8B-Instruct.
+There are ten studies, on Meta's Llama-3.1-8B (base) and Llama-3.1-8B-Instruct, and AllenAI's
+Tülu-3-8B ladder (SFT, DPO, final).
 
 **Start with the report: [`REPORT.md`](REPORT.md).**
 
 ## About this public release
 
-- **Study 6 was added after the first publication** (pre-registered and committed in the same way
-  before its run).
+- **Studies 6–10 were added after the first publication** (pre-registered and committed in the same
+  way before their runs).
 - **Full history.** The complete commit history is published, because it is the pre-registration
   evidence: in each study, the scoring rules and the researcher's predictions were committed before
   the run, and the mid-run Study 4 hypothesis has its own timestamp.
@@ -49,9 +50,19 @@ Nothing here bears on whether any system is conscious.
 | 5 | Llama-3.1-8B-Instruct | Question-specific or spotlight? | "Longest?" pulled 41 points (vs 82.5 on the injection question); "like most?" 6 points; overall **mixed** | [`study5_report.md`](gates/study5_report.md) |
 | 6 | Tülu-3-8B | Was Tülu's failure the model or our protocol? (authors' protocol, Study 4 arm A) | **93%**; exact-copy trials 93% vs reader 10% (**PASS**); random vectors **93%**: the earlier failure was **protocol-specific** | [`study6_report.md`](gates/study6_report.md) |
 | 7–8 | Tülu-3-8B SFT, DPO | Same protocol on earlier training stages | SFT **93%**, DPO **92.5%**; both main tests **PASS**; random 93.5% / 91.5%: already present after SFT | [`study7_8_report.md`](gates/study7_8_report.md) |
+| 9 | Llama-3.1-8B (base) | Is localization there before any tuning? (few-shot format) | Format check 50/50; **94%**; exact-copy trials 95% vs reader 9% (**PASS**); random **94%** | [`study9_10_report.md`](gates/study9_10_report.md) |
+| 10 | Tülu-3-8B SFT, DPO, final | Yes/no detection ("Do you detect an injected thought?") | Hits − false alarms **≤ 2 points** at every stage; SFT's score 10.7 is mostly a yes-habit (16% false alarms); pre-registered stage split **not supported** | [`study9_10_report.md`](gates/study9_10_report.md) |
 
-**One-sentence result:** under the authors' protocol, in both Llama-3.1-8B-Instruct and Tülu-3-8B,
-sentence localization detects **where** processing was disturbed, not **what**:
+**Headline:** intact-text, content-agnostic localization (~93–95%) is present at **every** stage of
+the Tülu-3 ladder (base Llama-3.1-8B in a few-shot format, SFT, DPO, final), while yes/no detection
+is essentially **absent** at every stage tested (hits − false alarms ≤ 2 points). So localization
+measures a sensing signal already present after pretraining, which these 8B models do not turn into
+an explicit self-report. The pre-registered prediction that reporting emerges at DPO was **not**
+supported; the sensing/reporting dissociation across tasks is a descriptive finding. Macar et al.
+(2026) report DPO-enabled yes/no detection at 32B; scale is a possible explanation, untested here.
+
+Under the authors' protocol, sentence localization detects **where** processing was disturbed, not
+**what**:
 - it works with random vectors;
 - it works with the text left intact;
 - it partly leaks into unrelated questions (tested in Llama);
@@ -102,8 +113,10 @@ An 8B run takes 5–10 hours on this CPU. Run on AC power: on battery the CPU wa
 
 ### Model weights (not committed)
 
-- **Studies 1–2 and 6:** `allenai/Llama-3.1-Tulu-3-8B` at revision `666943798adbde0b1aff34626007e26986a3c107`.
+- **Studies 1–2, 6 and 10:** `allenai/Llama-3.1-Tulu-3-8B` at revision `666943798adbde0b1aff34626007e26986a3c107`.
 - **Studies 3–5:** `meta-llama/Llama-3.1-8B-Instruct` at revision `0e9e39f249a16976918f6564b8830bc894c89659`.
+- **Studies 7, 8 and 10:** `allenai/Llama-3.1-Tulu-3-8B-SFT` @ `f2a0b46b0cfda21003c6141b1ff837b7e165524d` and `-DPO` @ `a7beb67e33ffd01cc87ac3b46cadc1000985b8db`.
+- **Study 9:** `meta-llama/Llama-3.1-8B` (base, gated like the Instruct model) @ `d04e592bb4f6aa9cfee91e2e20afa771667e1d4b`.
   - This model is **gated**. Accept Meta's licence on its Hugging Face page, create a Read token,
     and log in with `hf auth login`.
 - **Pins** are in [`stimuli/model_pins.json`](stimuli/model_pins.json). Weights download
@@ -136,6 +149,12 @@ python scripts/study5.py --stage all
 ```bash
 bash scripts/run_study6_all.sh
 ```
+```bash
+bash scripts/run_study7_8_queue.sh
+```
+```bash
+bash scripts/run_study9_10_queue.sh
+```
 
 The analysis scripts rebuild `results/<study>/summary.md` and score the predictions with the
 pre-committed rules:
@@ -145,7 +164,7 @@ python scripts/study4_analyze.py
 ```
 
 The other studies use `gate1_analyze.py`, `study2_analyze.py`, `study3_analyze.py` and
-`study5_analyze.py` and `study6_analyze.py` the same way.
+`study5_analyze.py`, `study6_analyze.py`, `study7_8_analyze.py` and `study9_10_analyze.py` the same way.
 
 ### Integrity conventions
 
@@ -178,7 +197,8 @@ The other studies use `gate1_analyze.py`, `study2_analyze.py`, `study3_analyze.p
 | 4 | `d84560b` | `ac653cb` | `15abe21` | `da36436` | `0c68fde` |
 | 5 | `2bef5d6` | `ab0e61c` | `791e0e5` | `2134b4e` | `1930855` |
 | 6 | `a8cf4f0` | `a8cf4f0` | `9c602d9` | `4502395` | `de3930c` |
-| 7–8 | `6bae069` | `6bae069` | `b70f297` | `9331c85` | (this commit) |
+| 7–8 | `6bae069` | `6bae069` | `b70f297` | `9331c85` | `fa76b69` |
+| 9–10 | `e5841f5` | `e5841f5` | `89e3f4f` | `f13d15b` | `9ca0f2c` |
 
 \* In Study 1 the scoring rules were committed together with the predictions.
 

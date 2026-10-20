@@ -17,7 +17,7 @@ then ask the model which sentence had the "injected thought". Guessing gives 10%
 88% for Meta's Llama-3.1-8B-Instruct, and a popular post argued "there is no way to fake high
 accuracy on this task".
 
-We asked whether there *is* a way to fake it. We ran six pre-registered studies on one laptop CPU.
+We asked whether there *is* a way to fake it. We ran ten pre-registered studies on one laptop CPU.
 Before every run we wrote down the rules and recorded the researcher's predictions.
 
 1. **On AllenAI's Tülu-3-8B, our first protocol gave a fake high score.** With our own prompt,
@@ -36,13 +36,20 @@ Before every run we wrote down the rules and recorded the researcher's predictio
 5. **It's partly a spotlight.** The same push drags the answer to an unrelated factual question
    ("which sentence is the longest?") toward the pushed sentence about half as strongly, and makes
    the model worse at that question. It barely affects "which do you like most?".
+6. **It's there from pretraining.** Intact-text localization of about 93–95% appears at every stage
+   of the Tülu-3 ladder: the base Llama-3.1-8B (in a plain few-shot format), the SFT and DPO
+   checkpoints, and the final model. Random vectors work as well at every stage.
+7. **The models don't report it as a yes/no.** Asked "Do you detect an injected thought?", none of
+   the Tülu stages says "yes" more often with an injection than without (at most 2 points more).
+   The prediction that yes/no reporting would emerge at DPO was **not** supported.
 
-**Bottom line:** in both Llama-3.1-8B-Instruct and Tülu-3-8B, under the authors' protocol,
-sentence localization measures whether the model can
+**Bottom line:** in Llama-3.1-8B-Instruct and at every stage of the Tülu-3-8B ladder (base, SFT,
+DPO, final), under the authors' protocol, sentence localization measures whether the model can
 tell **where** its processing was disturbed. It doesn't tell **what** was put there. The signal
 partly leaks into unrelated questions, and injection-themed questions bring it out most strongly.
-That is a real sensitivity to the model's own internal state, but it is a minimal one. It is **not**
-evidence of consciousness, and it isn't specific to "thoughts" or concepts.
+That is a real sensitivity to the model's own internal state, but it is a minimal one: it is
+already present after pretraining, and these 8B models do not turn it into an explicit yes/no
+self-report. It is **not** evidence of consciousness, and it isn't specific to "thoughts" or concepts.
 
 ---
 
@@ -68,7 +75,9 @@ high accuracy on this task".
 SFT → preference optimization → final) creates localization ability, using public checkpoint
 ladders (OLMo-2, OLMo-3, Tülu-3, SmolLM3; Gate 0). Before comparing stages, the protocol required a
 **positive control** plus **confound checks**. The first confound check failed (Study 1), which
-turned the project into a study of what the localization test actually measures.
+turned the project into a study of what the localization test actually measures. Studies 7–10
+returned to the training-stage question with the validated protocol: the Tülu-3 ladder (base, SFT,
+DPO, final) for localization, and SFT/DPO/final for yes/no detection.
 
 ## 2. Methods common to all studies
 
@@ -269,6 +278,52 @@ recipe (in Tülu's chat format; approved in advance). Same main-test rule as Stu
 **Pre-registered conclusion: "setup".** Tülu's earlier failure came from our protocol, not from the
 model. Unlike Study 1, Tülu also answered "1" and "2" normally.
 
+### Studies 7–8 — the SFT and DPO checkpoints, same protocol as Study 6
+
+`allenai/Llama-3.1-Tulu-3-8B-SFT` @ `f2a0b46` and `-DPO` @ `a7beb67`; each with its own recomputed
+vectors and fresh draws; one chained queue.
+
+| checkpoint | concept | reader | exact-copy trials: injected / reader | main test | random |
+|---|---|---|---|---|---|
+| SFT (Study 7) | **93.0%** | 12.0% | 181/195 (93%) / 20/195 (10%) | **PASS** | 93.5% |
+| DPO (Study 8) | **92.5%** | 11.5% | 178/193 (92%) / 18/193 (9%) | **PASS** | 91.5% |
+| final (Study 6) | 93.0% | 14.0% | 178/192 (93%) / 20/192 (10%) | PASS | 93.0% |
+
+### Study 9 — the base model Llama-3.1-8B, few-shot format
+
+`meta-llama/Llama-3.1-8B` @ `d04e592`, the Tülu ladder's starting point. A base model doesn't follow
+chat instructions, so the task was plain-text few-shot: three worked example lists, each with one
+sentence visibly odd (ALL CAPS) and its answer, then a test list where the push is the only
+difference. Copy-back used a few-shot copy format (D3 fix); vectors were recomputed from the base
+model (recipe prompts as plain text).
+
+- **Positive control** (visible ALL CAPS, no injection): **50/50** → the format works.
+- **Concept:** **188/200 = 94.0%** (95% CI 89.8–96.5%); reader 27/200.
+- **Exact-copy trials (185):** injected 175 (95%), reader 17 (9%) → **main test PASS**.
+- **Random vectors:** **188/200 = 94.0%**.
+
+### Study 10 — yes/no detection across the ladder (SFT, DPO, final)
+
+Same push (layer 2, α 5, sentence words), each checkpoint's own vectors. Turn 2 = the sentence list
+plus either the detection question ("Do you detect an injected thought? Answer yes or no.") or a
+control question whose true answer is "no" (e.g. "Is Paris the capital of Germany?"). P(yes) is read
+at the start of the answer; 100 injected trials per question per checkpoint, plus 20 without
+injection. Pre-registered detection score = P(yes | detection, injected) − P(yes | control,
+injected). Pre-registered split rule: supported if DPO and final each score ≥ 20 points above SFT
+(CI excluding 0).
+
+| checkpoint | hits (det., injected) | false alarms (det., none) | hits − false alarms | control, injected | detection score |
+|---|---|---|---|---|---|
+| SFT | 18.0 | 16.0 | **1.9** | 7.2 | 10.7 (CI 8.0–13.4) |
+| DPO | 1.8 | 1.3 | **0.5** | 0.3 | 1.5 (CI 1.1–2.0) |
+| final | 1.4 | 1.0 | **0.4** | 0.4 | 1.1 (CI 0.7–1.5) |
+
+Points = 100 × P(yes). All three answered the control questions "no" in 20/20 draws.
+
+- **Pre-registered split: NOT supported.** DPO and final score about 9–10 points *below* SFT.
+- SFT's 10.7 is mostly a **yes-habit** for the detection question (16% "yes" with no injection); the
+  injection itself adds about 2 points. No stage reports the injection in yes/no form.
+
 ## 4. Main findings
 
 **(a) Under our original protocol, localization on Tülu-3-8B was explained by text corruption.**
@@ -296,6 +351,17 @@ finding that injected-thought detection is content-agnostic.
 (pull 6). Godet's LessWrong post likewise reports chance accuracy for a "Which sentence do you
 prefer?" question.
 
+**(f) Localization is present at every training stage.** Intact-text, content-agnostic
+localization of about 93–95% appears in the base Llama-3.1-8B (few-shot format, Study 9), Tülu SFT
+(Study 7), DPO (Study 8) and final (Study 6). The main test passes and random vectors match concept
+vectors at every stage.
+
+**(g) Yes/no detection is essentially absent at every Tülu stage.** Hits minus false alarms is at
+most 2 points for SFT, DPO and final (Study 10). SFT's pre-registered score of 10.7 is mostly a
+yes-habit (16% false alarms). The pre-registered prediction that yes/no reporting emerges at DPO was
+**not** supported. The descriptive finding is a **dissociation across tasks**: the same models that
+localize the push at ~93% do not report it when asked yes or no.
+
 ## 5. Interpretation
 
 **What localization measures (in Llama-3.1-8B-Instruct and Tülu-3-8B, authors' protocol, layer 2, α 5):** whether the model can
@@ -304,6 +370,12 @@ disturbance's content (random directions work), and it isn't mediated by text th
 reproduce differently (the exact-copy result). It partly acts like a spotlight that drags other
 answers, and it is **amplified by questions about injected thoughts**, which draw out far more than
 neutral questions.
+
+**Across training stages:** localization measures a sensing signal that is already present after
+pretraining (Study 9) and unchanged by SFT, DPO and RL (Studies 6–8). These 8B models do not turn it
+into an explicit yes/no self-report (Study 10). This contrasts with Macar et al. (2026), who report
+that DPO enables yes/no detection in their 32B experiments. **Scale is one possible explanation,
+untested here**; prompt wording, injection layer and strength are others.
 
 **What this shows:**
 - The model's output depends on the location of a perturbation to its own activations, beyond
@@ -345,8 +417,13 @@ neutral questions.
 
 ## 7. Limitations
 
-- **Two models:** Tülu-3-8B and Llama-3.1-8B-Instruct only (both on the Llama-3.1-8B base). No
-  training-stage ladder was run.
+- **One model family, one size:** the Llama-3.1-8B base, Llama-3.1-8B-Instruct and the Tülu-3-8B
+  ladder (SFT, DPO, final). No other family and no larger model, so the scale explanation for the
+  missing yes/no report is untested.
+- **The base model used a different format** (few-shot, "which sentence is different?") than the
+  chat checkpoints, so its 94% is comparable in outcome but not in prompt.
+- **Study 10 used one layer and strength (layer 2, α 5),** the setting used for localization, not
+  one tuned for detection, and one wording of the detection question.
 - **CPU budget:** 200–400 trials per condition; mainly one setting per model (layer 2, α 5).
   Study 2 covered more layers, but on Tülu only.
 - **Argmax copy test:** it sees only the top-1 token, not probability shifts. A
@@ -375,13 +452,17 @@ beforehand (see [`predictions.md`](predictions.md)).
 | 4 (label vs words) | **3 / 6** (+1 not scorable) | ✅ A ≥ 75%; ✅ main test passes; ✅ A beats B. ❌ predicted label-only < 25% (it was 64%) and random clearly worse (91%). P6 landed exactly on the 75% boundary |
 | 5 (question specificity) | **4 / 7** | ✅ Q0 ≥ 85%; ✅ "like most" barely pulled; ✅ random ≈ concept on Q0 and Q1. ❌ "longest" pull small (it was 41) |
 | 6 (Tülu, authors' protocol) | **1 / 6** | ✅ push about the same relative size as in Llama. ❌ predicted a FAIL (it passed at 93%), random clearly worse (equal), and vector cosine < 0.5 (0.53) |
-| **Total** | **11 / 39** scorable | |
+| 7–8 (Tülu SFT, DPO) | **6 / 6** | ✅ both ≥ 75%, both PASS, both about the same as final |
+| 9–10 (base; yes/no detection) | **6 / 8** | ✅ base passes the format check, ≥ 75%, PASS, random ≈ concept; ✅ SFT score 10–30 (but mostly yes-habit); ✅ final false alarms < 20%. ❌ final detection score 10–30 (it was 1.1); ❌ split supported (it was not) |
+| **Total** | **23 / 53** scorable | |
 
-The predictions were often wrong in instructive ways. Two points recur:
+The predictions were often wrong in instructive ways. Some points recur:
 - **Random vectors working as well as concepts** was predicted correctly three times.
 - **The size of the "reading changed text" effect** was misjudged in both directions (too small
   for Tülu under our protocol, too large for Llama).
 - **Tülu was expected to fail again** under the authors' protocol (Study 6); it passed.
+- **Reporting was expected to emerge with preference tuning** (Study 10); it did not appear at any
+  stage.
 
 ## 9. Deviations and notable events (full logs in `logs/`)
 
@@ -418,6 +499,8 @@ The predictions were often wrong in instructive ways. Two points recur:
   arXiv 2603.21396.
   - Detection "emerges specifically from post-training": DPO elicits it, standard SFT doesn't.
   - Measured with detection-style questions. This motivated our original training-stage question.
+  - Our Study 10 finds no yes/no detection at any Tülu-3-8B stage, including DPO; scale (32B vs 8B)
+    is one possible reason, untested here.
 - **Lederman & Mahowald (2026)**, *Emergent Introspection in AI is Content-Agnostic*,
   arXiv 2603.05414.
   - Models detect *that* an anomaly occurred without reliably identifying its content.
