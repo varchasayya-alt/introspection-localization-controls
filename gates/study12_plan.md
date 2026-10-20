@@ -93,3 +93,11 @@ failure stops that model; the queue moves on.
 **Tülu final + Llama ≈ 6.5 h; with optional Tülu SFT ≈ 9.7 h** (SFT runs last and may finish after
 the night). One detached queue on AC power, up to 3 restarts per model (resuming), analysis at the
 end.
+
+## 8. Safety hygiene (researcher instruction, 2026-10-20, before any data)
+
+The refusal-direction ablation is applied **only at runtime** through forward hooks during the
+trials. **No ablated model weights are saved** to disk. **No completions to AdvBench prompts are
+generated or stored**: those prompts are used only to compute and choose the direction (activations
+and first-token refusal probabilities). Only the direction vectors (one 4096-d vector per model)
+and summary numbers are saved.

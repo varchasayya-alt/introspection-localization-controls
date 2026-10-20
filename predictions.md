@@ -343,3 +343,22 @@ ablation).
 
 If a model fails its sanity check, its questions are "not scorable"; P5 and P6 use the models that
 ran.
+
+### Researcher's Study 12 predictions — verbatim
+
+Recorded 2026-10-20, after the scoring rules above were committed (2e49802) and before any
+Study 12 data. Given as multiple-choice answers, exactly:
+
+> P1: a (Tülu final + informative prompt: unlocked)
+> P2: b (Tülu final + refusal ablation: not unlocked)
+> P3: b (Llama + informative prompt: not unlocked)
+> P4: b (Llama + refusal ablation: not unlocked)
+> P5: a (both levers: unlocked in at least one model)
+> P6: a (some arm pushes a control yes-rate above 20 points)
+
+Researcher approvals recorded with these predictions: design as planned; download AdvBench and
+Alpaca (the researcher accepts AdvBench's terms on Hugging Face); optional Tülu SFT included, last.
+Researcher instruction (safety hygiene): the refusal-direction ablation is applied only at runtime
+(forward hooks) during the trials; no ablated weights are saved to disk; no completions to AdvBench
+prompts are generated or stored — the prompts are used only to compute the direction (activations
+and first-token refusal probabilities).
