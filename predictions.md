@@ -309,3 +309,18 @@ OUTPUT / ABSENT, peak layer chosen on split A, tested on split B; probe: DECODAB
 | P6 | Llama-3.1-8B-Instruct logit-lens verdict | same letters as P1; "not scorable" if it is not run |
 
 If a model fails its sanity check, its predictions are "not scorable".
+
+### Researcher's Study 11 predictions — verbatim
+
+Recorded 2026-10-20, after the scoring rules above were committed (c7eb51d) and before any
+Study 11 data. Given as multiple-choice answers, exactly:
+
+> P1: a (SFT: SUPPRESSED)
+> P2: a (DPO: SUPPRESSED)
+> P3: a (final: SUPPRESSED)
+> P4: a (injection decodable at all three checkpoints)
+> P5: a (final Tülu: detection and control AUCs within 0.10)
+> P6: a (Llama-3.1-8B-Instruct: SUPPRESSED)
+
+Researcher approval recorded with these predictions: design as requested; Llama-3.1-8B-Instruct
+included as the optional last step of the queue.
