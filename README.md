@@ -59,7 +59,9 @@ is essentially **absent** at every stage tested (hits − false alarms ≤ 2 poi
 measures a sensing signal already present after pretraining, which these 8B models do not turn into
 an explicit self-report. The pre-registered prediction that reporting emerges at DPO was **not**
 supported; the sensing/reporting dissociation across tasks is a descriptive finding. Macar et al.
-(2026) report DPO-enabled yes/no detection at 32B; scale is a possible explanation, untested here.
+(2026; main analyses on Gemma3-27B) found that DPO enabled yes/no detection in their training-stage
+comparison of OLMo-3.1-32B checkpoints (base, SFT, DPO, instruct); scale is a possible explanation,
+untested here.
 
 Under the authors' protocol, sentence localization detects **where** processing was disturbed, not
 **what**:

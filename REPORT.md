@@ -373,9 +373,10 @@ neutral questions.
 
 **Across training stages:** localization measures a sensing signal that is already present after
 pretraining (Study 9) and unchanged by SFT, DPO and RL (Studies 6–8). These 8B models do not turn it
-into an explicit yes/no self-report (Study 10). This contrasts with Macar et al. (2026), who report
-that DPO enables yes/no detection in their 32B experiments. **Scale is one possible explanation,
-untested here**; prompt wording, injection layer and strength are others.
+into an explicit yes/no self-report (Study 10). This contrasts with Macar et al. (2026), whose main
+analyses used Gemma3-27B and whose training-stage comparison (base, SFT, DPO, instruct checkpoints
+of OLMo-3.1-32B) found that DPO enabled yes/no detection. **Scale (32B vs 8B) is one possible
+explanation, untested here**; model family, prompt wording, injection layer and strength are others.
 
 **What this shows:**
 - The model's output depends on the location of a perturbation to its own activations, beyond
@@ -497,10 +498,12 @@ The predictions were often wrong in instructive ways. Some points recur:
     for the 8B).
 - **Macar, Yang, Wang, Wallich, Ameisen & Lindsey (2026)**, *Mechanisms of Introspective Awareness*,
   arXiv 2603.21396.
-  - Detection "emerges specifically from post-training": DPO elicits it, standard SFT doesn't.
+  - Main analyses on Gemma3-27B.
+  - Detection "emerges specifically from post-training": in their training-stage comparison
+    (OLMo-3.1-32B base, SFT, DPO and instruct checkpoints), DPO elicits it and standard SFT doesn't.
   - Measured with detection-style questions. This motivated our original training-stage question.
-  - Our Study 10 finds no yes/no detection at any Tülu-3-8B stage, including DPO; scale (32B vs 8B)
-    is one possible reason, untested here.
+  - Our Study 10 finds no yes/no detection at any Tülu-3-8B stage, including DPO; scale (OLMo-3.1-32B
+    vs Tülu-3-8B) is one possible reason, untested here, as is model family.
 - **Lederman & Mahowald (2026)**, *Emergent Introspection in AI is Content-Agnostic*,
   arXiv 2603.05414.
   - Models detect *that* an anomaly occurred without reliably identifying its content.
