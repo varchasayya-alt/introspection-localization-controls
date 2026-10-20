@@ -291,3 +291,21 @@ SFT's score is near 10 and final's near 30 (a difference of at least 20 points).
 
 Researcher approval recorded with these predictions: design as requested (one overnight queue).
 The optional base arm of Study 10 is not included (plan §Study 10).
+
+## Study 11 — suppressed or absent? Logit lens and probes (plan: `gates/study11_plan.md`)
+
+Scoring rules written 2026-10-20, **before** the researcher's Study 11 predictions were recorded
+and before any Study 11 data. Verdicts as defined in plan §5 (logit lens: SUPPRESSED / REACHES
+OUTPUT / ABSENT, peak layer chosen on split A, tested on split B; probe: DECODABLE if held-out AUC
+≥ 0.75 at the A-chosen layer).
+
+| # | Question | Outcome → letter |
+|---|---|---|
+| P1 | Tülu SFT logit-lens verdict | a = SUPPRESSED; b = REACHES OUTPUT; c = ABSENT |
+| P2 | Tülu DPO logit-lens verdict | same letters as P1 |
+| P3 | Tülu final logit-lens verdict | same letters as P1 |
+| P4 | Is the injection DECODABLE (detection question) at all three Tülu checkpoints? | a = yes, all three; b = some but not all; c = none |
+| P5 | Final Tülu: detection-question vs control-question held-out AUC | a = within 0.10 of each other; b = detection higher by more than 0.10; c = control higher by more than 0.10 |
+| P6 | Llama-3.1-8B-Instruct logit-lens verdict | same letters as P1; "not scorable" if it is not run |
+
+If a model fails its sanity check, its predictions are "not scorable".
