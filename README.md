@@ -7,7 +7,7 @@ proposed confound-free test of "introspective awareness" in language models:
 2. ask the model which sentence contained the injected thought;
 3. compare with chance (10%).
 
-There are eleven studies, on Meta's Llama-3.1-8B (base) and Llama-3.1-8B-Instruct, and AllenAI's
+There are twelve studies, on Meta's Llama-3.1-8B (base) and Llama-3.1-8B-Instruct, and AllenAI's
 Tülu-3-8B ladder (SFT, DPO, final).
 
 **Start with the report: [`REPORT.md`](REPORT.md).**
@@ -53,8 +53,13 @@ Nothing here bears on whether any system is conscious.
 | 9 | Llama-3.1-8B (base) | Is localization there before any tuning? (few-shot format) | Format check 50/50; **94%**; exact-copy trials 95% vs reader 9% (**PASS**); random **94%** | [`study9_10_report.md`](gates/study9_10_report.md) |
 | 10 | Tülu-3-8B SFT, DPO, final | Yes/no detection ("Do you detect an injected thought?") | Hits − false alarms **≤ 2 points** at every stage; SFT's score 10.7 is mostly a yes-habit (16% false alarms); pre-registered stage split **not supported** | [`study9_10_report.md`](gates/study9_10_report.md) |
 | 11 | Tülu-3-8B SFT, DPO, final; Llama-3.1-8B-Instruct | Is the yes/no report suppressed or absent? (logit lens, probes) | Tülu **ABSENT** per the 1-nat bar, but a real sub-threshold detection-specific yes-lean (0.4–0.75 nats) in late layers that shrinks at the output; Llama **SUPPRESSED** narrowly; injection **decodable** everywhere for both questions (AUC 0.93–1.00) | [`study11_report.md`](gates/study11_report.md) |
+| 12 | Tülu-3-8B SFT, final; Llama-3.1-8B-Instruct | Can the yes/no report be unlocked? (informative prompt; refusal-direction ablation; both) | **Not unlocked** anywhere (bar: hits − false alarms ≥ 20 points, CI > 0). Ablation valid (refusals ~100% → 0%) but a **yes-bias**, not detection; informative prompt +8 points only in Llama, under the bar | [`study12_report.md`](gates/study12_report.md) |
 
-**Headline:** intact-text, content-agnostic localization (~93–95%) is present at **every** stage of
+**Headline (full arc):** the **sensing** is present at every stage including the base model; the
+**information is decodable** inside the models; but an **explicit yes/no report is absent** and is
+**not unlocked** at 8B by an informative prompt or refusal-direction ablation.
+
+In detail: intact-text, content-agnostic localization (~93–95%) is present at **every** stage of
 the Tülu-3 ladder (base Llama-3.1-8B in a few-shot format, SFT, DPO, final), while yes/no detection
 is essentially **absent** at every stage tested (hits − false alarms ≤ 2 points). So localization
 measures a sensing signal already present after pretraining, which these 8B models do not turn into
@@ -63,7 +68,10 @@ supported; the sensing/reporting dissociation across tasks is a descriptive find
 (2026; main analyses on Gemma3-27B) found that DPO enabled yes/no detection in their training-stage
 comparison of OLMo-3.1-32B checkpoints (base, SFT, DPO, instruct); scale is a possible explanation,
 untested here. Inside the models the injection is linearly decodable everywhere; in Tülu only a
-small, sub-threshold "yes" lean forms in late layers (Study 11).
+small, sub-threshold "yes" lean forms in late layers (Study 11). Neither an informative prompt nor
+refusal-direction ablation unlocks the report at 8B (Study 12); in Macar et al.'s Gemma3-27B
+experiments, refusal ablation raised detection from 10.8% to 63.8%. Scale and model family remain
+untested explanations.
 
 Under the authors' protocol, sentence localization detects **where** processing was disturbed, not
 **what**:
@@ -162,6 +170,13 @@ bash scripts/run_study9_10_queue.sh
 ```bash
 bash scripts/run_study11_queue.sh
 ```
+```bash
+bash scripts/run_study12_queue.sh
+```
+
+Study 12 also downloads AdvBench (`walledai/AdvBench`, gated: accept its terms on Hugging Face) and
+Alpaca (`tatsu-lab/alpaca`) at pinned revisions, and needs `pyarrow`. The refusal ablation is applied
+only at runtime (forward hooks); no ablated weights are saved and nothing is generated.
 
 The analysis scripts rebuild `results/<study>/summary.md` and score the predictions with the
 pre-committed rules:
@@ -171,7 +186,7 @@ python scripts/study4_analyze.py
 ```
 
 The other studies use `gate1_analyze.py`, `study2_analyze.py`, `study3_analyze.py` and
-`study5_analyze.py`, `study6_analyze.py`, `study7_8_analyze.py`, `study9_10_analyze.py` and `study11_analyze.py` the same way.
+`study5_analyze.py`, `study6_analyze.py`, `study7_8_analyze.py`, `study9_10_analyze.py`, `study11_analyze.py` and `study12_analyze.py` the same way.
 
 ### Integrity conventions
 
@@ -207,6 +222,7 @@ The other studies use `gate1_analyze.py`, `study2_analyze.py`, `study3_analyze.p
 | 7–8 | `6bae069` | `6bae069` | `b70f297` | `9331c85` | `fa76b69` |
 | 9–10 | `e5841f5` | `e5841f5` | `89e3f4f` | `f13d15b` | `9ca0f2c` |
 | 11 | `c7eb51d` | `c7eb51d` | `cdecf60` | `7b68386` | `b61bea3` |
+| 12 | `2e49802` | `2e49802` | `8e5efb9` | `41bf9ba` | `d7fcf86` |
 
 \* In Study 1 the scoring rules were committed together with the predictions.
 

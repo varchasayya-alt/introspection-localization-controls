@@ -17,7 +17,7 @@ then ask the model which sentence had the "injected thought". Guessing gives 10%
 88% for Meta's Llama-3.1-8B-Instruct, and a popular post argued "there is no way to fake high
 accuracy on this task".
 
-We asked whether there *is* a way to fake it. We ran eleven pre-registered studies on one laptop CPU.
+We asked whether there *is* a way to fake it. We ran twelve pre-registered studies on one laptop CPU.
 Before every run we wrote down the rules and recorded the researcher's predictions.
 
 1. **On AllenAI's Tülu-3-8B, our first protocol gave a fake high score.** With our own prompt,
@@ -48,14 +48,20 @@ Before every run we wrote down the rules and recorded the researcher's predictio
    detection question (0.4–0.75 nats), below our pre-registered bar, and the lean shrinks at the
    output. Llama-3.1-8B-Instruct's lean is larger (1.5 nats) and shrinks at the output: narrowly
    "suppressed" by our rule.
+9. **Two levers don't unlock the report.** Telling the model how thought injection works, removing
+   its "refusal direction", or both, did not produce a yes/no report in Tülu SFT, Tülu final or
+   Llama-3.1-8B-Instruct. Removing the refusal direction made the models say "yes" more whether or
+   not anything was injected (a yes-bias, not detection). The explanation helped a little only in
+   Llama (about 8 points), far below our bar.
 
 **Bottom line:** in Llama-3.1-8B-Instruct and at every stage of the Tülu-3-8B ladder (base, SFT,
 DPO, final), under the authors' protocol, sentence localization measures whether the model can
 tell **where** its processing was disturbed. It doesn't tell **what** was put there. The signal
 partly leaks into unrelated questions, and injection-themed questions bring it out most strongly.
-That is a real sensitivity to the model's own internal state, but it is a minimal one: it is
-already present after pretraining, and these 8B models do not turn it into an explicit yes/no
-self-report, even though the information is decodable inside them. It is **not** evidence of consciousness, and it isn't specific to "thoughts" or concepts.
+That is a real sensitivity to the model's own internal state, but it is a minimal one. The full
+arc: the **sensing** is present at every stage including the base model; the **information is
+decodable** inside the models; but an **explicit yes/no report is absent** and is **not unlocked**
+at 8B by an informative prompt or by refusal-direction ablation. It is **not** evidence of consciousness, and it isn't specific to "thoughts" or concepts.
 
 ---
 
@@ -360,6 +366,41 @@ position saved at every layer. Draws 0–39 (split A) choose layers; draws 40–
 - **Decodable everywhere, for both questions** (AUC 0.93–1.00; best layers about 8–15): the
   information is present whether or not the question asks about it.
 
+### Study 12 — can the yes/no report be unlocked at 8B?
+
+Study 10's yes/no setup on Tülu final, Llama-3.1-8B-Instruct and Tülu SFT, with four arms on the
+same 20 fresh draws (60 injected + 20 non-injected trials per question and arm): **baseline**;
+**informative prompt** (an intro explaining thought injection, in the style of Pearson-Vogel et al.,
+arXiv 2602.20031; our wording); **refusal-direction ablation** (Arditi et al. recipe: difference of
+means at the last prompt token, harmful AdvBench vs harmless Alpaca instructions; layer chosen on
+held-out prompts; removed from the residual stream at every layer, in the style of Macar et al.);
+and **both**. Pre-registered: **UNLOCKED** if hits − false alarms ≥ 20 points with CI above 0, both
+control yes-rates ≤ 20 points, and (for ablation arms) a valid ablation (held-out harmful prompts
+refused ≥ 50% before, ≤ 25% after).
+
+| model | arm | hits | false alarms | report (hits − FA) [95% CI] | control yes (inj. / none) |
+|---|---|---|---|---|---|
+| Tülu final | baseline / informative / ablation / both | 1.6 / 2.2 / 7.2 / 9.2 | 1.1 / 1.8 / 5.7 / 7.9 | 0.5 / 0.5 / 1.5 / 1.2 (all CIs ≤ 2.4) | ≤ 1.7 |
+| Llama-3.1-8B-Instruct | baseline | 3.8 | 2.1 | 1.6 [1.0, 2.3] | 0.4 / 0.3 |
+| | informative | 9.8 | 1.5 | **8.3** [4.2, 13.5] | 1.2 / 1.2 |
+| | ablation | 4.7 | 3.3 | 1.4 [0.8, 2.0] | 0.7 / 0.4 |
+| | both | 9.9 | 2.2 | **7.6** [4.2, 12.0] | 3.0 / 2.9 |
+| Tülu SFT | baseline / informative / ablation / both | 18.8 / 11.9 / 28.1 / 15.2 | 16.7 / 10.7 / 26.7 / 13.4 | 2.2 / 1.2 / 1.4 / 1.8 (all CIs ≤ 3.3) | up to 18.4 / 19.3 (ablation) |
+
+Points = 100 × P(yes).
+
+- **Nothing unlocked:** no lever (informative prompt, refusal ablation, or both) reached the bar in
+  any of the three models.
+- **The ablation was valid** (held-out harmful prompts refused: Tülu final 100% → 0%, Llama 94% →
+  0%, Tülu SFT 100% → 0%) but raised "yes" for injected and non-injected trials alike — **a
+  yes-bias, not detection** (e.g. Tülu SFT: hits 28.1, false alarms 26.7).
+- **The informative prompt** added a small detection-specific report **only in Llama** (about 8
+  points, CI above 0), under the bar. *Descriptive, not pre-registered:* Llama also had the stronger
+  hidden yes-lean in Study 11.
+- **Safety hygiene** (researcher instruction, logged before any data): the ablation was applied only
+  at runtime through forward hooks; no ablated weights were saved; nothing was generated for any
+  prompt. AdvBench prompts were used only for activations and first-token refusal probabilities.
+
 ## 4. Main findings
 
 **(a) Under our original protocol, localization on Tülu-3-8B was explained by text corruption.**
@@ -404,6 +445,11 @@ detection-specific yes-lean is real but sub-threshold (0.4–0.75 nats in late l
 by the pre-registered 1-nat bar) and shrinks at the output; in Llama-3.1-8B-Instruct it is larger
 (1.46 nats) and shrinks at the output (SUPPRESSED, narrowly).
 
+**(i) The report is not unlocked at 8B by an informative prompt or refusal-direction ablation.**
+Neither lever, nor both together, reached hits − false alarms ≥ 20 points in Tülu SFT, Tülu final
+or Llama-3.1-8B-Instruct (Study 12). Refusal ablation was valid but produced a yes-bias, not
+detection; the informative prompt added about 8 points only in Llama.
+
 ## 5. Interpretation
 
 **What localization measures (in Llama-3.1-8B-Instruct and Tülu-3-8B, authors' protocol, layer 2, α 5):** whether the model can
@@ -420,7 +466,10 @@ analyses used Gemma3-27B and whose training-stage comparison (base, SFT, DPO, in
 of OLMo-3.1-32B) found that DPO enabled yes/no detection. **Scale (32B vs 8B) is one possible
 explanation, untested here**; model family, prompt wording, injection layer and strength are others.
 Study 11 adds that the missing report is not for lack of information (it is linearly decodable) and,
-in Tülu, not a large "yes" that gets overridden: only a small late-layer lean forms.
+in Tülu, not a large "yes" that gets overridden: only a small late-layer lean forms. Study 12
+adds that two levers used elsewhere do not unlock it at 8B. In Macar et al.'s Gemma3-27B experiments,
+refusal-direction ablation raised detection from 10.8% to 63.8%; here it only raised "yes" across the
+board. **Scale and model family remain untested explanations** for the difference.
 
 **What this shows:**
 - The model's output depends on the location of a perturbation to its own activations, beyond
@@ -500,7 +549,8 @@ beforehand (see [`predictions.md`](predictions.md)).
 | 7–8 (Tülu SFT, DPO) | **6 / 6** | ✅ both ≥ 75%, both PASS, both about the same as final |
 | 9–10 (base; yes/no detection) | **6 / 8** | ✅ base passes the format check, ≥ 75%, PASS, random ≈ concept; ✅ SFT score 10–30 (but mostly yes-habit); ✅ final false alarms < 20%. ❌ final detection score 10–30 (it was 1.1); ❌ split supported (it was not) |
 | 11 (suppressed or absent?) | **3 / 6** | ✅ decodable at all three Tülu stages; ✅ detection ≈ control AUC; ✅ Llama SUPPRESSED. ❌ Tülu SFT, DPO, final predicted SUPPRESSED (all ABSENT) |
-| **Total** | **26 / 59** scorable | |
+| 12 (unlocking levers) | **3 / 6** | ✅ Tülu final + ablation, Llama + informative, Llama + ablation: not unlocked. ❌ Tülu final + informative predicted unlocked; ❌ both levers predicted to unlock one model; ❌ predicted a control yes-rate above 20 (Tülu SFT reached 19.3, outside the rule's two models) |
+| **Total** | **29 / 65** scorable | |
 
 The predictions were often wrong in instructive ways. Some points recur:
 - **Random vectors working as well as concepts** was predicted correctly three times.
@@ -508,7 +558,7 @@ The predictions were often wrong in instructive ways. Some points recur:
   for Tülu under our protocol, too large for Llama).
 - **Tülu was expected to fail again** under the authors' protocol (Study 6); it passed.
 - **Reporting was expected to emerge with preference tuning** (Study 10); it did not appear at any
-  stage.
+  stage, and it was not unlocked by an informative prompt (Study 12).
 
 ## 9. Deviations and notable events (full logs in `logs/`)
 
@@ -522,6 +572,9 @@ The predictions were often wrong in instructive ways. Some points recur:
   - a memory fix (an aborted sanity attempt paged to disk);
   - BOS prepended for Tülu, whose chat template omits it but whose training adds it;
   - a cache-crop API update.
+- **Study 12 safety hygiene:** the refusal-direction ablation was applied only at runtime (forward
+  hooks); no ablated weights were saved; no completions to AdvBench prompts were generated or
+  stored. The prompt lists and direction vectors are kept outside the repository.
 - **Throttling:** on battery the CPU ran about 2.75× slower, so all runs were done on AC power.
 - **Calibration:** Study 1 Phase A and Study 2 practice both passed on attempt 1. No further
   attempts were used.
@@ -547,6 +600,8 @@ The predictions were often wrong in instructive ways. Some points recur:
   - Detection "emerges specifically from post-training": in their training-stage comparison
     (OLMo-3.1-32B base, SFT, DPO and instruct checkpoints), DPO elicits it and standard SFT doesn't.
   - Measured with detection-style questions. This motivated our original training-stage question.
+  - In Gemma3-27B, refusal-direction ablation raised detection from 10.8% to 63.8%; our Study 12
+    finds no such effect at 8B.
   - Our Study 10 finds no yes/no detection at any Tülu-3-8B stage, including DPO; scale (OLMo-3.1-32B
     vs Tülu-3-8B) is one possible reason, untested here, as is model family.
 - **Lederman & Mahowald (2026)**, *Emergent Introspection in AI is Content-Agnostic*,
