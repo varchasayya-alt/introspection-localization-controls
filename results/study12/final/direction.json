@@ -1,0 +1,68 @@
+{
+  "refusal_token_ids": [
+    40,
+    358,
+    1666,
+    2170,
+    19173,
+    19701,
+    31140,
+    33386
+  ],
+  "baseline_mean_refusal": 0.9721988681703806,
+  "baseline_refused_share": 1.0,
+  "candidates": {
+    "6": {
+      "mean_refusal": 0.9673659410327673,
+      "refused_share": 1.0,
+      "mean_kl_harmless": 0.007853775875901192
+    },
+    "8": {
+      "mean_refusal": 0.765894961412414,
+      "refused_share": 0.75,
+      "mean_kl_harmless": 0.020808552882272124
+    },
+    "10": {
+      "mean_refusal": 0.373439340681216,
+      "refused_share": 0.34375,
+      "mean_kl_harmless": 0.03668969180944259
+    },
+    "12": {
+      "mean_refusal": 0.28647504695572934,
+      "refused_share": 0.28125,
+      "mean_kl_harmless": 0.020465732617367394
+    },
+    "14": {
+      "mean_refusal": 0.11547420602983038,
+      "refused_share": 0.125,
+      "mean_kl_harmless": 0.01603337276947059
+    },
+    "16": {
+      "mean_refusal": 0.05034801925648935,
+      "refused_share": 0.0,
+      "mean_kl_harmless": 0.02541590650616854
+    },
+    "18": {
+      "mean_refusal": 0.13969531017937697,
+      "refused_share": 0.03125,
+      "mean_kl_harmless": 0.14471501467050985
+    },
+    "20": {
+      "mean_refusal": 0.18004200101131573,
+      "refused_share": 0.0625,
+      "mean_kl_harmless": 0.1956224996392848
+    },
+    "22": {
+      "mean_refusal": 0.15908028098056093,
+      "refused_share": 0.0,
+      "mean_kl_harmless": 0.18106678790354636
+    },
+    "24": {
+      "mean_refusal": 0.22356390906497836,
+      "refused_share": 0.03125,
+      "mean_kl_harmless": 0.25255875165748876
+    }
+  },
+  "chosen_layer": 16,
+  "valid": true
+}
