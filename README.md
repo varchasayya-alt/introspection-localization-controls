@@ -70,7 +70,7 @@ comparison of OLMo-3.1-32B checkpoints (base, SFT, DPO, instruct); scale is a po
 untested here. Inside the models the injection is linearly decodable everywhere; in Tülu only a
 small, sub-threshold "yes" lean forms in late layers (Study 11). Neither an informative prompt nor
 refusal-direction ablation unlocks the report at 8B (Study 12); in Macar et al.'s Gemma3-27B
-experiments, refusal ablation raised detection from 10.8% to 63.8%. Scale and model family remain
+experiments, refusal ablation raised detection from 10.8% to 63.8% (false positives from 0% to 7.3%). Scale and model family remain
 untested explanations.
 
 Under the authors' protocol, sentence localization detects **where** processing was disturbed, not

@@ -468,7 +468,7 @@ explanation, untested here**; model family, prompt wording, injection layer and 
 Study 11 adds that the missing report is not for lack of information (it is linearly decodable) and,
 in Tülu, not a large "yes" that gets overridden: only a small late-layer lean forms. Study 12
 adds that two levers used elsewhere do not unlock it at 8B. In Macar et al.'s Gemma3-27B experiments,
-refusal-direction ablation raised detection from 10.8% to 63.8%; here it only raised "yes" across the
+refusal-direction ablation raised detection from 10.8% to 63.8% (false positives from 0% to 7.3%); here it only raised "yes" across the
 board. **Scale and model family remain untested explanations** for the difference.
 
 **What this shows:**
@@ -600,7 +600,7 @@ The predictions were often wrong in instructive ways. Some points recur:
   - Detection "emerges specifically from post-training": in their training-stage comparison
     (OLMo-3.1-32B base, SFT, DPO and instruct checkpoints), DPO elicits it and standard SFT doesn't.
   - Measured with detection-style questions. This motivated our original training-stage question.
-  - In Gemma3-27B, refusal-direction ablation raised detection from 10.8% to 63.8%; our Study 12
+  - In Gemma3-27B, refusal-direction ablation raised detection from 10.8% to 63.8% (false positives from 0% to 7.3%); our Study 12
     finds no such effect at 8B.
   - Our Study 10 finds no yes/no detection at any Tülu-3-8B stage, including DPO; scale (OLMo-3.1-32B
     vs Tülu-3-8B) is one possible reason, untested here, as is model family.
