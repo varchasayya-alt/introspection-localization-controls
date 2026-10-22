@@ -379,3 +379,19 @@ arm-A trials. Trend rules as in plan §4.
 | P6 | Size trend, report (hits − false alarms) | a = rises; b = flat; c = mixed |
 
 If a model setting stops at a sanity check, its questions are "not scorable" (and P5 is "c").
+
+### Researcher's Study 13 predictions — verbatim
+
+Recorded 2026-10-21, after the scoring rules above were committed (d99992c) and before any
+Study 13 data. Given as multiple-choice answers, exactly:
+
+> P1: c (1B localization 25-50%)
+> P2: b (1B main test FAIL, model < 50%)
+> P3: b (3B localization 50-75%)
+> P4: a (3B main test PASS)
+> P5: a (intact-text localization rises with size)
+> P6: a (hits minus false alarms rises with size)
+
+Researcher approval recorded with these predictions: design as planned (relative-depth layers 1B: 1,
+3B: 2; strength matched at 2.186 × norm; 8B reused from Studies 4 and 11; 1B secondary arm at
+layer 2).
