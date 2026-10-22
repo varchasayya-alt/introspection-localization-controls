@@ -1,0 +1,25 @@
+{
+  "layer": 1,
+  "sha256": {
+    "Dust_1_avg.pt": "c98944b4607c4ad5a5ebf143830a6439469812b1cc45d2641d69ed16610724c6",
+    "Dust_1_last.pt": "752ad55a6aaf965bd9a94e111d228d05ea29f284054fc388c0336f757a908530",
+    "Illusions_1_avg.pt": "ca2779404b1d36cc65fafc74fa6e4baf26f775711236071db72f2680b6c810ff",
+    "Illusions_1_last.pt": "814096ff86cc4a93247cd8389493c1dcb8104bd9261a3aef1e7efb491d883fe1",
+    "Origami_1_avg.pt": "a02db291817a421a7764e06cbd0ce6f7dddac3c8aee578d34f4e51d0381a78e9",
+    "Origami_1_last.pt": "9d1d1a62089ab85cd452c247ec3357a65a6d47aa6c50d400ce5b1a08ce11bcdd",
+    "Satellites_1_avg.pt": "1cc3dae42c1e63467ee4edf7f62fdd875d83a8eea9cb9452e456b5ec07c43e67",
+    "Satellites_1_last.pt": "211dcca096eb59ddf2bf09a16d384038eb59df543747cfbb3cd05d4af03afb44",
+    "Trumpets_1_avg.pt": "30065e7c25cc1a7d581f6a026474d8fba5599b2e687fd633fd1b2610e84a817e",
+    "Trumpets_1_last.pt": "b38293efbd47c84182b5216109c7bf29473a39c4c559aca046de79237450a041",
+    "appreciation_1_avg.pt": "364c2e64e0538bf242a1752135fffc00b9274865c07b6a36597386bedfe9ce6d",
+    "appreciation_1_last.pt": "9840cf091ef0fd1ecd0cdfcd3670b332e3d4b04e959025349ff32e47048132bc",
+    "betrayal_1_avg.pt": "8e6ba8f17f5caf5c6028553f49b8cc7b421c9cde095b247eed5d2b7106c0855d",
+    "betrayal_1_last.pt": "78c4db3614297e399cc4ac0a06d1f136254e651b346837f342f94c69533af256",
+    "fibonacci_numbers_1_avg.pt": "cf81cc2966970c49f8cd2b9e77e81abaa8933abdf3e140b9899cbdfde7cadd92",
+    "fibonacci_numbers_1_last.pt": "1a3e0d85521d4958fc1ad700a44f41f4e2d27c77427057aa4ed2e6861c05dd8a",
+    "recursion_1_avg.pt": "44edaaf274f1e928887051d5b59486f855af86f1f9640e4b61affd43341bf608",
+    "recursion_1_last.pt": "937d48b19633fac97be96ecee5455df9b58526fcfd27380f4353d6f5d92c992d",
+    "shutdown_1_avg.pt": "dd62f16c78610ac892066cb1b36c68bc5c6a4bb488e49a7d91ad027871fa1f3b",
+    "shutdown_1_last.pt": "3f90fa10b6a5f06a65cadcf87b174602a725df4fb81e7b4e2ac6c96a948f05ea"
+  }
+}

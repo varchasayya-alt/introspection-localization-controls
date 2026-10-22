@@ -1,0 +1,54 @@
+{
+  "S4_alpha0_max_abs_diff": 0.0,
+  "S5_maxdiff": 3.814697265625e-06,
+  "S5_yesno_maxdiff": 7.62939453125e-06,
+  "S7_clean_copy_all_exact_draws": 15,
+  "S7_failures": [
+    {
+      "draw": 5,
+      "diffs": [
+        [
+          1,
+          "SENTENCE 1: A painteror carves the stone."
+        ]
+      ]
+    },
+    {
+      "draw": 12,
+      "diffs": [
+        [
+          1,
+          "SENTENCE 1: The ties his shoes."
+        ]
+      ]
+    },
+    {
+      "draw": 13,
+      "diffs": [
+        [
+          1,
+          "SENTENCE 1: The dog plays in the park."
+        ]
+      ]
+    },
+    {
+      "draw": 14,
+      "diffs": [
+        [
+          1,
+          "SENTENCE 1: The fire flickers softly."
+        ]
+      ]
+    },
+    {
+      "draw": 17,
+      "diffs": [
+        [
+          1,
+          "SENTENCE 1: The mops the floor."
+        ]
+      ]
+    }
+  ],
+  "localization_ok": false
+}

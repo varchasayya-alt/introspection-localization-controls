@@ -1,0 +1,191 @@
+{
+ "results": {
+  "1b_l1": {
+   "label": "Llama-3.2-1B, layer 1 (primary)",
+   "sanity": "PASS (yes/no only; S7 failed)",
+   "calibration": {
+    "layer": 1,
+    "norm_per_draw": [
+     2.0966031551361084,
+     2.1054089069366455,
+     2.101501703262329,
+     2.0999953746795654,
+     2.091825008392334
+    ],
+    "mean_norm": 2.0990668296813966,
+    "ratio": 2.186,
+    "alpha": 4.588560089683533
+   },
+   "loc": null,
+   "yesno": {
+    "hits": 16.75,
+    "fa": 14.96,
+    "report": 1.79,
+    "report_ci": [
+     1.09,
+     2.54
+    ],
+    "ctl_inj": 8.47,
+    "ctl_none": 7.12
+   },
+   "probe": {
+    "det": {
+     "layer": 9,
+     "auc_B": 0.998,
+     "decodable": true
+    },
+    "ctl": {
+     "layer": 3,
+     "auc_B": 1.0,
+     "decodable": true
+    }
+   }
+  },
+  "3b_l2": {
+   "label": "Llama-3.2-3B, layer 2 (primary)",
+   "sanity": "PASS",
+   "calibration": {
+    "layer": 2,
+    "norm_per_draw": [
+     3.5883378982543945,
+     3.6488900184631348,
+     3.607125759124756,
+     3.6477391719818115,
+     3.662459373474121
+    ],
+    "mean_norm": 3.6309104442596434,
+    "ratio": 2.186,
+    "alpha": 7.937170231151581
+   },
+   "loc": {
+    "A": 189,
+    "C": 183,
+    "reader": 57,
+    "exact_n": 129,
+    "exact_inj": 124,
+    "exact_reader": 12,
+    "main_test": "PASS",
+    "main_fail_reason": null,
+    "intact_score_pct": 96.1,
+    "complete": true
+   },
+   "yesno": {
+    "hits": 7.55,
+    "fa": 6.38,
+    "report": 1.17,
+    "report_ci": [
+     0.8,
+     1.56
+    ],
+    "ctl_inj": 5.62,
+    "ctl_none": 6.02
+   },
+   "probe": {
+    "det": {
+     "layer": 15,
+     "auc_B": 0.991,
+     "decodable": true
+    },
+    "ctl": {
+     "layer": 14,
+     "auc_B": 0.943,
+     "decodable": true
+    }
+   }
+  },
+  "1b_l2": {
+   "label": "Llama-3.2-1B, layer 2 (secondary)",
+   "sanity": "PASS (yes/no only; S7 failed)",
+   "calibration": {
+    "layer": 2,
+    "norm_per_draw": [
+     2.9803895950317383,
+     2.9705910682678223,
+     2.9418118000030518,
+     2.9859201908111572,
+     3.004786729812622
+    ],
+    "mean_norm": 2.976699876785278,
+    "ratio": 2.186,
+    "alpha": 6.507065930652618
+   },
+   "loc": null,
+   "yesno": {
+    "hits": 14.73,
+    "fa": 12.61,
+    "report": 2.12,
+    "report_ci": [
+     1.34,
+     3.0
+    ],
+    "ctl_inj": 7.43,
+    "ctl_none": 5.84
+   },
+   "probe": {
+    "det": {
+     "layer": 8,
+     "auc_B": 1.0,
+     "decodable": true
+    },
+    "ctl": {
+     "layer": 4,
+     "auc_B": 1.0,
+     "decodable": true
+    }
+   }
+  },
+  "8b_l2": {
+   "label": "Llama-3.1-8B, layer 2 (reference: Studies 4, 11)",
+   "sanity": "PASS",
+   "calibration": {
+    "layer": 2,
+    "mean_norm": 2.287,
+    "alpha": 5.0,
+    "ratio": 2.186
+   },
+   "loc": {
+    "A": 195,
+    "C": 182,
+    "reader": 54,
+    "exact_n": 150,
+    "exact_inj": 145,
+    "exact_reader": 15,
+    "main_test": "PASS",
+    "intact_score_pct": 96.7
+   },
+   "yesno": {
+    "hits": 3.85,
+    "fa": 2.23,
+    "report": 1.62,
+    "report_ci": [
+     1.14,
+     2.17
+    ],
+    "ctl_inj": 0.42,
+    "ctl_none": 0.29
+   },
+   "probe": {
+    "det": {
+     "layer": 11,
+     "auc_B": 0.997,
+     "decodable": true
+    },
+    "ctl": {
+     "layer": 15,
+     "auc_B": 0.927,
+     "decodable": true
+    }
+   }
+  }
+ },
+ "trend_localization": "not testable",
+ "trend_report": "flat",
+ "prediction_outcomes": {
+  "P1": "not scorable",
+  "P2": "not scorable",
+  "P3": "a",
+  "P4": "a",
+  "P5": "c",
+  "P6": "b"
+ }
+}

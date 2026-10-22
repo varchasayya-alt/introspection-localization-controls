@@ -1,0 +1,15 @@
+{
+  "localization": {
+    "A": 81,
+    "C": 57,
+    "reader": 45,
+    "exact_n": 68,
+    "exact_inj": 33,
+    "exact_reader": 10,
+    "main_test": "FAIL",
+    "main_fail_reason": "injected < 50%",
+    "intact_score_pct": 48.5,
+    "complete": true
+  },
+  "updated": "2026-10-22 02:23:48"
+}

@@ -1,0 +1,17 @@
+{
+  "sanity": "PASS",
+  "updated": "2026-10-22 01:06:02",
+  "localization": {
+    "A": 189,
+    "C": 183,
+    "reader": 57,
+    "exact_n": 129,
+    "exact_inj": 124,
+    "exact_reader": 12,
+    "main_test": "PASS",
+    "main_fail_reason": null,
+    "intact_score_pct": 96.1,
+    "complete": true
+  },
+  "yesno_complete": true
+}

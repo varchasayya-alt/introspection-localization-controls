@@ -1,0 +1,8 @@
+{
+  "S4_alpha0_max_abs_diff": 0.0,
+  "S5_maxdiff": 3.814697265625e-06,
+  "S5_yesno_maxdiff": 1.9073486328125e-05,
+  "S7_clean_copy_all_exact_draws": 20,
+  "S7_failures": [],
+  "localization_ok": true
+}

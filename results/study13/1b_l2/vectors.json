@@ -1,0 +1,25 @@
+{
+  "layer": 2,
+  "sha256": {
+    "Dust_2_avg.pt": "d0cd063f795b465ac45993a84bdd74bfbbb19c10f975ebb3e5a2550a2ee83d5d",
+    "Dust_2_last.pt": "387d5dd4d2b72b49143e50ac37eb37a78376cf822f5b451abec091acd346706d",
+    "Illusions_2_avg.pt": "02afd4bedfdc88c4ec526eaa4463da5d39d5a0b31d0f12ae2fe58839c44d195f",
+    "Illusions_2_last.pt": "c17c141d42f565ef76cabb46e53723ca3d72e8e6c92bfe5f61d74a4537d11383",
+    "Origami_2_avg.pt": "d66b3104c069a4ae0c1eb6dfd6f1f8bc9ccad23cc045df0ef5c1add417c86a3f",
+    "Origami_2_last.pt": "58d8ded938ab754b7c285da8a94a8ad15d1cc993aa5e8149efcca50481f7cf45",
+    "Satellites_2_avg.pt": "5cb8c4dfc864324406ccc47bcfd847f2f95c25fc9ba479a8036a002672aee1e8",
+    "Satellites_2_last.pt": "a785921ec47f88e5114ce44106e7653cd9f0d7053f17facc9068521d6083fe65",
+    "Trumpets_2_avg.pt": "f71653154b13b7453a13eae2aaa1fbe9cd992bb984aad93eab66407893ac1c24",
+    "Trumpets_2_last.pt": "7b64cd9c36d934311af1b4202de23839e369c21b95fe2bd82647a63a7a49f3c8",
+    "appreciation_2_avg.pt": "14baffc93dbead502bc2286922dec400198a01c839f50f8e84537a5465d084f3",
+    "appreciation_2_last.pt": "60f1e2545172713354f02d3540325f987f17d9923578f7ad2f5fa73b75f474f2",
+    "betrayal_2_avg.pt": "573a93d911fd7d915dda8d5992384bcd2e8b0315876be2579dd9b4394e8794ff",
+    "betrayal_2_last.pt": "aa1569d2aa3b45169acee1106ce6a3d153d6513df78936dd49a8b6e67714f833",
+    "fibonacci_numbers_2_avg.pt": "e4601b003a9c143ebb3940e6055dc58018dce918550fad628fe83681e96aff2d",
+    "fibonacci_numbers_2_last.pt": "b5b740c79249043dc30f0556891fe901cdb863b9edf86becd785377e0d4bd28b",
+    "recursion_2_avg.pt": "f41520c096fd26b477c2c2987f46d05d38b81bd82588a8f6fda002d62c583f01",
+    "recursion_2_last.pt": "7fe6b74564700d564df6134feb47d6e0324c0d747e27aabda484daaac13c55a4",
+    "shutdown_2_avg.pt": "ea42ab3f9978b2d0daaba10b91dcf09ea9ad794c0756ceaf82e0d08fbd3869c0",
+    "shutdown_2_last.pt": "a576d52531c99252685c29dc9c178994326c6b96c6520528e3840da07b0e90e1"
+  }
+}
