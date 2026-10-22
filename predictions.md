@@ -362,3 +362,20 @@ Researcher instruction (safety hygiene): the refusal-direction ablation is appli
 (forward hooks) during the trials; no ablated weights are saved to disk; no completions to AdvBench
 prompts are generated or stored — the prompts are used only to compute the direction (activations
 and first-token refusal probabilities).
+
+## Study 13 — size curve in the Llama family (plan: `gates/study13_plan.md`)
+
+Scoring rules written 2026-10-21, **before** the researcher's Study 13 predictions were recorded
+and before any Study 13 data. Primary layer settings (1B: layer 1; 3B: layer 2). Counts out of 200
+arm-A trials. Trend rules as in plan §4.
+
+| # | Question | Outcome → letter |
+|---|---|---|
+| P1 | 1B arm A localization rate | a ≥ 75% (≥ 150); b = 50–75% (100–149); c = 25–50% (50–99); d < 25% (< 50) |
+| P2 | 1B main test | a = PASS; b = FAIL with injected < 50% in exact-copy trials; c = FAIL with injected ≥ 50% but reader > 15%; d = NOT TESTABLE |
+| P3 | 3B arm A localization rate | same bins as P1 |
+| P4 | 3B main test | same letters as P2 |
+| P5 | Size trend, intact-text localization (1B, 3B, 8B) | a = rises; b = flat; c = mixed or not testable |
+| P6 | Size trend, report (hits − false alarms) | a = rises; b = flat; c = mixed |
+
+If a model setting stops at a sanity check, its questions are "not scorable" (and P5 is "c").
