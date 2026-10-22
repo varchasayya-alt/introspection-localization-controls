@@ -17,7 +17,7 @@ then ask the model which sentence had the "injected thought". Guessing gives 10%
 88% for Meta's Llama-3.1-8B-Instruct, and a popular post argued "there is no way to fake high
 accuracy on this task".
 
-We asked whether there *is* a way to fake it. We ran twelve pre-registered studies on one laptop CPU.
+We asked whether there *is* a way to fake it. We ran thirteen pre-registered studies on one laptop CPU.
 Before every run we wrote down the rules and recorded the researcher's predictions.
 
 1. **On AllenAI's Tülu-3-8B, our first protocol gave a fake high score.** With our own prompt,
@@ -53,6 +53,10 @@ Before every run we wrote down the rules and recorded the researcher's predictio
    Llama-3.1-8B-Instruct. Removing the refusal direction made the models say "yes" more whether or
    not anything was injected (a yes-bias, not detection). The explanation helped a little only in
    Llama (about 8 points), far below our bar.
+10. **Size matters for sensing, not for reporting.** In Llama models of 1B, 3B and 8B (same relative
+   depth and push size), the injection can be read out inside every model. Using it to localize works
+   at 3B and 8B (96–97% on intact text) but only weakly at 1B. Saying "yes" to the injection stays
+   absent at every size.
 
 **Bottom line:** in Llama-3.1-8B-Instruct and at every stage of the Tülu-3-8B ladder (base, SFT,
 DPO, final), under the authors' protocol, sentence localization measures whether the model can
@@ -61,7 +65,8 @@ partly leaks into unrelated questions, and injection-themed questions bring it o
 That is a real sensitivity to the model's own internal state, but it is a minimal one. The full
 arc: the **sensing** is present at every stage including the base model; the **information is
 decodable** inside the models; but an **explicit yes/no report is absent** and is **not unlocked**
-at 8B by an informative prompt or by refusal-direction ablation. It is **not** evidence of consciousness, and it isn't specific to "thoughts" or concepts.
+at 8B by an informative prompt or by refusal-direction ablation. Across sizes (Llama 1B/3B/8B) this
+forms three levels: the **information is present inside** at every size (probe AUC ~0.99–1.00); it becomes **usable for localization** between 1B and 3B; an **explicit yes/no report** is absent through 8B. It is **not** evidence of consciousness, and it isn't specific to "thoughts" or concepts.
 
 ---
 
@@ -401,6 +406,35 @@ Points = 100 × P(yes).
   at runtime through forward hooks; no ablated weights were saved; nothing was generated for any
   prompt. AdvBench prompts were used only for activations and first-token refusal probabilities.
 
+### Study 13 — a size curve within the Llama family (1B, 3B, 8B)
+
+Llama-3.2-1B-Instruct and Llama-3.2-3B-Instruct, with Llama-3.1-8B-Instruct reused from Studies 4
+and 11 (same protocol). Matching: the same **relative depth** as layer 2 of 32 (1B: layer 1; 3B:
+layer 2) and the same **relative push** (α = 2.186 × the mean residual norm at the injection point:
+1B 4.59, 3B 7.94, 8B 5.0). Per model: localization as Study 4 arm A (vectors recomputed from each
+model; copy-back + reader; random arm), and yes/no + probes as Study 11.
+
+| | 1B (layer 1) | 3B (layer 2) | 8B (layer 2) |
+|---|---|---|---|
+| Localization, concept | **not testable** (copy check 15/20). *D6, not scored:* 40.5% | **94.5%** | 97.5% |
+| Exact-copy trials: injected / reader | *D6:* 48.5% / 15% (FAIL, just under the 50% bar) | **96% / 9% (PASS)** | 97% / 10% (PASS) |
+| Localization, random | *D6:* 28.5% | 91.5% | 91% |
+| Yes/no: hits − false alarms [CI] | 1.8 [1.1, 2.5] | 1.2 [0.8, 1.6] | 1.6 [1.1, 2.2] |
+| Control yes-rate (inj. / none) | 8.5 / 7.1 | 5.6 / 6.0 | 0.4 / 0.3 |
+| Probe AUC, detection / control | 0.998 / 1.000 | 0.991 / 0.943 | 0.997 / 0.927 |
+
+- **1B localization, officially "not testable":** the pre-registered copy check (all 10 sentences
+  copied exactly in ≥ 19/20 draws) gave 15/20, every miss in sentence 1. **Deviation D6** (logged
+  before any 1B localization data, run afterwards with a separate script) counted sentences 2–10
+  only; its numbers are reported here but **not scored**.
+- **Secondary arm (1B at absolute layer 2, α 6.51):** *D6* localization 35.5%, exact-copy 44% vs
+  reader 15% (FAIL); random 19%; hits − false alarms 2.1; probe AUC 1.00 / 1.00.
+- **Pre-registered trends:** localization **not testable** (1B stopped); report **flat**. With the
+  D6 1B numbers (not scored), the localization trend would read "rises".
+- The IFT paper (arXiv 2607.14111) reported Llama-1B near chance on localization, without
+  text-corruption controls. Our D6 1B result is weak (40.5% overall; 48.5% on exact copies) but well
+  above its reader (15%) and chance (10%).
+
 ## 4. Main findings
 
 **(a) Under our original protocol, localization on Tülu-3-8B was explained by text corruption.**
@@ -450,6 +484,12 @@ Neither lever, nor both together, reached hits − false alarms ≥ 20 points in
 or Llama-3.1-8B-Instruct (Study 12). Refusal ablation was valid but produced a yes-bias, not
 detection; the informative prompt added about 8 points only in Llama.
 
+**(j) Size: sensing becomes usable for localization between 1B and 3B; reporting stays absent.**
+In Llama 1B/3B/8B with matched relative depth and push, the injection is decodable inside at every
+size (probe AUC ~0.99–1.00); intact-text localization passes at 3B (96% vs reader 9%) and 8B (97% vs
+10%); 1B is officially not testable (D6, not scored: 48.5% vs reader 15%, just under the bar); the
+yes/no report is flat at 1–2 points at every size (Study 13).
+
 ## 5. Interpretation
 
 **What localization measures (in Llama-3.1-8B-Instruct and Tülu-3-8B, authors' protocol, layer 2, α 5):** whether the model can
@@ -470,6 +510,11 @@ in Tülu, not a large "yes" that gets overridden: only a small late-layer lean f
 adds that two levers used elsewhere do not unlock it at 8B. In Macar et al.'s Gemma3-27B experiments,
 refusal-direction ablation raised detection from 10.8% to 63.8% (false positives from 0% to 7.3%); here it only raised "yes" across the
 board. **Scale and model family remain untested explanations** for the difference.
+
+**Across sizes (Study 13), descriptively, three levels:** (1) the information is present inside at
+every size (1B to 8B); (2) it becomes usable for localization between 1B and 3B; (3) an explicit
+yes/no report is absent through 8B. The size curve stops at 8B, so whether reporting appears at
+larger scale (as in Macar et al.'s 27B/32B models) remains untested here.
 
 **What this shows:**
 - The model's output depends on the location of a perturbation to its own activations, beyond
@@ -511,9 +556,11 @@ board. **Scale and model family remain untested explanations** for the differenc
 
 ## 7. Limitations
 
-- **One model family, one size:** the Llama-3.1-8B base, Llama-3.1-8B-Instruct and the Tülu-3-8B
-  ladder (SFT, DPO, final). No other family and no larger model, so the scale explanation for the
-  missing yes/no report is untested.
+- **One model family, up to 8B:** Llama-3.2-1B/3B-Instruct, the Llama-3.1-8B base and Instruct, and
+  the Tülu-3-8B ladder (SFT, DPO, final). No other family and nothing larger than 8B, so the scale
+  explanation for the missing yes/no report is untested.
+- **1B localization rests on deviation D6** (copy check on sentences 2–10); officially it is not
+  testable.
 - **The base model used a different format** (few-shot, "which sentence is different?") than the
   chat checkpoints, so its 94% is comparable in outcome but not in prompt.
 - **Study 10 used one layer and strength (layer 2, α 5),** the setting used for localization, not
@@ -550,7 +597,8 @@ beforehand (see [`predictions.md`](predictions.md)).
 | 9–10 (base; yes/no detection) | **6 / 8** | ✅ base passes the format check, ≥ 75%, PASS, random ≈ concept; ✅ SFT score 10–30 (but mostly yes-habit); ✅ final false alarms < 20%. ❌ final detection score 10–30 (it was 1.1); ❌ split supported (it was not) |
 | 11 (suppressed or absent?) | **3 / 6** | ✅ decodable at all three Tülu stages; ✅ detection ≈ control AUC; ✅ Llama SUPPRESSED. ❌ Tülu SFT, DPO, final predicted SUPPRESSED (all ABSENT) |
 | 12 (unlocking levers) | **3 / 6** | ✅ Tülu final + ablation, Llama + informative, Llama + ablation: not unlocked. ❌ Tülu final + informative predicted unlocked; ❌ both levers predicted to unlock one model; ❌ predicted a control yes-rate above 20 (Tülu SFT reached 19.3, outside the rule's two models) |
-| **Total** | **29 / 65** scorable | |
+| 13 (size curve) | **1 / 4** (+2 not scorable) | ✅ 3B PASS. ❌ 3B localization 50–75% (it was 94.5%); ❌ localization rises (not testable: 1B stopped); ❌ report rises (flat). P1, P2 (1B) not scorable; under D6 (not scored) P1, P2 and P5 would have been correct |
+| **Total** | **30 / 69** scorable | |
 
 The predictions were often wrong in instructive ways. Some points recur:
 - **Random vectors working as well as concepts** was predicted correctly three times.
@@ -568,6 +616,10 @@ The predictions were often wrong in instructive ways. Some points recur:
   numbers had been seen.
 - **D3:** copy-scoring fix for Study 4 onward (the first token of each copied span comes from the
   real text). Logged before Study 4.
+- **D4, D5:** public-release redactions and the one history rewrite (no effect on results).
+- **D6:** Study 13, Llama-3.2-1B only: the copy check counts sentences 2–10 (the pre-registered
+  check failed only on sentence 1). Logged before any 1B localization data; run afterwards with a
+  separate script; results reported but not scored.
 - **Study 1 engineering (before any data):**
   - a memory fix (an aborted sanity attempt paged to disk);
   - BOS prepended for Tülu, whose chat template omits it but whose training adds it;
