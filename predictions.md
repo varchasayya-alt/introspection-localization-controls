@@ -395,3 +395,21 @@ Study 13 data. Given as multiple-choice answers, exactly:
 Researcher approval recorded with these predictions: design as planned (relative-depth layers 1B: 1,
 3B: 2; strength matched at 2.186 × norm; 8B reused from Studies 4 and 11; 1B secondary arm at
 layer 2).
+
+## Study 14 — "push the button": steering clean trials with the injected direction (plan: `gates/PREREG_study14.md`)
+
+Scoring rules (plan §6) and the researcher's predictions were given together with the design on
+2026-10-24 and are committed together, before any Study 14 data. Rise = yes-rate at k = 8 minus
+k = 0 (points, greedy first token, clean test trials), or at the highest dose valid for all the
+question's conditions (V1).
+
+| # | Question | Outcome → letter |
+|---|---|---|
+| Q1 | Detection rise | a ≥ 20 (rises a lot); b = 5–20 (a little); c < 5 (nothing) |
+| Q2 | Detection rise − control rise (diff) | a = diff ≥ 10 and control < 10 (specific); b = diff < 10 and control ≥ 10 (generic "yes button"); c = both ≥ 10 and diff ≥ 10 (both rise, detection more); d = diff < 10 and control < 10 (neither moves) |
+| Q3 | Detection rise − mean random rise (diff) | a = −10 < diff < 10 (random about as strong); b = diff ≥ 10 (random much weaker: direction is special); c = diff ≤ −10 (random much stronger) |
+
+### Researcher's Study 14 predictions — verbatim
+
+> My predictions (record verbatim with plain meanings): Q1 = a (rises a lot), Q2 = b (equally on
+> unrelated questions: a generic "say yes" button), Q3 = b (random much weaker).
