@@ -60,3 +60,13 @@ Max **3** calibration attempts per gate. Each attempt is logged here *before* it
 - Same layers × r {0.35, 0.7, 1.4}; same trials, rules and selection. Fixed now, not adjusted
   after attempt 1. If attempt 2 also fails → STOP and write up.
 - Outcome: not run (attempt 1 passed).
+
+## Study 14 — steering layer and direction (Llama-3.2-3B-Instruct)
+
+### Attempt 1 of 1 — logged 2026-10-24, before running
+- 100 calibration draws (calibration-half sentences), detection question, each clean and injected
+  (Study 13 3B injection: layer 2, α 7.937, 3B concept vectors). Answer-position states at every block
+  output saved outside the repository.
+- Layer rule: Study 11 probe fitted on draws 0–49, AUC on draws 50–99, blocks 0–26; highest AUC
+  (3 decimals), tie → earlier block. Direction = mean(injected) − mean(clean) over all 100 draws at
+  that block. Stop if AUC < 0.75. No further attempts; any re-run would be a logged deviation.
