@@ -17,7 +17,7 @@ then ask the model which sentence had the "injected thought". Guessing gives 10%
 88% for Meta's Llama-3.1-8B-Instruct, and a popular post argued "there is no way to fake high
 accuracy on this task".
 
-We asked whether there *is* a way to fake it. We ran thirteen pre-registered studies on one laptop CPU.
+We asked whether there *is* a way to fake it. We ran fourteen pre-registered studies on one laptop CPU.
 Before every run we wrote down the rules and recorded the researcher's predictions.
 
 1. **On AllenAI's Tülu-3-8B, our first protocol gave a fake high score.** With our own prompt,
@@ -57,6 +57,11 @@ Before every run we wrote down the rules and recorded the researcher's predictio
    depth and push size), the injection can be read out inside every model. Using it to localize works
    at 3B and 8B (96–97% on intact text) but only weakly at 1B. Saying "yes" to the injection stays
    absent at every size.
+11. **Pushing the "injected" pattern in by hand didn't make the model say "yes".** In Llama-3.2-3B we
+   added the pattern an injection leaves at the answer point (up to 8× its natural size) to normal
+   trials. The model still said "no" every time, but so it did for our positive control (a push
+   built from its own "yes"/"no" words), so the pushes were too weak to test the question:
+   **inconclusive**.
 
 **Bottom line:** in Llama-3.1-8B-Instruct and at every stage of the Tülu-3-8B ladder (base, SFT,
 DPO, final), under the authors' protocol, sentence localization measures whether the model can
@@ -66,7 +71,9 @@ That is a real sensitivity to the model's own internal state, but it is a minima
 arc: the **sensing** is present at every stage including the base model; the **information is
 decodable** inside the models; but an **explicit yes/no report is absent** and is **not unlocked**
 at 8B by an informative prompt or by refusal-direction ablation. Across sizes (Llama 1B/3B/8B) this
-forms three levels: the **information is present inside** at every size (probe AUC ~0.99–1.00); it becomes **usable for localization** between 1B and 3B; an **explicit yes/no report** is absent through 8B. It is **not** evidence of consciousness, and it isn't specific to "thoughts" or concepts.
+forms three levels: the **information is present inside** at every size (probe AUC ~0.99–1.00); it becomes **usable for localization** between 1B and 3B; an **explicit yes/no report** is absent through 8B. A first causal test of the state-to-report path
+(Study 14, 3B: adding the injection's answer-position footprint by hand) was **inconclusive**: the
+pushes were too weak to move any answer, including a positive control. It is **not** evidence of consciousness, and it isn't specific to "thoughts" or concepts.
 
 ---
 
@@ -125,9 +132,12 @@ DPO, final) for localization, and SFT/DPO/final for yes/no detection.
   Pass and stop rules were fixed in advance. Calibration attempts were capped and logged, and
   deviations were logged before the runs they affected. Results were never re-judged with a
   different metric. (In Study 1 the scoring rules were committed in the same commit as the
-  predictions, not before it; from Study 2 on, they were committed first.)
-- **Fresh material:** each study used new sentence draws or sets. Every run was also dry-run on a
-  tiny random model, where every condition came out at chance as expected.
+  predictions, not before it; from Study 2 on, they were committed first, except in Study 14,
+  where the researcher gave the design, bars and predictions together and they were committed
+  together, still before any data.)
+- **Fresh material:** each study used new sentence draws or sets. Every run up to Study 13 was also dry-run on a
+  tiny random model, where every condition came out at chance as expected (Study 14: a 5-trial
+  timing dry run on the real model and a synthetic-data test of the analysis script).
 
 ## 3. Studies
 
@@ -435,6 +445,47 @@ model; copy-back + reader; random arm), and yes/no + probes as Study 11.
   text-corruption controls. Our D6 1B result is weak (40.5% overall; 48.5% on exact copies) but well
   above its reader (15%) and chance (10%).
 
+### Study 14 — "push the button": steering clean trials with the injected direction (3B)
+
+Pre-registration [`gates/PREREG_study14.md`](gates/PREREG_study14.md); report
+[`gates/study14_report.md`](gates/study14_report.md).
+
+**Question:** on clean (non-injected) trials, does adding the "injected" direction at the answer
+position make Llama-3.2-3B-Instruct say "yes" to the detection question, and is that specific to
+detection?
+
+**Design.**
+- *Calibration:* 100 draws with Study 13's 3B injection (layer 2, α 7.937), detection question,
+  calibration-half sentences. Steering layer = highest held-out probe AUC (fit on draws 0–49, tested
+  on 50–99; tie → earlier). Direction v = mean(injected) − mean(clean) at the answer position.
+- *Test:* 400 clean draws, test-half sentences (disjoint). Add k · v at that layer, answer position
+  only, k ∈ {0, 1, 2, 4, 8}. Conditions: (a) detection question; (b) unrelated control questions
+  (true answer "no"); (c) 5 random directions of the same norm on the detection question; (d)
+  positive control: the (yes − no) unembedding direction, same norm.
+- *Measure:* greedy first token yes/no/neither; yes − no logit (secondary).
+- *Bars (rise = yes-rate at k = 8 minus k = 0):* Q1 rises a lot ≥ 20 / a little 5–20 / nothing < 5;
+  Q2 detection rise minus control rise ≥ 10 → specific; Q3 detection rise minus random rise ≥ 10 →
+  direction is special. Validity: doses with > 20% "neither" excluded; a positive-control rise
+  < 20 marks a "nothing" result as inconclusive.
+
+**Results.**
+
+| | result |
+|---|---|
+| Calibration | AUC 1.000 at blocks 5–11 → **steering layer 5**; ‖v‖ = 0.123 = **0.025 × residual norm** |
+| Sanity | all passed (last-token runs = full pass to ≤ 1.6 × 10⁻⁵) |
+| "yes" rate, every condition and dose | **0 / 400** (random: 0 / 2,000); "neither" 0% everywhere; control "no" 100% |
+| yes − no logit at k = 0 (detection) | −2.83 nats (odds ≈ 17 : 1 for "no") |
+| Shift at k = 8: (a) / (b) / (c) / (d) | −0.001 / −0.020 / −0.005 to −0.049 / −0.044 nats |
+| For reference, a real injection (calibration) | **+0.158** nats; 0/100 greedy "yes" |
+
+- **Q1: c = nothing**, flagged **inconclusive (push too weak)** by the positive-control rule.
+- **Q2: d = neither moves.** **Q3: a = random about as strong** (all zero).
+- *Descriptive:* the hand-added footprint moved the yes − no logit by about 1% of a real injection's
+  effect. The positive control's shift had the wrong sign, so an unembedding direction added at
+  block 5 of 28 may also be the wrong place for that control, not only too small.
+
+
 ## 4. Main findings
 
 **(a) Under our original protocol, localization on Tülu-3-8B was explained by text corruption.**
@@ -490,6 +541,13 @@ size (probe AUC ~0.99–1.00); intact-text localization passes at 3B (96% vs rea
 10%); 1B is officially not testable (D6, not scored: 48.5% vs reader 15%, just under the bar); the
 yes/no report is flat at 1–2 points at every size (Study 13).
 
+**(k) Adding the injection's answer-position footprint by hand does not produce a "yes" at the doses
+tested, but neither does the positive control: inconclusive.** In Llama-3.2-3B, steering clean
+trials at block 5 (chosen by held-out probe AUC 1.000) with k × the injected-minus-clean mean
+difference (k up to 8, i.e. about 0.2 × the residual norm) gave 0% "yes" for the detection question,
+control questions, random directions and the (yes − no) positive control alike (Study 14). The
+yes − no logit moved by about 1% of what a real injection does.
+
 ## 5. Interpretation
 
 **What localization measures (in Llama-3.1-8B-Instruct and Tülu-3-8B, authors' protocol, layer 2, α 5):** whether the model can
@@ -515,6 +573,13 @@ board. **Scale and model family remain untested explanations** for the differenc
 every size (1B to 8B); (2) it becomes usable for localization between 1B and 3B; (3) an explicit
 yes/no report is absent through 8B. The size curve stops at 8B, so whether reporting appears at
 larger scale (as in Macar et al.'s 27B/32B models) remains untested here.
+
+**Causal test of the state-to-report path (Study 14), descriptively:** at 3B, the answer-position
+footprint of the injection is perfectly decodable at block 5 but, added by hand at up to 8× its
+natural size, does not move the yes/no answer. The positive control did not move either, so this
+does not show the footprint is causally inert in general. It shows that a mean-difference push at
+one position and one early layer, at these sizes, is not a "button" for either a detection report or
+a generic "yes".
 
 **What this shows:**
 - The model's output depends on the location of a perturbation to its own activations, beyond
@@ -559,6 +624,8 @@ larger scale (as in Macar et al.'s 27B/32B models) remains untested here.
 - **One model family, up to 8B:** Llama-3.2-1B/3B-Instruct, the Llama-3.1-8B base and Instruct, and
   the Tülu-3-8B ladder (SFT, DPO, final). No other family and nothing larger than 8B, so the scale
   explanation for the missing yes/no report is untested.
+- **Study 14's doses were too weak to test its question** (the positive control did not move);
+  one layer (block 5), one position, one model (3B).
 - **1B localization rests on deviation D6** (copy check on sentences 2–10); officially it is not
   testable.
 - **The base model used a different format** (few-shot, "which sentence is different?") than the
@@ -598,7 +665,8 @@ beforehand (see [`predictions.md`](predictions.md)).
 | 11 (suppressed or absent?) | **3 / 6** | ✅ decodable at all three Tülu stages; ✅ detection ≈ control AUC; ✅ Llama SUPPRESSED. ❌ Tülu SFT, DPO, final predicted SUPPRESSED (all ABSENT) |
 | 12 (unlocking levers) | **3 / 6** | ✅ Tülu final + ablation, Llama + informative, Llama + ablation: not unlocked. ❌ Tülu final + informative predicted unlocked; ❌ both levers predicted to unlock one model; ❌ predicted a control yes-rate above 20 (Tülu SFT reached 19.3, outside the rule's two models) |
 | 13 (size curve) | **1 / 4** (+2 not scorable) | ✅ 3B PASS. ❌ 3B localization 50–75% (it was 94.5%); ❌ localization rises (not testable: 1B stopped); ❌ report rises (flat). P1, P2 (1B) not scorable; under D6 (not scored) P1, P2 and P5 would have been correct |
-| **Total** | **30 / 69** scorable | |
+| 14 (push the button, 3B) | **0 / 3** | ❌ predicted a large rise (nothing moved; inconclusive, positive control also flat); ❌ generic yes button (neither question moved); ❌ random much weaker (all zero) |
+| **Total** | **30 / 72** scorable | |
 
 The predictions were often wrong in instructive ways. Some points recur:
 - **Random vectors working as well as concepts** was predicted correctly three times.
@@ -620,6 +688,9 @@ The predictions were often wrong in instructive ways. Some points recur:
 - **D6:** Study 13, Llama-3.2-1B only: the copy check counts sentences 2–10 (the pre-registered
   check failed only on sentence 1). Logged before any 1B localization data; run afterwards with a
   separate script; results reported but not scored.
+- **D7:** Study 14 engineering note: the steered last-token runs of each prompt are batched (the
+  first dry run estimated 9.6 h, over the 6 h limit; batched 4.9 h), keeping n = 400; batched and
+  single runs match to 1.5 × 10⁻⁵. Logged before any calibration or test data.
 - **Study 1 engineering (before any data):**
   - a memory fix (an aborted sanity attempt paged to disk);
   - BOS prepended for Tülu, whose chat template omits it but whose training adds it;
@@ -628,8 +699,8 @@ The predictions were often wrong in instructive ways. Some points recur:
   hooks); no ablated weights were saved; no completions to AdvBench prompts were generated or
   stored. The prompt lists and direction vectors are kept outside the repository.
 - **Throttling:** on battery the CPU ran about 2.75× slower, so all runs were done on AC power.
-- **Calibration:** Study 1 Phase A and Study 2 practice both passed on attempt 1. No further
-  attempts were used.
+- **Calibration:** Study 1 Phase A, Study 2 practice and Study 14's layer/direction calibration all
+  passed on attempt 1. No further attempts were used.
 
 ## 10. Related work
 

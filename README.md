@@ -1,13 +1,13 @@
 # Where, not what: what the "sentence localization" introspection test measures in small LLMs
 
 This repository is the complete record of a short, pre-registered research program, run from
-2026-10-14 to 2026-10-20 on one laptop CPU. It tests the **sentence localization** task, a
+2026-10-14 to 2026-10-25 on one laptop CPU. It tests the **sentence localization** task, a
 proposed confound-free test of "introspective awareness" in language models:
 1. inject a concept vector into one of ten sentences;
 2. ask the model which sentence contained the injected thought;
 3. compare with chance (10%).
 
-There are thirteen studies, on Meta's Llama-3.2-1B/3B-Instruct, Llama-3.1-8B (base) and
+There are fourteen studies, on Meta's Llama-3.2-1B/3B-Instruct, Llama-3.1-8B (base) and
 Llama-3.1-8B-Instruct, and AllenAI's
 Tülu-3-8B ladder (SFT, DPO, final).
 
@@ -56,11 +56,12 @@ Nothing here bears on whether any system is conscious.
 | 11 | Tülu-3-8B SFT, DPO, final; Llama-3.1-8B-Instruct | Is the yes/no report suppressed or absent? (logit lens, probes) | Tülu **ABSENT** per the 1-nat bar, but a real sub-threshold detection-specific yes-lean (0.4–0.75 nats) in late layers that shrinks at the output; Llama **SUPPRESSED** narrowly; injection **decodable** everywhere for both questions (AUC 0.93–1.00) | [`study11_report.md`](gates/study11_report.md) |
 | 12 | Tülu-3-8B SFT, final; Llama-3.1-8B-Instruct | Can the yes/no report be unlocked? (informative prompt; refusal-direction ablation; both) | **Not unlocked** anywhere (bar: hits − false alarms ≥ 20 points, CI > 0). Ablation valid (refusals ~100% → 0%) but a **yes-bias**, not detection; informative prompt +8 points only in Llama, under the bar | [`study12_report.md`](gates/study12_report.md) |
 | 13 | Llama-3.2-1B, 3B (8B reused) | Size curve (matched relative depth and push) | Decodable inside at every size (AUC ~0.99–1.00); intact-text localization **PASS** at 3B (96% vs reader 9%) and 8B (97% vs 10%); 1B officially **not testable** (copy check 15/20; deviation D6, not scored: 48.5% vs reader 15%, FAIL); yes/no report **flat** at 1–2 points | [`study13_report.md`](gates/study13_report.md) |
+| 14 | Llama-3.2-3B | "Push the button": does adding the injected direction at the answer position make clean trials say "yes"? Specific to detection? | Steering layer 5 (probe AUC 1.000); **0% "yes" in every condition and dose** (detection, control questions, random directions, and the yes − no positive control); pushes too weak to move any answer → Q1 "nothing", **inconclusive** | [`study14_report.md`](gates/study14_report.md) |
 
 **Headline (full arc):** the **sensing** is present at every stage including the base model; the
 **information is decodable** inside the models; but an **explicit yes/no report is absent** and is
 **not unlocked** at 8B by an informative prompt or refusal-direction ablation. Across Llama sizes
-(1B/3B/8B, Study 13) this forms three levels: the **information is present inside** at every size (probe AUC ~0.99–1.00); it becomes **usable for localization** between 1B and 3B; an **explicit yes/no report** is absent through 8B.
+(1B/3B/8B, Study 13) this forms three levels: the **information is present inside** at every size (probe AUC ~0.99–1.00); it becomes **usable for localization** between 1B and 3B; an **explicit yes/no report** is absent through 8B. A first causal test (Study 14, 3B), adding the injection's answer-position footprint to clean trials, was **inconclusive**: the pushes were too weak to move any answer, including a positive control.
 
 In detail: intact-text, content-agnostic localization (~93–95%) is present at **every** stage of
 the Tülu-3 ladder (base Llama-3.1-8B in a few-shot format, SFT, DPO, final), while yes/no detection
@@ -98,7 +99,7 @@ LICENSE                      MIT (code); see "License" for documentation (CC BY 
 THIRD_PARTY_NOTICES.md       material reused from the "Detecting the Disturbance" code (MIT)
 predictions.md               researcher's predictions (verbatim) + scoring rules, per study
 gates/                       design proposals/plans (frozen before runs) and reports, per study
-logs/                        deviations (D0–D6), calibration log, public-release redactions
+logs/                        deviations (D0–D7), calibration log, public-release redactions
 stimuli/                     frozen sentence sets, concepts, seeds, model pins, vector hashes
 scripts/                     experiment code (one script per study), analysis scripts, runners
 results/                     per-trial JSONL results, sanity checks, status and summaries per study
@@ -191,6 +192,16 @@ bash scripts/run_study13_d6_after.sh
 Study 13 needs the gated `meta-llama/Llama-3.2-1B-Instruct` and `-3B-Instruct` (pins in
 `stimuli/model_pins.json`); the second command is deviation D6 (1B localization).
 
+```bash
+python scripts/study14.py --stage calibrate
+```
+```bash
+bash scripts/run_study14_test.sh
+```
+
+Study 14 (Llama-3.2-3B) reuses Study 13's 3B concept vectors (run Study 13 first); calibration saves
+the steering direction outside the repository and checks it by hash before the test.
+
 The analysis scripts rebuild `results/<study>/summary.md` and score the predictions with the
 pre-committed rules:
 
@@ -199,7 +210,7 @@ python scripts/study4_analyze.py
 ```
 
 The other studies use `gate1_analyze.py`, `study2_analyze.py`, `study3_analyze.py` and
-`study5_analyze.py`, `study6_analyze.py`, `study7_8_analyze.py`, `study9_10_analyze.py`, `study11_analyze.py`, `study12_analyze.py`, `study13_analyze.py` and `study13_d6_analyze.py` the same way.
+`study5_analyze.py`, `study6_analyze.py`, `study7_8_analyze.py`, `study9_10_analyze.py`, `study11_analyze.py`, `study12_analyze.py`, `study13_analyze.py`, `study13_d6_analyze.py` and `study14_analyze.py` the same way.
 
 ### Integrity conventions
 
@@ -216,8 +227,10 @@ The other studies use `gate1_analyze.py`, `study2_analyze.py`, `study3_analyze.p
   - that α = 0 changes nothing;
   - that the KV-cache speed-up matches a full pass;
   - vector hashes, and study-specific checks.
-- **Dry runs.** Every pipeline was first run end to end on a tiny random model, where every
-  condition came out at chance.
+- **Dry runs.** Every pipeline up to Study 13 was first run end to end on a tiny random model,
+  where every condition came out at chance. Study 14 instead had a 5-trial timing dry run on the real
+  model (placeholder direction, outputs discarded) and its analysis script was tested on synthetic
+  data before any real data.
 - **Deviations** are logged before the runs they affect ([`logs/deviations.md`](logs/deviations.md)).
   Calibration attempts are capped and logged ([`logs/calibration_log.md`](logs/calibration_log.md)).
 
@@ -237,8 +250,10 @@ The other studies use `gate1_analyze.py`, `study2_analyze.py`, `study3_analyze.p
 | 11 | `c7eb51d` | `c7eb51d` | `cdecf60` | `7b68386` | `b61bea3` |
 | 12 | `2e49802` | `2e49802` | `8e5efb9` | `41bf9ba` | `d7fcf86` |
 | 13 | `d99992c` | `d99992c` | `e5ef057` | `8a6f67a` (D6: `ff5d91d`, `bea42b6`) | `050bf7a` |
+| 14 | `1800c98` | `1800c98`\*\* | `1800c98`\*\* | `001e20a` (D7), calibration + direction hash `12e430b` | `bc4b1f0` |
 
 \* In Study 1 the scoring rules were committed together with the predictions.
+\*\* In Study 14 the design, bars and predictions were given together by the researcher and committed together, before any data.
 
 Also:
 - `824e556`: the Study 4 hypothesis, logged during the Study 3 run (D2).
