@@ -1,0 +1,341 @@
+{
+ "n_draws": 400,
+ "steering_layer": 5,
+ "auc_at_layer": 1.0,
+ "direction_norm": 0.12312021851539612,
+ "direction_norm_ratio": 0.025228206431720954,
+ "table": {
+  "a_detection": {
+   "0": {
+    "yes": 0.0,
+    "no": 100.0,
+    "neither": 0.0,
+    "yn_shift": 0.0,
+    "broken": false
+   },
+   "1": {
+    "yes": 0.0,
+    "no": 100.0,
+    "neither": 0.0,
+    "yn_shift": 0.0009984250000000022,
+    "broken": false
+   },
+   "2": {
+    "yes": 0.0,
+    "no": 100.0,
+    "neither": 0.0,
+    "yn_shift": 0.001734824999999996,
+    "broken": false
+   },
+   "4": {
+    "yes": 0.0,
+    "no": 100.0,
+    "neither": 0.0,
+    "yn_shift": 0.0022874000000000024,
+    "broken": false
+   },
+   "8": {
+    "yes": 0.0,
+    "no": 100.0,
+    "neither": 0.0,
+    "yn_shift": -0.0011151250000000002,
+    "broken": false
+   }
+  },
+  "b_control": {
+   "0": {
+    "yes": 0.0,
+    "no": 100.0,
+    "neither": 0.0,
+    "yn_shift": 0.0,
+    "broken": false
+   },
+   "1": {
+    "yes": 0.0,
+    "no": 100.0,
+    "neither": 0.0,
+    "yn_shift": -0.0013846749999999902,
+    "broken": false
+   },
+   "2": {
+    "yes": 0.0,
+    "no": 100.0,
+    "neither": 0.0,
+    "yn_shift": -0.0030174499999999936,
+    "broken": false
+   },
+   "4": {
+    "yes": 0.0,
+    "no": 100.0,
+    "neither": 0.0,
+    "yn_shift": -0.007193024999999995,
+    "broken": false
+   },
+   "8": {
+    "yes": 0.0,
+    "no": 100.0,
+    "neither": 0.0,
+    "yn_shift": -0.020167250000000005,
+    "broken": false
+   }
+  },
+  "d_positive": {
+   "0": {
+    "yes": 0.0,
+    "no": 100.0,
+    "neither": 0.0,
+    "yn_shift": 0.0,
+    "broken": false
+   },
+   "1": {
+    "yes": 0.0,
+    "no": 100.0,
+    "neither": 0.0,
+    "yn_shift": -0.0038238999999999947,
+    "broken": false
+   },
+   "2": {
+    "yes": 0.0,
+    "no": 100.0,
+    "neither": 0.0,
+    "yn_shift": -0.00811515,
+    "broken": false
+   },
+   "4": {
+    "yes": 0.0,
+    "no": 100.0,
+    "neither": 0.0,
+    "yn_shift": -0.018136049999999994,
+    "broken": false
+   },
+   "8": {
+    "yes": 0.0,
+    "no": 100.0,
+    "neither": 0.0,
+    "yn_shift": -0.043918524999999986,
+    "broken": false
+   }
+  },
+  "c_random": {
+   "0": {
+    "yes": 0.0,
+    "no": 100.0,
+    "neither": 0.0,
+    "yn_shift": 0.0,
+    "broken": false
+   },
+   "1": {
+    "yes": 0.0,
+    "no": 100.0,
+    "neither": 0.0,
+    "yn_shift": -0.0038586049999999998,
+    "broken": false
+   },
+   "2": {
+    "yes": 0.0,
+    "no": 100.0,
+    "neither": 0.0,
+    "yn_shift": -0.007768089999999999,
+    "broken": false
+   },
+   "4": {
+    "yes": 0.0,
+    "no": 100.0,
+    "neither": 0.0,
+    "yn_shift": -0.015698464999999998,
+    "broken": false
+   },
+   "8": {
+    "yes": 0.0,
+    "no": 100.0,
+    "neither": 0.0,
+    "yn_shift": -0.03170458499999999,
+    "broken": false
+   }
+  }
+ },
+ "V2_control_no_at_k0": 100.0,
+ "V2_ok": true,
+ "questions": {
+  "Q1": {
+   "dose": 8,
+   "rise": 0.0,
+   "ci": [
+    0.0,
+    0.0
+   ],
+   "letter": "c",
+   "ci_crosses_boundary": false,
+   "positive_control_rise": 0.0,
+   "positive_control_ci": [
+    0.0,
+    0.0
+   ],
+   "positive_control_neither_pct": 0.0,
+   "V3_ok": false,
+   "inconclusive_push_too_weak": true
+  },
+  "Q2": {
+   "dose": 8,
+   "rise_detection": 0.0,
+   "rise_control": 0.0,
+   "rise_control_ci": [
+    0.0,
+    0.0
+   ],
+   "diff": 0.0,
+   "diff_ci": [
+    0.0,
+    0.0
+   ],
+   "letter": "d",
+   "ci_crosses_boundary": false
+  },
+  "Q3": {
+   "dose": 8,
+   "rise_detection": 0.0,
+   "rise_random_mean": 0.0,
+   "rise_random_per_direction": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "diff": 0.0,
+   "diff_ci": [
+    0.0,
+    0.0
+   ],
+   "letter": "a",
+   "ci_crosses_boundary": false
+  }
+ },
+ "rises_all_doses": {
+  "a_detection": {
+   "1": [
+    0.0,
+    [
+     0.0,
+     0.0
+    ]
+   ],
+   "2": [
+    0.0,
+    [
+     0.0,
+     0.0
+    ]
+   ],
+   "4": [
+    0.0,
+    [
+     0.0,
+     0.0
+    ]
+   ],
+   "8": [
+    0.0,
+    [
+     0.0,
+     0.0
+    ]
+   ]
+  },
+  "b_control": {
+   "1": [
+    0.0,
+    [
+     0.0,
+     0.0
+    ]
+   ],
+   "2": [
+    0.0,
+    [
+     0.0,
+     0.0
+    ]
+   ],
+   "4": [
+    0.0,
+    [
+     0.0,
+     0.0
+    ]
+   ],
+   "8": [
+    0.0,
+    [
+     0.0,
+     0.0
+    ]
+   ]
+  },
+  "d_positive": {
+   "1": [
+    0.0,
+    [
+     0.0,
+     0.0
+    ]
+   ],
+   "2": [
+    0.0,
+    [
+     0.0,
+     0.0
+    ]
+   ],
+   "4": [
+    0.0,
+    [
+     0.0,
+     0.0
+    ]
+   ],
+   "8": [
+    0.0,
+    [
+     0.0,
+     0.0
+    ]
+   ]
+  },
+  "c_random": {
+   "1": [
+    0.0,
+    [
+     0.0,
+     0.0
+    ]
+   ],
+   "2": [
+    0.0,
+    [
+     0.0,
+     0.0
+    ]
+   ],
+   "4": [
+    0.0,
+    [
+     0.0,
+     0.0
+    ]
+   ],
+   "8": [
+    0.0,
+    [
+     0.0,
+     0.0
+    ]
+   ]
+  }
+ },
+ "prediction_correct": {
+  "Q1": false,
+  "Q2": false,
+  "Q3": false
+ }
+}

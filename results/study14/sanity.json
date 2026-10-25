@@ -1,0 +1,24 @@
+{
+  "S1_n_tokens": 261,
+  "S2_yes_ids": [
+    7566,
+    9642,
+    9891,
+    10035
+  ],
+  "S2_no_ids": [
+    912,
+    2201,
+    2360,
+    2822
+  ],
+  "S3_zero_vector_max_abs_diff": 0.0,
+  "S4_k0_clean_vs_full": 0.0,
+  "S5_suffix_vs_full_inj_k1": 1.1920928955078125e-05,
+  "S5_suffix_vs_full_pos_k1": 1.239776611328125e-05,
+  "S5_suffix_vs_full_inj_k8": 1.049041748046875e-05,
+  "S5_suffix_vs_full_pos_k8": 1.621246337890625e-05,
+  "S7_batched_vs_single_max": 1.5020370483398438e-05,
+  "S7_batched_same_top_token": true,
+  "S6_splits_disjoint": true
+}
