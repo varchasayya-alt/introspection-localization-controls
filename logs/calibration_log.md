@@ -78,3 +78,14 @@ Max **3** calibration attempts per gate. Each attempt is logged here *before* it
   `706f02782e723062906a0cc09b57bc06fa76436a701011c192fe0555f763b475`; raw float32 bytes SHA-256
   `141ea0a84244cafd3515077cc6674cb68f72f7179d3d410591e5e4763657cfd8`
   (`results/study14/calibration.json`).
+
+## Study 15 — dose calibration on the positive control (Llama-3.2-3B-Instruct, block 18)
+
+### Attempt 1 of 1 — logged 2026-10-25, before running
+- Direction (computed from Study 14's saved calibration states, before this log entry): unit
+  injection direction at `hidden_states[19]`, SHA-256 `d98cb7e3…c734`; raw norm 0.639; typical norm
+  N = 16.211 (`results/study15/direction.json`).
+- 100 dose-calibration draws (Study 14 calibration half), detection question, clean; the unit
+  (yes − no) direction × f · N at block 18, answer position, for 40 geometric f from 0.02 to 16.
+- Doses = smallest f with yes-rate ≥ 25%, 50%, 90%. Stop if 90% is never reached. Only the positive
+  control is run. No further attempts; any re-run would be a logged deviation.

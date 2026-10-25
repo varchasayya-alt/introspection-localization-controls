@@ -1,0 +1,10 @@
+{
+  "layer": 18,
+  "hidden_states_index": 19,
+  "n_draws": 100,
+  "raw_direction_norm": 0.6387997269630432,
+  "typical_norm_N": 16.211349487304688,
+  "raw_norm_over_N": 0.039404475701624676,
+  "direction_file_sha256": "d98cb7e318e32f26efa62302b573305fc52ee4b6aa39d69f6e89ae8ef0e3c734",
+  "direction_float32_sha256": "10618517a4f1f966fde25b8784ec02ecfe70b983c5e831a98c27b81789a31a3c"
+}
