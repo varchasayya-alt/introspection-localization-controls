@@ -265,3 +265,24 @@ Also:
 
 - varchasayya-alt, *llm-consciousness-indicators-negative-results*
   (github.com/varchasayya-alt/llm-consciousness-indicators-negative-results).
+
+## Related work found after publication
+
+These came to our attention after Studies 1–13 were published; none of them shaped those studies.
+
+- **Ferrara (2026)**, *Open-Weight Masked Introspection: Measuring What Language Models Can Report
+  About Their Own Computation*, arXiv 2608.20569. Eight open-weight models, including
+  Llama-3.1-8B-Instruct. Linear probes recover the interventions while the models' verbal reports
+  stay at chance. A text-only observer (an unintervened copy of the same model that sees only the
+  visible output) is used as a baseline, similar to our clean reader. It does not test
+  forced-choice localization, and it does not causally test the path from internal state to report.
+- **Macar et al. (2026)**, *Mechanisms of Introspective Awareness*, arXiv 2603.21396: in Gemma3-27B,
+  patching "gate" feature activations from steered examples onto unsteered prompts gives only
+  partial detection (max 25.1%).
+- **Hasik (17 Oct 2026)**, *Control questions matter: introspection, refusal ablation, and gates in
+  open Gemma models*, LessWrong: the detection gains from refusal-direction ablation coincide with
+  model degradation, so control questions are needed to interpret them.
+
+**What overlaps.** Our "probe-decodable but not reported" result (Studies 11–13) overlaps with
+Ferrara (2026). Our localization, text-corruption (copy-back + clean reader), random-vector and
+training-stage results do not.
