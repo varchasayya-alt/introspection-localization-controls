@@ -70,3 +70,11 @@ Max **3** calibration attempts per gate. Each attempt is logged here *before* it
 - Layer rule: Study 11 probe fitted on draws 0–49, AUC on draws 50–99, blocks 0–26; highest AUC
   (3 decimals), tie → earlier block. Direction = mean(injected) − mean(clean) over all 100 draws at
   that block. Stop if AUC < 0.75. No further attempts; any re-run would be a logged deviation.
+- Outcome (appended 2026-10-24 22:32, after calibration, before any test data): **PASS (no stop).**
+  Held-out AUC 0.5 at blocks 0–2 (as expected), 0.959 at block 3, 0.999 at block 4, **1.000 at
+  blocks 5–11** (tie → earliest), 0.988–0.998 at blocks 12–26. **Steering layer = block 5.**
+  ‖v‖ = 0.1231 = 0.025 × the mean clean residual norm at the answer position (4.88), so k = 8 is a
+  push of about 0.2 × that norm. Direction file (`direction.pt`, outside the repository) SHA-256
+  `706f02782e723062906a0cc09b57bc06fa76436a701011c192fe0555f763b475`; raw float32 bytes SHA-256
+  `141ea0a84244cafd3515077cc6674cb68f72f7179d3d410591e5e4763657cfd8`
+  (`results/study14/calibration.json`).
