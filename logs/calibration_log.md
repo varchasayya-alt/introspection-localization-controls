@@ -89,3 +89,11 @@ Max **3** calibration attempts per gate. Each attempt is logged here *before* it
   (yes − no) direction × f · N at block 18, answer position, for 40 geometric f from 0.02 to 16.
 - Doses = smallest f with yes-rate ≥ 25%, 50%, 90%. Stop if 90% is never reached. Only the positive
   control is run. No further attempts; any re-run would be a logged deviation.
+- Outcome (appended 2026-10-25 16:24, after dose calibration, before any test data): **PASS (no
+  stop).** The positive control's yes-rate is 0% up to f = 0.2616, 3% at f = 0.3105, **93% at
+  f = 0.3685**, 100% from f = 0.4374 to 2.4283; at f = 2.88–5.72 every answer is "neither"; at
+  6.79–8.06 a mix of "no" and "neither"; 100% "yes" again from f = 9.57. Because the curve jumps
+  from 3% to 93% between two neighbouring grid points, the rule gives **the same dose for all three
+  targets: s25 = s50 = s90 = 0.3685 × N** (push norm 5.97). The test runs as frozen (three identical
+  dose slots); the bars use the top dose, so scoring is unaffected, but the intermediate points of
+  the dose curve are lost. No re-calibration (it would be a second attempt).
