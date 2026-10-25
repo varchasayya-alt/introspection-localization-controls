@@ -413,3 +413,20 @@ question's conditions (V1).
 
 > My predictions (record verbatim with plain meanings): Q1 = a (rises a lot), Q2 = b (equally on
 > unrelated questions: a generic "say yes" button), Q3 = b (random much weaker).
+
+## Study 15 — push the button with pushes sized by the positive control (plan: `gates/PREREG_study15.md`)
+
+Scoring rules (plan §7) and the researcher's predictions were given together with the design on
+2026-10-25 and are committed together, before any Study 15 data. Same letters as Study 14; rise =
+yes-rate at the top dose (s90) minus dose 0. **If the positive control is below 50% "yes" at the top
+dose on test data (V3), the study is inconclusive and Q1–Q3 are not scored.**
+
+| # | Question | Outcome → letter |
+|---|---|---|
+| Q1 | Detection rise | a ≥ 20 (rises a lot); b = 5–20 (a little); c < 5 (nothing) |
+| Q2 | Detection rise − control rise (diff) | a = diff ≥ 10 and control < 10 (specific); b = diff < 10 and control ≥ 10 (generic "yes button"); c = both ≥ 10 and diff ≥ 10 (both rise, detection more); d = diff < 10 and control < 10 (neither moves) |
+| Q3 | Detection rise − mean random rise (diff) | a = −10 < diff < 10 (random about as strong); b = diff ≥ 10 (random much weaker: direction is special); c = diff ≤ −10 (random much stronger) |
+
+### Researcher's Study 15 predictions — verbatim
+
+> My predictions: same as Study 14: Q1 = a, Q2 = b, Q3 = b.

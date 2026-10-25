@@ -668,6 +668,8 @@ beforehand (see [`predictions.md`](predictions.md)).
 | 14 (push the button, 3B) | **0 / 3** | ❌ predicted a large rise (nothing moved; inconclusive, positive control also flat); ❌ generic yes button (neither question moved); ❌ random much weaker (all zero) |
 | **Total** | **30 / 72** scorable | |
 
+Study 14's pre-registration (§6, V3) said Q1–Q3 are still scored when the positive control fails, so its 0 / 3 counts.
+
 The predictions were often wrong in instructive ways. Some points recur:
 - **Random vectors working as well as concepts** was predicted correctly three times.
 - **The size of the "reading changed text" effect** was misjudged in both directions (too small
