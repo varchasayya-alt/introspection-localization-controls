@@ -448,3 +448,20 @@ logit-shift outcome (plan §3.5) is secondary and not part of prediction scoring
 
 > My predictions: Q1 = b (detection "yes" rises 5–20 points), Q2 = b (generic yes button: unrelated
 > questions rise about equally), Q3 = b (random much weaker).
+
+## Study 17 — answer-position fingerprint in Gemma-3-27B-it (reporting) and Gemma-3-4B-it (plan: `gates/PREREG_study17.md`)
+
+Scoring rules (plan §4, §8, §11) and the researcher's predictions were settled together on 2026-10-26
+and committed together, before any Study 17 data. P3 is scored against the layer-(a) verdict
+(NOT TESTABLE is an outcome); P4–P6 are not scorable if the 27B fingerprint arm does not run.
+
+### Researcher's Study 17 predictions — verbatim
+
+> P1 (Gate 1, 27B): Weak (5-20 points)
+> P2 (Gate 1, 4B): Doesn't report (<= 5)
+> P3 (key comparison, layer a): Supported
+> P4 (27B Q1, layer a): b: a little (5-20)
+> P5 (27B Q2, layer a): a: specific
+> P6 (27B Q3, layer a): b: random much weaker
+
+Design choices given with the predictions: primary fingerprint "Response only"; judge "Gemma-27B judge".
