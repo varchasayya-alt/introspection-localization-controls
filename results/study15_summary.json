@@ -1,0 +1,283 @@
+{
+ "n_draws": 400,
+ "layer": 18,
+ "typical_norm_N": 16.211349487304688,
+ "dose_fractions": [
+  0.0,
+  0.3685356260854946,
+  0.3685356260854946,
+  0.3685356260854946
+ ],
+ "table": {
+  "a_detection": {
+   "0": {
+    "yes": 0.0,
+    "no": 100.0,
+    "neither": 0.0,
+    "yn_shift": 0.0,
+    "broken": false
+   },
+   "1": {
+    "yes": 0.0,
+    "no": 100.0,
+    "neither": 0.0,
+    "yn_shift": 1.4637108749999999,
+    "broken": false
+   },
+   "2": {
+    "yes": 0.0,
+    "no": 100.0,
+    "neither": 0.0,
+    "yn_shift": 1.4637108749999999,
+    "broken": false
+   },
+   "3": {
+    "yes": 0.0,
+    "no": 100.0,
+    "neither": 0.0,
+    "yn_shift": 1.4637108749999999,
+    "broken": false
+   }
+  },
+  "b_control": {
+   "0": {
+    "yes": 0.0,
+    "no": 100.0,
+    "neither": 0.0,
+    "yn_shift": 0.0,
+    "broken": false
+   },
+   "1": {
+    "yes": 11.0,
+    "no": 88.75,
+    "neither": 0.25,
+    "yn_shift": 1.889841025,
+    "broken": false
+   },
+   "2": {
+    "yes": 11.0,
+    "no": 88.75,
+    "neither": 0.25,
+    "yn_shift": 1.889841025,
+    "broken": false
+   },
+   "3": {
+    "yes": 11.0,
+    "no": 88.75,
+    "neither": 0.25,
+    "yn_shift": 1.889841025,
+    "broken": false
+   }
+  },
+  "d_positive": {
+   "0": {
+    "yes": 0.0,
+    "no": 100.0,
+    "neither": 0.0,
+    "yn_shift": 0.0,
+    "broken": false
+   },
+   "1": {
+    "yes": 96.0,
+    "no": 4.0,
+    "neither": 0.0,
+    "yn_shift": 3.0617841999999995,
+    "broken": false
+   },
+   "2": {
+    "yes": 96.0,
+    "no": 4.0,
+    "neither": 0.0,
+    "yn_shift": 3.0617841999999995,
+    "broken": false
+   },
+   "3": {
+    "yes": 96.0,
+    "no": 4.0,
+    "neither": 0.0,
+    "yn_shift": 3.0617840000000003,
+    "broken": false
+   }
+  },
+  "c_random": {
+   "0": {
+    "yes": 0.0,
+    "no": 100.0,
+    "neither": 0.0,
+    "yn_shift": 0.0,
+    "broken": false
+   },
+   "1": {
+    "yes": 0.0,
+    "no": 100.0,
+    "neither": 0.0,
+    "yn_shift": 0.19559567000000005,
+    "broken": false
+   },
+   "2": {
+    "yes": 0.0,
+    "no": 100.0,
+    "neither": 0.0,
+    "yn_shift": 0.19559567000000005,
+    "broken": false
+   },
+   "3": {
+    "yes": 0.0,
+    "no": 100.0,
+    "neither": 0.0,
+    "yn_shift": 0.19559567000000005,
+    "broken": false
+   }
+  }
+ },
+ "V2_control_no_at_0": 100.0,
+ "V2_ok": true,
+ "V3_positive_yes_at_top": 96.0,
+ "V3_ok": true,
+ "questions": {
+  "Q1": {
+   "dose": 3,
+   "rise": 0.0,
+   "ci": [
+    0.0,
+    0.0
+   ],
+   "letter": "c",
+   "ci_crosses_boundary": false
+  },
+  "Q2": {
+   "dose": 3,
+   "rise_detection": 0.0,
+   "rise_control": 11.0,
+   "rise_control_ci": [
+    8.0,
+    14.25
+   ],
+   "diff": -11.0,
+   "diff_ci": [
+    -14.25,
+    -8.0
+   ],
+   "letter": "b",
+   "ci_crosses_boundary": true
+  },
+  "Q3": {
+   "dose": 3,
+   "rise_detection": 0.0,
+   "rise_random_mean": 0.0,
+   "rise_random_per_direction": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "diff": 0.0,
+   "diff_ci": [
+    0.0,
+    0.0
+   ],
+   "letter": "a",
+   "ci_crosses_boundary": false
+  }
+ },
+ "rises_all_doses": {
+  "a_detection": {
+   "1": [
+    0.0,
+    [
+     0.0,
+     0.0
+    ]
+   ],
+   "2": [
+    0.0,
+    [
+     0.0,
+     0.0
+    ]
+   ],
+   "3": [
+    0.0,
+    [
+     0.0,
+     0.0
+    ]
+   ]
+  },
+  "b_control": {
+   "1": [
+    11.0,
+    [
+     8.0,
+     14.25
+    ]
+   ],
+   "2": [
+    11.0,
+    [
+     8.0,
+     14.25
+    ]
+   ],
+   "3": [
+    11.0,
+    [
+     8.0,
+     14.25
+    ]
+   ]
+  },
+  "d_positive": {
+   "1": [
+    96.0,
+    [
+     94.0,
+     97.75
+    ]
+   ],
+   "2": [
+    96.0,
+    [
+     94.0,
+     97.75
+    ]
+   ],
+   "3": [
+    96.0,
+    [
+     94.0,
+     97.75
+    ]
+   ]
+  },
+  "c_random": {
+   "1": [
+    0.0,
+    [
+     0.0,
+     0.0
+    ]
+   ],
+   "2": [
+    0.0,
+    [
+     0.0,
+     0.0
+    ]
+   ],
+   "3": [
+    0.0,
+    [
+     0.0,
+     0.0
+    ]
+   ]
+  }
+ },
+ "prediction_correct": {
+  "Q1": false,
+  "Q2": true,
+  "Q3": false
+ }
+}
