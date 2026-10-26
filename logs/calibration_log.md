@@ -116,3 +116,13 @@ Max **3** calibration attempts per gate. Each attempt is logged here *before* it
   up to f = 0.519, 100% from 0.616 to 1.72 (then "neither" at 2.05–5.72, "yes" again from 6.79).
   Bracket [0.519, 0.616] → stage 2 (40 linear f from 0.415 to 0.770): 25% at 0.5428, 59% at 0.5701,
   92% at 0.6065. **Doses s25 = 0.5428, s50 = 0.5701, s90 = 0.6065 × N: distinct** (not collapsed).
+
+## Study 17 — Gemma-3-4B-it arm (laptop)
+
+### Timing dry run — logged 2026-10-26 15:10, before any real Study 17 data
+- `study17.py --model 4b --dry` passed every stage (sanity: last-token vs full 1.1 × 10⁻⁴, batched vs
+  single 4.7 × 10⁻⁵, same greedy token; injection starts at "Trial"). Dry outputs are never results.
+- Extrapolated full run: vectors ~10 min, Gate 1 generation ~3.3 h, fingerprint calibration ~50 min,
+  dose search ~1.7 h, test ~2.2 h → **about 8 h ≤ 12 h → sizes as pre-registered** (Gate 1: 200 + 200;
+  test: 200). Judging of the 4B answers is done by Gemma-3-27B-it on the GPU (plan §4).
+- One attempt per calibration (fingerprint, doses); any re-run would be a logged deviation.
