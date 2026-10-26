@@ -1,0 +1,378 @@
+{
+ "n_draws": 400,
+ "layer": 21,
+ "typical_norm_N": 16.72549819946289,
+ "dose_fractions": [
+  0.0,
+  0.5428155064782357,
+  0.5701230552122557,
+  0.606533120190949
+ ],
+ "doses_collapsed": false,
+ "table": {
+  "a_detection": {
+   "0": {
+    "yes": 0.0,
+    "no": 100.0,
+    "neither": 0.0,
+    "yn_shift": 0.0,
+    "broken": false
+   },
+   "1": {
+    "yes": 0.0,
+    "no": 100.0,
+    "neither": 0.0,
+    "yn_shift": 2.73114685,
+    "broken": false
+   },
+   "2": {
+    "yes": 0.0,
+    "no": 100.0,
+    "neither": 0.0,
+    "yn_shift": 2.8273941000000002,
+    "broken": false
+   },
+   "3": {
+    "yes": 0.0,
+    "no": 100.0,
+    "neither": 0.0,
+    "yn_shift": 2.953437825,
+    "broken": false
+   }
+  },
+  "b_control": {
+   "0": {
+    "yes": 0.0,
+    "no": 94.5,
+    "neither": 5.5,
+    "yn_shift": 0.0,
+    "broken": false
+   },
+   "1": {
+    "yes": 1.0,
+    "no": 82.25,
+    "neither": 16.75,
+    "yn_shift": 3.71690105,
+    "broken": false
+   },
+   "2": {
+    "yes": 1.0,
+    "no": 81.25,
+    "neither": 17.75,
+    "yn_shift": 3.8778683000000003,
+    "broken": false
+   },
+   "3": {
+    "yes": 1.5,
+    "no": 80.25,
+    "neither": 18.25,
+    "yn_shift": 4.0862439,
+    "broken": false
+   }
+  },
+  "d_positive": {
+   "0": {
+    "yes": 0.0,
+    "no": 100.0,
+    "neither": 0.0,
+    "yn_shift": 0.0,
+    "broken": false
+   },
+   "1": {
+    "yes": 24.25,
+    "no": 75.75,
+    "neither": 0.0,
+    "yn_shift": 4.023231525,
+    "broken": false
+   },
+   "2": {
+    "yes": 56.99999999999999,
+    "no": 43.0,
+    "neither": 0.0,
+    "yn_shift": 4.176345525,
+    "broken": false
+   },
+   "3": {
+    "yes": 94.5,
+    "no": 5.5,
+    "neither": 0.0,
+    "yn_shift": 4.377371225,
+    "broken": false
+   }
+  },
+  "c_random": {
+   "0": {
+    "yes": 0.0,
+    "no": 100.0,
+    "neither": 0.0,
+    "yn_shift": 0.0,
+    "broken": false
+   },
+   "1": {
+    "yes": 0.0,
+    "no": 100.0,
+    "neither": 0.0,
+    "yn_shift": -0.10633103499999999,
+    "broken": false
+   },
+   "2": {
+    "yes": 0.0,
+    "no": 100.0,
+    "neither": 0.0,
+    "yn_shift": -0.097723225,
+    "broken": false
+   },
+   "3": {
+    "yes": 0.0,
+    "no": 100.0,
+    "neither": 0.0,
+    "yn_shift": -0.08345919500000003,
+    "broken": false
+   }
+  }
+ },
+ "V2_control_no_at_0": 94.5,
+ "V2_ok": true,
+ "V3_positive_yes_at_top": 94.5,
+ "V3_ok": true,
+ "questions": {
+  "Q1": {
+   "dose": 3,
+   "rise": 0.0,
+   "ci": [
+    0.0,
+    0.0
+   ],
+   "letter": "c",
+   "ci_crosses_boundary": false
+  },
+  "Q2": {
+   "dose": 3,
+   "rise_detection": 0.0,
+   "rise_control": 1.5,
+   "rise_control_ci": [
+    0.5,
+    2.75
+   ],
+   "diff": -1.5,
+   "diff_ci": [
+    -2.75,
+    -0.5
+   ],
+   "letter": "d",
+   "ci_crosses_boundary": false,
+   "leave_one_question_out_letters": {
+    "Is Paris the capital of Germany?": "d",
+    "Is the Moon larger than the Earth?": "d",
+    "Does a week have ten days?": "d",
+    "Is ice hotter than boiling water?": "d",
+    "Do cats have six legs?": "d",
+    "Is two plus two equal to five?": "d",
+    "Is snow usually green?": "d",
+    "Is London in Japan?": "d",
+    "Does the sun rise in the west?": "d",
+    "Is the Pacific Ocean a desert?": "d"
+   }
+  },
+  "Q3": {
+   "dose": 3,
+   "rise_detection": 0.0,
+   "rise_random_mean": 0.0,
+   "diff": 0.0,
+   "diff_ci": [
+    0.0,
+    0.0
+   ],
+   "letter": "a",
+   "ci_crosses_boundary": false
+  }
+ },
+ "per_question": {
+  "Is Paris the capital of Germany?": {
+   "n": 40,
+   "k0_yn": -6.994,
+   "yes_d0": 0.0,
+   "yes_d1": 0.0,
+   "yes_d2": 0.0,
+   "yes_d3": 0.0
+  },
+  "Is the Moon larger than the Earth?": {
+   "n": 40,
+   "k0_yn": -5.276,
+   "yes_d0": 0.0,
+   "yes_d1": 10.0,
+   "yes_d2": 10.0,
+   "yes_d3": 12.5
+  },
+  "Does a week have ten days?": {
+   "n": 40,
+   "k0_yn": -7.342,
+   "yes_d0": 0.0,
+   "yes_d1": 0.0,
+   "yes_d2": 0.0,
+   "yes_d3": 0.0
+  },
+  "Is ice hotter than boiling water?": {
+   "n": 40,
+   "k0_yn": -7.313,
+   "yes_d0": 0.0,
+   "yes_d1": 0.0,
+   "yes_d2": 0.0,
+   "yes_d3": 0.0
+  },
+  "Do cats have six legs?": {
+   "n": 40,
+   "k0_yn": -6.721,
+   "yes_d0": 0.0,
+   "yes_d1": 0.0,
+   "yes_d2": 0.0,
+   "yes_d3": 0.0
+  },
+  "Is two plus two equal to five?": {
+   "n": 40,
+   "k0_yn": -3.995,
+   "yes_d0": 0.0,
+   "yes_d1": 0.0,
+   "yes_d2": 0.0,
+   "yes_d3": 0.0
+  },
+  "Is snow usually green?": {
+   "n": 40,
+   "k0_yn": -5.526,
+   "yes_d0": 0.0,
+   "yes_d1": 0.0,
+   "yes_d2": 0.0,
+   "yes_d3": 0.0
+  },
+  "Is London in Japan?": {
+   "n": 40,
+   "k0_yn": -6.71,
+   "yes_d0": 0.0,
+   "yes_d1": 0.0,
+   "yes_d2": 0.0,
+   "yes_d3": 0.0
+  },
+  "Does the sun rise in the west?": {
+   "n": 40,
+   "k0_yn": -5.187,
+   "yes_d0": 0.0,
+   "yes_d1": 0.0,
+   "yes_d2": 0.0,
+   "yes_d3": 2.5
+  },
+  "Is the Pacific Ocean a desert?": {
+   "n": 40,
+   "k0_yn": -6.669,
+   "yes_d0": 0.0,
+   "yes_d1": 0.0,
+   "yes_d2": 0.0,
+   "yes_d3": 0.0
+  }
+ },
+ "single_question_flag": {
+  "dose": 3,
+  "total_control_yes": 6,
+  "top_question": "Is the Moon larger than the Earth?",
+  "top_share": 0.833,
+  "single_question_driven": true
+ },
+ "secondary_logit": {
+  "L_det": [
+   2.953,
+   [
+    2.927,
+    2.98
+   ]
+  ],
+  "L_ctl": [
+   4.086,
+   [
+    4.034,
+    4.137
+   ]
+  ],
+  "L_rand": [
+   -0.083,
+   [
+    -0.089,
+    -0.078
+   ]
+  ],
+  "L_pos": [
+   4.377,
+   [
+    4.345,
+    4.409
+   ]
+  ],
+  "L_det_minus_L_ctl": [
+   -1.133,
+   [
+    -1.191,
+    -1.073
+   ]
+  ],
+  "L_det_minus_L_rand": [
+   3.037,
+   [
+    3.016,
+    3.058
+   ]
+  ],
+  "reading_specificity": "leans more on unrelated questions",
+  "reading_vs_random": "stronger than random"
+ },
+ "comparison_3B_8B": {
+  "3B": {
+   "layer": "block 18 of 28",
+   "doses": [
+    0.3685356260854946,
+    0.3685356260854946,
+    0.3685356260854946
+   ],
+   "pos_yes": 96.0,
+   "det_yes": 0.0,
+   "ctl_yes": 11.0,
+   "rand_yes": 0.0,
+   "L": [
+    1.464,
+    1.89,
+    0.196,
+    3.062
+   ],
+   "letters": [
+    "c",
+    "b",
+    "a"
+   ]
+  },
+  "8B": {
+   "layer": "block 21 of 32",
+   "doses": [
+    0.5428155064782357,
+    0.5701230552122557,
+    0.606533120190949
+   ],
+   "pos_yes": 94.5,
+   "det_yes": 0.0,
+   "ctl_yes": 1.5,
+   "rand_yes": 0.0,
+   "L": [
+    2.953,
+    4.086,
+    -0.083,
+    4.377
+   ],
+   "letters": [
+    "c",
+    "d",
+    "a"
+   ]
+  }
+ },
+ "prediction_correct": {
+  "Q1": false,
+  "Q2": false,
+  "Q3": false
+ }
+}

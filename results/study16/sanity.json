@@ -1,0 +1,11 @@
+{
+  "S3_zero_vector_max_abs_diff": 0.0,
+  "S4_shared_prefix_tokens": 244,
+  "S4_det_vs_full": 0.0,
+  "S4_ctl_vs_full": 1.8358230590820312e-05,
+  "S5_last_token_vs_full_inj_det_top": 1.3947486877441406e-05,
+  "S5_last_token_vs_full_pos_det_top": 1.5854835510253906e-05,
+  "S5_last_token_vs_full_inj_ctl_top": 2.0384788513183594e-05,
+  "S7_batched_vs_single_max": 2.1457672119140625e-05,
+  "S7_batched_same_top_token": true
+}
