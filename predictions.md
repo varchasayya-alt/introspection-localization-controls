@@ -430,3 +430,21 @@ dose on test data (V3), the study is inconclusive and Q1–Q3 are not scored.**
 ### Researcher's Study 15 predictions — verbatim
 
 > My predictions: same as Study 14: Q1 = a, Q2 = b, Q3 = b.
+
+## Study 16 — Study 15 replicated on Llama-3.1-8B-Instruct (plan: `gates/PREREG_study16.md`)
+
+Scoring rules (plan §5) and the researcher's predictions were given together with the design on
+2026-10-25 and are committed together, before any Study 16 data. Same letters and rules as Study 15
+(rise at s90; V3: positive control ≥ 50% "yes" at s90 on test data, else Q1–Q3 not scored). The
+logit-shift outcome (plan §3.5) is secondary and not part of prediction scoring.
+
+| # | Question | Outcome → letter |
+|---|---|---|
+| Q1 | Detection rise | a ≥ 20; b = 5–20; c < 5 |
+| Q2 | Detection rise − control rise (diff) | a = diff ≥ 10 and control < 10; b = diff < 10 and control ≥ 10; c = both ≥ 10 and diff ≥ 10; d = diff < 10 and control < 10 |
+| Q3 | Detection rise − mean random rise (diff) | a = −10 < diff < 10; b = diff ≥ 10; c = diff ≤ −10 |
+
+### Researcher's Study 16 predictions — verbatim
+
+> My predictions: Q1 = b (detection "yes" rises 5–20 points), Q2 = b (generic yes button: unrelated
+> questions rise about equally), Q3 = b (random much weaker).
