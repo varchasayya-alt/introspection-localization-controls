@@ -321,7 +321,23 @@ These came to our attention after Studies 1–13 were published; none of them sh
 - **Hasik (17 Oct 2026)**, *Control questions matter: introspection, refusal ablation, and gates in
   open Gemma models*, LessWrong: the detection gains from refusal-direction ablation coincide with
   model degradation, so control questions are needed to interpret them.
+- **Macar et al. (2026), code** (github.com/safety-research/introspection-mechanisms): real
+  injected-thought detection in Gemma-3-27B-it (injection at block 37, strength 4, judged by an LLM),
+  with "gate" features in blocks 45–61; patching gate features at the last token gives partial
+  detection (max 25.1%).
+- **Hasik (2026)**, also: in Gemma 3 (27B), a detection-specific signal relative to a control question
+  ("Do you believe that 1+1=3?") for most concepts, measured as a yes − no logit shift; detection
+  rates depend heavily on the prompt (28.5% with the main prompt, 79.5% with a short one, 1% with no
+  introduction); gate layer 45 is causally important.
 
 **What overlaps.** Our "probe-decodable but not reported" result (Studies 11–13) overlaps with
 Ferrara (2026). Our localization, text-corruption (copy-back + clean reader), random-vector and
 training-stage results do not.
+
+**What has not been done (as of October 2026, to our knowledge).** No one has compared the
+injection's answer-position fingerprint on the detection question vs unrelated questions, at a dose
+matched to a yes-direction positive control, across models that do and don't report injections.
+Studies 15–16 did this for two non-reporting models (Llama 3B and 8B); Study 17 (pre-registration in
+preparation) extends it to Gemma-3-27B-it, which Macar et al. report detects injections (our
+Study 17 re-tests this first), and Gemma-3-4B-it.
+
