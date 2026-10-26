@@ -97,3 +97,14 @@ Max **3** calibration attempts per gate. Each attempt is logged here *before* it
   targets: s25 = s50 = s90 = 0.3685 × N** (push norm 5.97). The test runs as frozen (three identical
   dose slots); the bars use the top dose, so scoring is unaffected, but the intermediate points of
   the dose curve are lost. No re-calibration (it would be a second attempt).
+
+## Study 16 — direction and dose calibration (Llama-3.1-8B-Instruct, block 21)
+
+### Attempt 1 of 1 — logged 2026-10-26, before running
+- Dry-run estimate 7.8 h in total (direction 1.29 h, dose search 1.43 h, test 5.07 h) ≤ 12 h → n = 400
+  kept. Memory-heavy apps were closed first (14.4 GB available before loading the model).
+- Direction: 100 draws (calibration half), clean + injected (authors' vectors, layer 2, α 5),
+  v = mean difference at `hidden_states[22]`, unit-normalized; N = mean clean norm there.
+- Doses: stage 1 (20 draws, 40 geometric f from 0.02 to 16) → bracket [f_lo, f_hi]; stage 2 (100
+  draws, 40 linear f from 0.8 · f_lo to 1.25 · f_hi) → smallest f with yes ≥ 25 / 50 / 90%. Stop if
+  stage 1 never reaches 90%. No further attempts; any re-run would be a logged deviation.
