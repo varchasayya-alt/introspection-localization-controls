@@ -17,7 +17,7 @@ then ask the model which sentence had the "injected thought". Guessing gives 10%
 88% for Meta's Llama-3.1-8B-Instruct, and a popular post argued "there is no way to fake high
 accuracy on this task".
 
-We asked whether there *is* a way to fake it. We ran fourteen pre-registered studies on one laptop CPU.
+We asked whether there *is* a way to fake it. We ran fifteen pre-registered studies on one laptop CPU.
 Before every run we wrote down the rules and recorded the researcher's predictions.
 
 1. **On AllenAI's Tülu-3-8B, our first protocol gave a fake high score.** With our own prompt,
@@ -62,6 +62,11 @@ Before every run we wrote down the rules and recorded the researcher's predictio
    trials. The model still said "no" every time, but so it did for our positive control (a push
    built from its own "yes"/"no" words), so the pushes were too weak to test the question:
    **inconclusive**.
+12. **With a push big enough to work, the pattern is a general "lean toward yes", not a detection
+   signal.** At a later layer, with the push sized so a "yes"-word push gave 96% "yes", the injected
+   pattern gave 0% "yes" to the detection question and 11% to unrelated questions (almost all one
+   question). Its pull toward "yes" was about half the "yes"-word push, and as strong on unrelated
+   questions as on the detection question.
 
 **Bottom line:** in Llama-3.1-8B-Instruct and at every stage of the Tülu-3-8B ladder (base, SFT,
 DPO, final), under the authors' protocol, sentence localization measures whether the model can
@@ -73,7 +78,9 @@ decodable** inside the models; but an **explicit yes/no report is absent** and i
 at 8B by an informative prompt or by refusal-direction ablation. Across sizes (Llama 1B/3B/8B) this
 forms three levels: the **information is present inside** at every size (probe AUC ~0.99–1.00); it becomes **usable for localization** between 1B and 3B; an **explicit yes/no report** is absent through 8B. A first causal test of the state-to-report path
 (Study 14, 3B: adding the injection's answer-position footprint by hand) was **inconclusive**: the
-pushes were too weak to move any answer, including a positive control. It is **not** evidence of consciousness, and it isn't specific to "thoughts" or concepts.
+pushes were too weak to move any answer, including a positive control. With pushes sized so that the
+positive control works (Study 15), the injection's footprint acts as a **general yes-lean**, not a
+detection report: no "yes" to the detection question, a few to unrelated questions. It is **not** evidence of consciousness, and it isn't specific to "thoughts" or concepts.
 
 ---
 
@@ -486,6 +493,43 @@ detection?
   block 5 of 28 may also be the wrong place for that control, not only too small.
 
 
+### Study 15 — "push the button" with pushes sized by the positive control (3B)
+
+Pre-registration [`gates/PREREG_study15.md`](gates/PREREG_study15.md); report
+[`gates/study15_report.md`](gates/study15_report.md).
+
+**Why:** in Study 14 even the positive control didn't move, so the question was untested. Study 15
+pushes at a later layer and sizes the pushes so that the positive control works.
+
+**Design.**
+- *Layer:* block 18 of 28, by the researcher's rule (no 3B logit-lens data existed, so the fallback
+  layer 18 applies).
+- *Direction:* injected-minus-clean mean difference at block 18 from Study 14's calibration states,
+  unit-normalized; typical norm N = 16.2.
+- *Doses:* on 100 calibration prompts only, the smallest push sizes at which the (yes − no)
+  direction gives ≥ 25%, 50% and 90% "yes" on the detection question. The injected direction, 5
+  random directions and the control-question condition get exactly those sizes.
+- *Test:* 400 fresh clean draws. Bars as in Study 14. New validity rule: the positive control must
+  reach ≥ 50% "yes" at the top dose on test data, else Q1–Q3 are not scored.
+
+**Results.**
+
+| | result |
+|---|---|
+| Dose calibration | "yes" jumps 3% → 93% between 0.31 and 0.37 × N, so **s25 = s50 = s90 = 0.37 × N** (one dose in practice) |
+| Positive control (test) | **96% "yes"** (logit +3.06) → **valid** |
+| Detection + injected direction | **0% "yes"**; yes − no logit −2.82 → **+1.46** |
+| Control questions + injected direction | **11% "yes"** (40 of the 44 from "Does a week have ten days?"); logit **+1.89** |
+| Detection + random directions | 0% "yes"; logit +0.20 (−0.12 to +0.50) |
+| cos(injected direction, yes − no) | 0.015 (random: −0.024 to +0.006) |
+
+- **Q1: c = nothing. Q2: b = generic "yes button"** (control rise 11.0, CI 8.0–14.25, crossing the
+  10-point bar). **Q3: a = random about as strong** (both 0%).
+- *Descriptive:* in logit terms the injected direction is a **general yes-lean**, about half the
+  positive control's push and 3–14× any random direction, as large or larger on unrelated questions
+  as on the detection question. It is too weak to flip the detection answer, and it isn't specific
+  to detection.
+
 ## 4. Main findings
 
 **(a) Under our original protocol, localization on Tülu-3-8B was explained by text corruption.**
@@ -548,6 +592,13 @@ difference (k up to 8, i.e. about 0.2 × the residual norm) gave 0% "yes" for th
 control questions, random directions and the (yes − no) positive control alike (Study 14). The
 yes − no logit moved by about 1% of what a real injection does.
 
+**(l) With pushes sized so the positive control works, the injection's footprint is a general
+yes-lean, not a detection signal.** At block 18 of Llama-3.2-3B, at a push size where the (yes − no)
+direction gave 96% "yes", the injected direction gave 0% "yes" to the detection question and 11% to
+unrelated questions (Q2 "generic yes button", CI crossing the bar; driven by one question near its
+tipping point). In logit terms it moved "yes" by +1.46 nats on detection and +1.89 on control
+questions, against +0.20 for random directions (Study 15).
+
 ## 5. Interpretation
 
 **What localization measures (in Llama-3.1-8B-Instruct and Tülu-3-8B, authors' protocol, layer 2, α 5):** whether the model can
@@ -580,6 +631,14 @@ natural size, does not move the yes/no answer. The positive control did not move
 does not show the footprint is causally inert in general. It shows that a mean-difference push at
 one position and one early layer, at these sizes, is not a "button" for either a detection report or
 a generic "yes".
+
+Study 15 repeats the test at block 18 with pushes sized so the positive control works (96% "yes").
+There, the injection's footprint pushes toward "yes" by about half the positive control's amount,
+far more than random directions, but **equally or more for unrelated questions** than for the
+detection question, and never enough to produce a detection "yes". The causal reading at 3B: what is
+decodable about the injection at the answer position feeds **general yes/no answering**, not a
+report that something was injected. This matches Study 12 (refusal ablation gives a yes-bias) and
+Hasik's (2026) finding that gate features are shared with general yes/no answering.
 
 **What this shows:**
 - The model's output depends on the location of a perturbation to its own activations, beyond
@@ -626,6 +685,9 @@ a generic "yes".
   explanation for the missing yes/no report is untested.
 - **Study 14's doses were too weak to test its question** (the positive control did not move);
   one layer (block 5), one position, one model (3B).
+- **Study 15 tested one dose in practice** (the positive control's dose curve is a step), one layer
+  (18, by a fallback rule), one position and one model (3B); its Q2 outcome rests partly on a single
+  control question near its tipping point.
 - **1B localization rests on deviation D6** (copy check on sentences 2–10); officially it is not
   testable.
 - **The base model used a different format** (few-shot, "which sentence is different?") than the
@@ -666,7 +728,8 @@ beforehand (see [`predictions.md`](predictions.md)).
 | 12 (unlocking levers) | **3 / 6** | ✅ Tülu final + ablation, Llama + informative, Llama + ablation: not unlocked. ❌ Tülu final + informative predicted unlocked; ❌ both levers predicted to unlock one model; ❌ predicted a control yes-rate above 20 (Tülu SFT reached 19.3, outside the rule's two models) |
 | 13 (size curve) | **1 / 4** (+2 not scorable) | ✅ 3B PASS. ❌ 3B localization 50–75% (it was 94.5%); ❌ localization rises (not testable: 1B stopped); ❌ report rises (flat). P1, P2 (1B) not scorable; under D6 (not scored) P1, P2 and P5 would have been correct |
 | 14 (push the button, 3B) | **0 / 3** | ❌ predicted a large rise (nothing moved; inconclusive, positive control also flat); ❌ generic yes button (neither question moved); ❌ random much weaker (all zero) |
-| **Total** | **30 / 72** scorable | |
+| 15 (push the button, sized pushes, 3B) | **1 / 3** | ✅ generic "yes button" (control 11% vs detection 0%; CI crosses the bar). ❌ predicted a large detection rise (0%); ❌ random much weaker (both 0% "yes"; in logits the injected direction was 3–14× stronger) |
+| **Total** | **31 / 75** scorable | |
 
 Study 14's pre-registration (§6, V3) said Q1–Q3 are still scored when the positive control fails, so its 0 / 3 counts.
 
@@ -702,7 +765,8 @@ The predictions were often wrong in instructive ways. Some points recur:
   stored. The prompt lists and direction vectors are kept outside the repository.
 - **Throttling:** on battery the CPU ran about 2.75× slower, so all runs were done on AC power.
 - **Calibration:** Study 1 Phase A, Study 2 practice and Study 14's layer/direction calibration all
-  passed on attempt 1. No further attempts were used.
+  passed on attempt 1, as did Study 15's dose calibration (whose three targets landed on one grid
+  point). No further attempts were used.
 
 ## 10. Related work
 
