@@ -7,7 +7,7 @@ proposed confound-free test of "introspective awareness" in language models:
 2. ask the model which sentence contained the injected thought;
 3. compare with chance (10%).
 
-There are fifteen studies, on Meta's Llama-3.2-1B/3B-Instruct, Llama-3.1-8B (base) and
+There are sixteen studies, on Meta's Llama-3.2-1B/3B-Instruct, Llama-3.1-8B (base) and
 Llama-3.1-8B-Instruct, and AllenAI's
 Tülu-3-8B ladder (SFT, DPO, final).
 
@@ -58,11 +58,12 @@ Nothing here bears on whether any system is conscious.
 | 13 | Llama-3.2-1B, 3B (8B reused) | Size curve (matched relative depth and push) | Decodable inside at every size (AUC ~0.99–1.00); intact-text localization **PASS** at 3B (96% vs reader 9%) and 8B (97% vs 10%); 1B officially **not testable** (copy check 15/20; deviation D6, not scored: 48.5% vs reader 15%, FAIL); yes/no report **flat** at 1–2 points | [`study13_report.md`](gates/study13_report.md) |
 | 14 | Llama-3.2-3B | "Push the button": does adding the injected direction at the answer position make clean trials say "yes"? Specific to detection? | Steering layer 5 (probe AUC 1.000); **0% "yes" in every condition and dose** (detection, control questions, random directions, and the yes − no positive control); pushes too weak to move any answer → Q1 "nothing", **inconclusive** | [`study14_report.md`](gates/study14_report.md) |
 | 15 | Llama-3.2-3B | Same question with a later layer (18) and pushes sized so a "yes"-word push works | Positive control **96% "yes"** (valid). Injected direction: detection **0% "yes"**, unrelated questions **11%** (mostly one question); logit +1.46 (detection) vs +1.89 (control) vs +0.20 (random): a **general yes-lean, not a detection signal**. Q1 nothing, Q2 generic "yes button" (CI crosses the bar), Q3 random about as strong | [`study15_report.md`](gates/study15_report.md) |
+| 16 | Llama-3.1-8B-Instruct | Study 15 replicated at 8B (block 21; distinct doses; logit shift pre-registered) | Positive control **94.5%** (valid); injected direction **0% "yes"** on detection at every dose, 1.5% on unrelated questions; logit +2.95 (detection) vs **+4.09** (unrelated) vs −0.08 (random): **general yes-lean, larger on unrelated questions; not detection**. Q1 nothing, Q2 neither moves, Q3 random about as strong | [`study16_report.md`](gates/study16_report.md) |
 
 **Headline (full arc):** the **sensing** is present at every stage including the base model; the
 **information is decodable** inside the models; but an **explicit yes/no report is absent** and is
 **not unlocked** at 8B by an informative prompt or refusal-direction ablation. Across Llama sizes
-(1B/3B/8B, Study 13) this forms three levels: the **information is present inside** at every size (probe AUC ~0.99–1.00); it becomes **usable for localization** between 1B and 3B; an **explicit yes/no report** is absent through 8B. A first causal test (Study 14, 3B), adding the injection's answer-position footprint to clean trials, was **inconclusive**: the pushes were too weak to move any answer, including a positive control. With pushes sized so the positive control works (Study 15), the footprint acts as a **general yes-lean** (as strong on unrelated questions), never a detection "yes".
+(1B/3B/8B, Study 13) this forms three levels: the **information is present inside** at every size (probe AUC ~0.99–1.00); it becomes **usable for localization** between 1B and 3B; an **explicit yes/no report** is absent through 8B. A first causal test (Study 14, 3B), adding the injection's answer-position footprint to clean trials, was **inconclusive**: the pushes were too weak to move any answer, including a positive control. With pushes sized so the positive control works (Study 15), the footprint acts as a **general yes-lean** (as strong on unrelated questions), never a detection "yes". Llama-3.1-8B-Instruct shows the same (Study 16): a strong, non-random yes-lean, larger on unrelated questions than on the detection question, and no detection "yes".
 
 In detail: intact-text, content-agnostic localization (~93–95%) is present at **every** stage of
 the Tülu-3 ladder (base Llama-3.1-8B in a few-shot format, SFT, DPO, final), while yes/no detection
@@ -216,6 +217,13 @@ bash scripts/run_study15_test.sh
 Study 15 builds its direction from Study 14's saved calibration states (run Study 14's calibration
 first).
 
+```bash
+bash scripts/run_study16_all.sh
+```
+
+Study 16 (Llama-3.1-8B-Instruct, about 8 hours) needs the authors' vectors (`download_their_vectors.py`)
+and about 18 GB of free RAM; the runner takes stages as arguments (`dircal`, `dosecal`, `test`).
+
 The analysis scripts rebuild `results/<study>/summary.md` and score the predictions with the
 pre-committed rules:
 
@@ -224,7 +232,7 @@ python scripts/study4_analyze.py
 ```
 
 The other studies use `gate1_analyze.py`, `study2_analyze.py`, `study3_analyze.py` and
-`study5_analyze.py`, `study6_analyze.py`, `study7_8_analyze.py`, `study9_10_analyze.py`, `study11_analyze.py`, `study12_analyze.py`, `study13_analyze.py`, `study13_d6_analyze.py`, `study14_analyze.py` and `study15_analyze.py` the same way.
+`study5_analyze.py`, `study6_analyze.py`, `study7_8_analyze.py`, `study9_10_analyze.py`, `study11_analyze.py`, `study12_analyze.py`, `study13_analyze.py`, `study13_d6_analyze.py`, `study14_analyze.py`, `study15_analyze.py` and `study16_analyze.py` the same way.
 
 ### Integrity conventions
 
@@ -266,9 +274,10 @@ The other studies use `gate1_analyze.py`, `study2_analyze.py`, `study3_analyze.p
 | 13 | `d99992c` | `d99992c` | `e5ef057` | `8a6f67a` (D6: `ff5d91d`, `bea42b6`) | `050bf7a` |
 | 14 | `1800c98` | `1800c98`\*\* | `1800c98`\*\* | `001e20a` (D7), calibration + direction hash `12e430b` | `bc4b1f0` |
 | 15 | `9a7fa84` | `9a7fa84`\*\* | `9a7fa84`\*\* | `eb0dc7f`, doses `fff0b87` | `2e4a904` |
+| 16 | `a7ce49e` | `a7ce49e`\*\* | `a7ce49e`\*\* | `d51f17f`, dry run `61e6487`, direction `389d2e4`, doses `97f2f2c` | `aeec33a` |
 
 \* In Study 1 the scoring rules were committed together with the predictions.
-\*\* In Studies 14 and 15 the design, bars and predictions were given together by the researcher and committed together, before any data.
+\*\* In Studies 14–16 the design, bars and predictions were given together by the researcher and committed together, before any data.
 
 Also:
 - `824e556`: the Study 4 hypothesis, logged during the Study 3 run (D2).

@@ -17,7 +17,7 @@ then ask the model which sentence had the "injected thought". Guessing gives 10%
 88% for Meta's Llama-3.1-8B-Instruct, and a popular post argued "there is no way to fake high
 accuracy on this task".
 
-We asked whether there *is* a way to fake it. We ran fifteen pre-registered studies on one laptop CPU.
+We asked whether there *is* a way to fake it. We ran sixteen pre-registered studies on one laptop CPU.
 Before every run we wrote down the rules and recorded the researcher's predictions.
 
 1. **On AllenAI's Tülu-3-8B, our first protocol gave a fake high score.** With our own prompt,
@@ -67,6 +67,10 @@ Before every run we wrote down the rules and recorded the researcher's predictio
    pattern gave 0% "yes" to the detection question and 11% to unrelated questions (almost all one
    question). Its pull toward "yes" was about half the "yes"-word push, and as strong on unrelated
    questions as on the detection question.
+13. **The same holds in the 8B model.** With three properly spaced push sizes (the "yes"-word push gave
+   24%, 57% and 94.5% "yes"), the injected pattern never produced a "yes" to the detection question.
+   It pushed the model's confidence toward "yes" strongly (two-thirds as much as the "yes"-word push)
+   and even more for unrelated questions. Random patterns did nothing.
 
 **Bottom line:** in Llama-3.1-8B-Instruct and at every stage of the Tülu-3-8B ladder (base, SFT,
 DPO, final), under the authors' protocol, sentence localization measures whether the model can
@@ -80,7 +84,9 @@ forms three levels: the **information is present inside** at every size (probe A
 (Study 14, 3B: adding the injection's answer-position footprint by hand) was **inconclusive**: the
 pushes were too weak to move any answer, including a positive control. With pushes sized so that the
 positive control works (Study 15), the injection's footprint acts as a **general yes-lean**, not a
-detection report: no "yes" to the detection question, a few to unrelated questions. It is **not** evidence of consciousness, and it isn't specific to "thoughts" or concepts.
+detection report: no "yes" to the detection question, a few to unrelated questions. Llama-3.1-8B-Instruct
+shows the same pattern more clearly (Study 16): a strong, non-random yes-lean that is larger for
+unrelated questions than for the detection question, and no detection "yes". It is **not** evidence of consciousness, and it isn't specific to "thoughts" or concepts.
 
 ---
 
@@ -530,6 +536,37 @@ pushes at a later layer and sizes the pushes so that the positive control works.
   as on the detection question. It is too weak to flip the detection answer, and it isn't specific
   to detection.
 
+### Study 16 — Study 15 replicated on Llama-3.1-8B-Instruct
+
+Pre-registration [`gates/PREREG_study16.md`](gates/PREREG_study16.md); report
+[`gates/study16_report.md`](gates/study16_report.md).
+
+**Design:** Study 15's, on Llama-3.1-8B-Instruct, with three changes:
+- *Layer:* block 21 of 32, where Study 11's Llama logit lens peaked.
+- *Doses:* a finer, two-stage search for the 25/50/90% doses.
+- *Outcomes:* the yes − no logit shift is a pre-registered secondary outcome, and "yes" rates are
+  reported per unrelated question. The direction came from a fresh calibration split.
+
+**Results.**
+
+| | 3B (Study 15) | 8B (Study 16) |
+|---|---|---|
+| doses (× N) | 0.369 ×3 (collapsed) | 0.543, 0.570, 0.607 (distinct) |
+| positive control "yes" (top dose) | 96.0% | **94.5%** (valid) |
+| detection "yes" (injected direction) | 0% | **0%** at every dose |
+| unrelated questions "yes" | 11.0% (one question) | **1.5%** (5 of 6 from one question) |
+| random "yes" | 0% | 0% |
+| logit shift: detection / unrelated / random / positive | +1.46 / +1.89 / +0.20 / +3.06 | **+2.95 / +4.09 / −0.08 / +4.38** |
+| Q1 / Q2 / Q3 | c / b / a | **c / d / a** |
+
+- **Q1: c = nothing. Q2: d = neither moves** (every leave-one-question-out check also gives d).
+  **Q3: a = random about as strong** (both 0%). Researcher's predictions 0 / 3.
+- **Secondary (pre-registered):** L_det − L_ctl = −1.13 [−1.19, −1.07] → **"leans more on unrelated
+  questions"**; L_det − L_rand = +3.04 [3.02, 3.06] → **"stronger than random"**.
+- **Why no "yes":** the detection answer starts 4.2 nats on the "no" side. The injected direction
+  closes about two-thirds of that gap and never crosses it; the positive control (about 1.5× stronger)
+  just crosses it.
+
 ## 4. Main findings
 
 **(a) Under our original protocol, localization on Tülu-3-8B was explained by text corruption.**
@@ -599,6 +636,13 @@ unrelated questions (Q2 "generic yes button", CI crossing the bar; driven by one
 tipping point). In logit terms it moved "yes" by +1.46 nats on detection and +1.89 on control
 questions, against +0.20 for random directions (Study 15).
 
+**(m) The same holds at 8B, with distinct doses and a pre-registered logit test.** In
+Llama-3.1-8B-Instruct (block 21), at doses where the positive control gave 24–94.5% "yes", the
+injected direction gave 0% "yes" to the detection question and 1.5% to unrelated questions. Its logit
+shift was +2.95 nats on detection and +4.09 on unrelated questions (difference −1.13, CI −1.19 to
+−1.07: "leans more on unrelated questions"), against −0.08 for random directions ("stronger than
+random") (Study 16).
+
 ## 5. Interpretation
 
 **What localization measures (in Llama-3.1-8B-Instruct and Tülu-3-8B, authors' protocol, layer 2, α 5):** whether the model can
@@ -639,6 +683,13 @@ detection question, and never enough to produce a detection "yes". The causal re
 decodable about the injection at the answer position feeds **general yes/no answering**, not a
 report that something was injected. This matches Study 12 (refusal ablation gives a yes-bias) and
 Hasik's (2026) finding that gate features are shared with general yes/no answering.
+
+Study 16 replicates this in Llama-3.1-8B-Instruct at the layer where Study 11 found its hidden yes-lean,
+with three distinct doses and the logit shift as a pre-registered outcome. The footprint pushes
+toward "yes" by two-thirds of the positive control's amount, more on unrelated questions than on the
+detection question, and never produces a detection "yes". At 3B and 8B alike, the causal effect of the
+decodable injection footprint at the answer position is a **general yes-lean, not a detection
+report**.
 
 **What this shows:**
 - The model's output depends on the location of a perturbation to its own activations, beyond
@@ -688,6 +739,9 @@ Hasik's (2026) finding that gate features are shared with general yes/no answeri
 - **Study 15 tested one dose in practice** (the positive control's dose curve is a step), one layer
   (18, by a fallback rule), one position and one model (3B); its Q2 outcome rests partly on a single
   control question near its tipping point.
+- **Study 16** is one layer (21), one position and one wording at 8B; its doses lie in a narrow band
+  (0.54–0.61 × N), and it used Study 15's fixed prompt date while the layer was chosen from Study 11's
+  default-date prompts.
 - **1B localization rests on deviation D6** (copy check on sentences 2–10); officially it is not
   testable.
 - **The base model used a different format** (few-shot, "which sentence is different?") than the
@@ -729,7 +783,8 @@ beforehand (see [`predictions.md`](predictions.md)).
 | 13 (size curve) | **1 / 4** (+2 not scorable) | ✅ 3B PASS. ❌ 3B localization 50–75% (it was 94.5%); ❌ localization rises (not testable: 1B stopped); ❌ report rises (flat). P1, P2 (1B) not scorable; under D6 (not scored) P1, P2 and P5 would have been correct |
 | 14 (push the button, 3B) | **0 / 3** | ❌ predicted a large rise (nothing moved; inconclusive, positive control also flat); ❌ generic yes button (neither question moved); ❌ random much weaker (all zero) |
 | 15 (push the button, sized pushes, 3B) | **1 / 3** | ✅ generic "yes button" (control 11% vs detection 0%; CI crosses the bar). ❌ predicted a large detection rise (0%); ❌ random much weaker (both 0% "yes"; in logits the injected direction was 3–14× stronger) |
-| **Total** | **31 / 75** scorable | |
+| 16 (push the button, 8B) | **0 / 3** | ❌ detection rises 5–20 (0%); ❌ generic yes button (neither question moved in "yes" answers; the logit shift was larger on unrelated questions); ❌ random much weaker (both 0% "yes"; in logits the injected direction was far stronger) |
+| **Total** | **31 / 78** scorable | |
 
 Study 14's pre-registration (§6, V3) said Q1–Q3 are still scored when the positive control fails, so its 0 / 3 counts.
 
@@ -756,6 +811,9 @@ The predictions were often wrong in instructive ways. Some points recur:
 - **D7:** Study 14 engineering note: the steered last-token runs of each prompt are batched (the
   first dry run estimated 9.6 h, over the 6 h limit; batched 4.9 h), keeping n = 400; batched and
   single runs match to 1.5 × 10⁻⁵. Logged before any calibration or test data.
+- **Study 16 operations:** memory-heavy apps were closed before the 8B run (the researcher ended
+  them with `taskkill`); a speed-up runs the shared prompt prefix of the detection and control
+  questions once (exact; checked by sanity S4). No deviations.
 - **Study 1 engineering (before any data):**
   - a memory fix (an aborted sanity attempt paged to disk);
   - BOS prepended for Tülu, whose chat template omits it but whose training adds it;
@@ -766,7 +824,7 @@ The predictions were often wrong in instructive ways. Some points recur:
 - **Throttling:** on battery the CPU ran about 2.75× slower, so all runs were done on AC power.
 - **Calibration:** Study 1 Phase A, Study 2 practice and Study 14's layer/direction calibration all
   passed on attempt 1, as did Study 15's dose calibration (whose three targets landed on one grid
-  point). No further attempts were used.
+  point) and Study 16's direction and dose calibration (distinct doses). No further attempts were used.
 
 ## 10. Related work
 
