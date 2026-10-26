@@ -108,3 +108,7 @@ Max **3** calibration attempts per gate. Each attempt is logged here *before* it
 - Doses: stage 1 (20 draws, 40 geometric f from 0.02 to 16) → bracket [f_lo, f_hi]; stage 2 (100
   draws, 40 linear f from 0.8 · f_lo to 1.25 · f_hi) → smallest f with yes ≥ 25 / 50 / 90%. Stop if
   stage 1 never reaches 90%. No further attempts; any re-run would be a logged deviation.
+- Direction outcome (appended 2026-10-26 05:42, before the dose calibration and any test data): raw
+  ‖v‖ = 1.170 = 0.070 × N, N = 16.725; unit direction SHA-256
+  `385905b2481caccc6dc29e1922b930cc50d6b207887d55bea6f60172911f86dd`; cosine with the (yes − no)
+  direction 0.095 (`results/study16/direction.json`).
