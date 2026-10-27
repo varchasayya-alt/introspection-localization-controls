@@ -1,0 +1,9 @@
+{
+ "start_token": "Trial",
+ "S3_zero_vector": 0.0,
+ "S4_last_token_vs_full": 0.000110626220703125,
+ "S5_batched_vs_single": 4.673004150390625e-05,
+ "S4S5_yes_minus_no_max_diff": 4.000000000026205e-05,
+ "S5_same_top": true,
+ "S6_injection_changes_logits": 34.52081298828125
+}
